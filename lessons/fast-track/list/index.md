@@ -113,7 +113,7 @@ IndexError: list index out of range
 ```
 Element with index 100 does not exists - ends with error.
 
-````pycon
+```pycon
 >>> loterie[1000]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
