@@ -45,6 +45,7 @@ Similarly to `str` converting to strings, the `int` function converts things to 
 ```
 
 The number can always be converted to text, but the opposite is not always possible. What happens when you try to convert a string without digits - for example, `'hello'`?
+
 {% filter solution() %}
 An error will occur!
 
