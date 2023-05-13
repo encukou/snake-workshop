@@ -1,25 +1,25 @@
 # Conditions
 
-"You will want to perform a lot of things in the code only if certain conditions are met. Python has *conditional statements* for this purpose."
+You will want to perform a lot of things in the code only if certain conditions are met. Python has *conditional statements* for this purpose.
 
-"We will now try to gradually write a program that verifies a secret password."
+We will now try to gradually write a program that verifies a secret password.
 
-"To start, write a program that outputs `True` when you enter the word `čokoláda` (chocolate in English). If a different password is entered, it will output `False`."
+To start, write a program that outputs `True` when you enter the word `čokoláda` (chocolate in English). If a different password is entered, it will output `False`.
 
 ```python
 password = input('Enter password: ')
 print(password == 'chocolate')
 ```
 
-"When - then"
+## If - then
 
-"Printing `True` is not very interesting. A better program would do this:"
+Printing `True` is not very interesting. A better program would do this:
 
 * Asks for a secret password
-* When the password is correct:
+* If the password is correct:
     * Allows the user inside.
 
-In English, "když" is translated as "if". And that is also the name of a Python command. It is used like this:
+A Python command for this is called `if`. It is used like this:
 
 ```python
 password = input('Enter password: ')
@@ -27,11 +27,11 @@ if password == 'chocolate':
     print('Correct! Welcome.')
 ```
 
-"The conditional statement begins with `if`, continues with a condition (such as a comparison) and ends with a colon."
+The conditional statement begins with `if`, continues with a condition (such as a comparison) and ends with a colon.
 
-"After the line with `if`, there is an *indented* command - there are 4 spaces at the beginning of the line. Python recognizes that this part of the program should be executed only when the condition is true."
+After the line with `if`, there is an *indented* command - there are 4 spaces at the beginning of the line. Python recognizes that this part of the program should be executed only when the condition is true.
 
-"Save and run"
+Save and run:
 
 ```
 (venv) $ python python_intro.py
@@ -41,15 +41,12 @@ Correct! You may enter.
 Enter password: sesame
 ```
 
-"Odsazování" in English means "indentation" or "spacing".
+### Indenting
+Just because four spaces are needed at the beginning of a line doesn't mean you have to press the spacebar four times. Some editors automatically indent (if you write the line with 'if' correctly). However, in all properly configured editors, you can indent using the <kbd>↹ Tab</kbd> key, and the <kbd>⇧ Shift</kbd>+<kbd>↹ Tab</kbd> combination will return the line back one indentation level.
 
-"Just because four spaces are needed at the beginning of a line doesn't mean you have to press the spacebar four times. Some editors automatically indent (if you write the line with 'if' correctly). However, in all properly configured editors, you can indent using the <kbd>↹ Tab</kbd> key, and the <kbd>⇧ Shift</kbd>+<kbd>↹ Tab</kbd> combination will return the line back one indentation level."
+## Else
 
-"Jinak" in English means "otherwise" or "differently".
-
-"In the previous example, the code was executed only if the condition was met. An even better program would be this one:"
-
-Here's the English translation of the Czech text:
+In the previous example, the code was executed only if the condition was met. An even better program would be this one:
 
 * Asks for the secret password
 * When the password is correct:
@@ -57,7 +54,7 @@ Here's the English translation of the Czech text:
 * Otherwise <small>(i.e., if the password was incorrect)</small>:
     * Triggers the alarm
 
-Python has the command `else` for that - "otherwise":
+Python has the command `else` for that:
 
 ```python
 password = input('Enter password: ')
@@ -68,7 +65,7 @@ else:
     print('UNAUTHORIZED ACCESS!')
 ```
 
-"Funuje to?" translates to "Does it work?" in English.
+Does it work?
 
 ```
 (venv) $ python python_intro.py
@@ -80,11 +77,11 @@ WARNING! WARNING!
 UNAUTHORIZED ENTRY!
 ```
 
-"More options"
+## More options
 
 Sometimes it happens that a program needs to decide between multiple options. For this purpose, the `elif` command is used (short for "else if" in English).
 
-"By using this method, it is possible to comment on the volume of the music."
+By using this method, it is possible to comment on the volume of the music.
 
 Ask about the volume, remember the numerical response.
 * When the volume is up to 20:
@@ -100,7 +97,7 @@ Ask about the volume, remember the numerical response.
 * Otherwise:
     * it displays "My ears are bleeding!"
 
-"In Python, it would be written like this:"
+In Python, it would be written like this:
 
 ```python
 volume = int(input('What is the radio volume set to? '))
@@ -126,9 +123,9 @@ Good as background music.
 
 Notice that only one option is always selected. If you enter `28`, Python will reach `volume < 40`, display the appropriate message, and skip all other options.
 
-Summary.
+## Summary.
 
-"What did you see in this lesson?"
+What did you see in this lesson?
 
 The following is the English translation of the Czech text:
 
