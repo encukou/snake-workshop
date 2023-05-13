@@ -75,89 +75,107 @@ And such a program can be written as a "recipe" - but that recipe is the same fo
 
 And that is exactly what `pyglet.app.run()` does. It processes *events*, situations that need to be responded to. In your program, it currently responds to the window close button and the <kbd>Esc</kbd> key by closing the window and exiting.
 
-"Your programming task now is to describe what other events are interesting and how to respond to them."
+Your programming task now is to describe what other events are interesting and how to respond to them.
 
 ## Event management
 
-"The easiest event you can handle is typing on a keyboard."
+The easiest event you can handle is typing on a keyboard.
 
-"Try putting the following code just above the line 'pyglet.app.run()' in the program:"
+Try putting the following code just above the line 'pyglet.app.run()' in the program:
+```python
+@window.event
+def on_text(text):
+    print(text)
+```
 
-This is a code snippet written in Python, not Czech. It defines an event listener for a window object. When the user types text into the window, the `on_text` function will be called and the text will be printed to the console.
-
-"What is this?
+What is this?
 It is a function definition, but at the beginning it has a *decorator* - the line starting with an at sign.
-The `window.event` decorator is a way to tell Pyglet to run this function when something interesting happens."
+The `window.event` decorator is a way to tell Pyglet to run this function when something interesting happens.
 
-"What's interesting? Pyglet finds out based on the function name: 'on_text' reacts to text. Whenever the user presses a key, Pyglet calls your function!"
+What's interesting? Pyglet finds out based on the function name: 'on_text' reacts to text. Whenever the user presses a key, Pyglet calls your function!
 
-"And what does your function do? It calls `print`. You already know that. The text entered will be displayed on the console from which you are running the program."
+And what does your function do? It calls `print`. You already know that. The text entered will be displayed on the console from which you are running the program.
 
-[note]
-The `print()` function still outputs text to the same place as before.
-Just because a graphical window is open doesn't mean that everything will suddenly start writing to it.
+>[note]
+>The `print()` function still outputs text to the same place as before.
+>Just because a graphical window is open doesn't mean that everything will suddenly start writing to it.
 
-Drawing
+## Drawing
 
-"How to write in a textbox? That is a bit more complicated than in a console. The text in the box can have different colors, sizes, fonts, and can be shifted or rotated in various ways."
+How to write in a textbox? That is a bit more complicated than in a console. The text in the box can have different colors, sizes, fonts, and can be shifted or rotated in various ways.
 
-"All these font attributes need to be saved (along with the text itself) in the `Label` object (meaning 'label'). Try it - put the following code under the line with `window = `:"
-
-(Note: The word "popisek" in the original text is translated as "label" in English, which is the commonly used term for the GUI element in programming.)
-
-"Hello!"
-
+All these font attributes need to be saved (along with the text itself) in the `Label` object (meaning 'label'). Try it - put the following code under the line with `window = `:
+```python
+label = pyglet.text.Label("Ahoj!", x=10, y=20)
+```
 In the variable `label` you will now have a label with the text "Hello" that belongs to position (10, 20) - 10 points from the right edge of the window and 20 points from the bottom.
 
-[note]
+> [note]
+>  Other properties besides position are not specified here, so reasonable "default" values will be used: white color, small but readable font.
 
-Other properties besides position are not specified here, so reasonable "default" values will be used: white color, small but readable font.
-
-"The caption, however, will not write itself. Similarly to calling `print` to display text in the console, responding to the *window drawing* event - `on_draw` - is necessary to draw text."
+The caption, however, will not write itself. Similarly to calling `print` to display text in the console, responding to the *window drawing* event - `on_draw` - is necessary to draw text.
 
 Put this code under the `on_text` function:
-
-This is not Czech text, it appears to be Python code. The code is defining an event handler for a window object. When the window is drawn, it will clear the window and draw a label.
-
-"This function is called by Pyglet whenever it is necessary to draw the content of the window. In animations (movies or games), this is often required 60 times per second ("60 FPS")."
+```python
+@window.event
+def on_draw():
+    window.clear()
+    label.draw()
+```
+This function is called by Pyglet whenever it is necessary to draw the content of the window. In animations (movies or games), this is often required 60 times per second ("60 FPS").
 
 The function does two things:
 * Clears the entire window (paints it black)
 * Renders text.
 
-"In the window, you will now see a greeting!"
+In the window, you will now see a greeting!
 
-"Try changing the `on_text` function so that the entered text is displayed in a window instead of on the console. This is done by assigning the text to the *attribute* `label.text`."
+Try changing the `on_text` function so that the entered text is displayed in a window instead of on the console. This is done by assigning the text to the *attribute* `label.text`.
+```python
+@window.event
+def on_text(text):
+    print('Starý text:', label.text)
+    label.text = text
+    print('Nový text:', label.text)
+```
 
-This is Python code, not Czech text. It defines an event handler for a window that prints the old text of a label, sets the label's text to the new text, and then prints the new text of the label.
+Can you add new text to the old one in this function so that the program works as a simple text editor?
 
-"Can you add new text to the old one in this function so that the program works as a simple text editor?"
+{% filter solution %}
+```python
+@window.event
+def on_text(text):
+    label.text = label.text + text
+```
+{% endfilter %}
 
-The given text is not in Czech language, it is a code snippet written in Python programming language. It is an event listener function that listens for any text input and updates a label's text with the newly entered text.
+## Other events
 
-"Next events"
+What other events can be responded to? They are all described in the Pyglet documentation (https://pyglet.readthedocs.io/en/latest/modules/window.html#pyglet.window.Window.on_activate). Here are a few interesting ones.
 
-"What other events can be responded to? They are all described in the Pyglet documentation (https://pyglet.readthedocs.io/en/latest/modules/window.html#pyglet.window.Window.on_activate). Here are a few interesting ones."
+### Key pressed
 
-"Stisk klávesy" translates to "Press a key" in English.
-
-"The keys that do not enter text (arrows, <kbd>Backspace</kbd> or <kbd>Enter</kbd>, etc.) can be recognized in the `on_key_press` event."
+The keys that do not enter text (arrows, <kbd>Backspace</kbd> or <kbd>Enter</kbd>, etc.) can be recognized in the `on_key_press` event.
 
 The function `on_key_press` has two arguments: the first one is the keycode, which you can compare with a constant from [pyglet.window.key](https://pyglet.readthedocs.io/en/latest/modules/window_key.html#key-constants). The second one determines the pressed modifiers such as <kbd>Shift</kbd> or <kbd>Ctrl</kbd>.
+```python
+@window.event
+def on_key_press(key_code, modifier):
+    if key_code == pyglet.window.key.BACKSPACE:
+        label.text = label.text[:-1]
 
-This is a code snippet written in Python. It listens for a key press event in a Pyglet window. If the key pressed is the BACKSPACE key, it removes the last character from a label's text.
+    if key_code == pyglet.window.key.ENTER:
+        print('Zadaná zpráva:', label.text)
+        window.close()
+```
 
-"If key_code equals pyglet.window.key.ENTER: print('Entered message:', label.text) window closes."
+On macOS, you may need to replace `BACKSPACE` with `DELETE`.  (Or at home, study [the method](https://pyglet.readthedocs.io/en/latest/programming_guide/keyboard.html#motion-events) for doing it automatically and correctly.)
 
-"On macOS, you may need to replace `BACKSPACE` with `DELETE`. {# XXX: is this true? #} (Or at home, study [the method](https://pyglet.readthedocs.io/en/latest/programming_guide/keyboard.html#motion-events) for doing it automatically and correctly.)"
+### Mouse click
 
-"Kliknutí myši" translates to "Mouse click" in English.
+When handling the `on_mouse_press` event, you will receive information about the position of the click (the <var>x</var> and <var>y</var> coordinates) as well as information about the mouse button and modifier that was pressed.
 
-"When handling the `on_mouse_press` event, you will receive information about the position of the click (the <var>x</var> and <var>y</var> coordinates) as well as information about the mouse button and modifier that was pressed."
-
-"Like this, for example, the caption will move to the location of the click."
-
-The code is written in Python, but the text is in Czech. Here's the translation:
+Like this, for example, the caption will move to the location of the click:
 
 ```python
 @window.event
@@ -166,11 +184,9 @@ def on_mouse_press(x, y, button, modifier):
     label.y = y
 ```
 
-Translation: When the mouse is clicked, the x and y coordinates of the cursor are assigned to the x and y properties of the label.
+## Animation
 
-"Animace" in English means "animation".
-
-"A slightly different type of event is the ticking of a clock: something that occurs regularly."
+A slightly different type of event is the ticking of a clock: something that occurs regularly.
 
 This is how animations are created, when something on the screen changes and is redrawn very often - for example, 60 times per second.
 
@@ -180,61 +196,59 @@ Pyglet needs to know how often to call the function.
 Tell it by calling `pyglet.clock.schedule_interval` with two arguments:
 the name of the function and the time between each call - ¹/₆₀ seconds.
 Write all of this again before the line `pyglet.app.run()`:
+```python
+def tik(dt):
+    label.x = label.x + 1
 
-The code you provided is not in Czech language. It is written in Python programming language. The code defines a function called `tik` that takes a parameter `dt`. The function increments the x-coordinate of a label by 1.
-
-"pyglet.clock.schedule_interval(tik, 1/60)" means "schedule the function 'tik' to be called every 1/60th of a second using the Pyglet clock module" in English.
-
-"Pyglet now moves the text 1 pixel to the right every sixtieth of a second."
+pyglet.clock.schedule_interval(tik, 1/60)
+```
+Pyglet now moves the text 1 pixel to the right every sixtieth of a second.
 
 ## The whole program
 
-"In case you get lost or don't know where a particular piece of code belongs, I am providing a sample program for reference."
-
-This is a Python code. Here's the translation:
+In case you get lost or don't know where a particular piece of code belongs, I am providing a sample program for reference.
 
 ```python
 import pyglet
 window = pyglet.window.Window()
 label = pyglet.text.Label("Hello!", x=10, y=20)
-```
 
-The code imports the `pyglet` library, creates a window, and places a label with the text "Hello!" at coordinates (10, 20) within the window.
 
-This is a code snippet written in Python programming language, not Czech language. 
+@window.event
+def on_draw():
+    window.clear()
+    label.draw()
 
-It clears the window and draws a label on it when an event occurs.
 
-This code snippet is written in Python programming language and it does not contain any Czech text to be translated. It is a code for an event that occurs when text is inputted into a window. Specifically, it adds the inputted text to the existing text in a label.
+@window.event
+def on_text(text):
+    label.text = label.text + text
 
-The translated text from Czech to English is:
 
 @window.event
 def on_key_press(key_code, modifier):
     if key_code == pyglet.window.key.BACKSPACE:
         label.text = label.text[:-1]
 
-This appears to be a code snippet written in Python programming language. It is a function that listens for a key press event. If the key that is pressed is the backspace key, then the last character of a label's text is removed.
+    if key_code == pyglet.window.key.ENTER:
+        print('Zadaná zpráva:', label.text)
+        window.close()
 
-if key_code == pyglet.window.key.ENTER:
-    print('Entered message:', label.text)
-    window.close()
 
-This is a snippet of code written in Python programming language, so it's not exactly Czech text. Here is the translation of the code:
+@window.event
+def on_mouse_press(x, y, button, modifier):
+    label.x = x
+    label.y = y
 
-When a mouse button is pressed on the window, the function "on_mouse_press" is triggered. The function takes four arguments: the x and y coordinates of the mouse pointer, the button that was pressed, and any modifier keys that were held down during the click. Inside the function, the x and y attributes of a label object are set to the values of the x and y arguments, respectively.
+def tik(dt):
+    label.x = label.x + 1
 
-The provided text is not a complete sentence or phrase. It appears to be a code snippet written in Python programming language. However, I can provide a translation of the code:
+pyglet.clock.schedule_interval(tik, 1/60)
 
-"def tik(dt):" means that a function named "tik" is defined, which takes an argument "dt".
+pyglet.app.run()
+```
 
-"label.x = label.x + 1" means that the value of the "x" attribute of an object named "label" is incremented by 1.
-
-"pyglet.clock.schedule_interval(tik, 1/60)" translates to "schedule the function 'tik' to be called every 1/60th of a second using the Pyglet clock module."
-
-"pyglet.app.run()" is the same in both Czech and English and is a command used in programming to start the pyglet application.
-
-"So much for the training graphic application. What have you learned?"
+So much for the training graphic application. What have you learned
 
 * The function `pyglet.window.Window()` from the `pyglet` module creates a window.
 * The decorator `@window.event` marks a function that Pyglet will call in response to a certain event: keyboard input (`on_text`), drawing (`on_draw`), key press (`on_key_press`), etc.
