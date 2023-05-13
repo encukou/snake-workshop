@@ -1,57 +1,39 @@
 # Graphics
 
-"Now we will show you how to write a graphical application."
+Now we will show you how to write a graphical application.
 
-"The Python language itself contains tools for drawing images, but they are not very suitable for creating games. Therefore, we will use a library (extension) called Pyglet, which is specifically built for interactive graphics."
+The Python language itself contains tools for drawing images, but they are not very suitable for creating games. Therefore, we will use a library (extension) called Pyglet, which is specifically built for interactive graphics.
 
-"But we have to install it separately first. The safest way is to enter the following two commands into the command line with the virtual environment turned on. (There are also simpler ways, but they require a "correctly" configured system.)"
+But we have to install it separately first. The safest way is to enter the following two commands into the command line with the virtual environment turned on. (There are also simpler ways, but they require a "correctly" configured system.)
 
 Update the `pip` tool, which is capable of installing libraries for Python:
-```
+```console
 (venv)$ python -m pip install --upgrade pip
 ```
 (In translation: **Python**, run the **m**odule **pip** and tell it to **in**stall and optionally **upgrade** the **pip** library.)
 
 Installing Pyglet itself:
-```
+```console
 (venv)$ python -m pip install pyglet
 ```
 (In translation: **Python**, run the **m**odule **pip** and tell it to **in**stall the **pyglet** library.)
 
-"To me, the installation looks something like this:"
-
-The text is a console output from a command that updates the pip package and installs the pyglet package in a Python virtual environment. The translation of the text is as follows:
+For me, the installation looks something like this:
 
 ```console
 (venv)$ python -m pip install --upgrade pip
-```
-This command upgrades the pip package in the virtual environment.
-
-```console
 Requirement already satisfied: pip in ./venv/lib/python3.6/site-packages (18.0)
-```
-This line indicates that the pip package is already installed in the virtual environment and its version is 18.0.
-
-```console
 (venv)$ python -m pip install pyglet
-```
-This command installs the pyglet package in the virtual environment.
-
-```console
 Collecting pyglet
   Downloading pyglet-1.2.4-py3-none-any.whl (964kB)
 Installing collected packages: pyglet
 Successfully installed pyglet-1.2.4
 ```
-These lines indicate that the pyglet package is being downloaded and installed in the virtual environment, and the installation is successful.
-
 The important thing is "Successfully installed", or "Requirement already satisfied" at the end. This means that the library is ready to use!
 
 ## Program skeleton
 
-"Now try to create a new file in the editor, save it as `grafika.py`, and write the following program in it:"
-
-The code is in Python and it creates a window using the Pyglet library. The text "Hotovo!" is printed after the window is created and the Pyglet application is run. In English, the code would be:
+Now try to create a new file in the editor, save it as `graphics.py`, and write the following program in it:
 
 ```python
 import pyglet
@@ -60,17 +42,16 @@ pyglet.app.run()
 print('Done!')
 ```
 
-"Start it. A black window should appear."
+Run it. A black window should appear.
+>[note] Is the window not black? On some computers (often with macOS and some types of Linux), it happens that the window is not black, but there is some "mess" in it. That's okay. Before we start drawing in the window, we >will clean up the mess.
 
-"Is the window not black? On some computers (often with macOS and some types of Linux), it happens that the window is not black, but there is some "mess" in it. That's okay. Before we start drawing in the window, we will clean up the mess."
+>[note] If you receive the error `AttributeError: module 'pyglet' has no attribute 'window'`, check that you named the file `graphics.py` and not `pyglet.py`. Save the file in the editor as `graphics.py`, delete any file named >`pyglet.py`, and try again.
 
-If you receive the error `AttributeError: module 'pyglet' has no attribute 'window'`, check that you named the file `grafika.py` and not `pyglet.py`. Save the file in the editor as `grafika.py`, delete any file named `pyglet.py`, and try again.
+>[note] Another mistake?
+>Graphics are a sensitive matter - you are using a system with many parts that can break (Python, Pyglet, OpenGL, graphics card and its driver, operating system, ...).
+>If it doesn't work for you, it's best to consult with an expert.
 
-"Another mistake?
-Graphics are a sensitive matter - you are using a system with many parts that can break (Python, Pyglet, OpenGL, graphics card and its driver, operating system, ...).
-If it doesn't work for you, it's best to consult with an expert."
-
-"Done? Let's explain what is happening in this program."
+Done? Let's explain what is happening in this program.
 
 The command `import pyglet` will give you access to the graphics library, just like `import random` gives you access to functions related to random numbers.
 
@@ -78,21 +59,21 @@ The call to `pyglet.window.Window()` creates a new *window* on the screen. It re
 
 The call to `pyglet.app.run()` then launches the application.
 
-"The simple programs you have written so far are descriptions of a process - similar to cooking recipes. A sequence of steps that Python executes sequentially from the first to the last. Sometimes something is repeated and some steps can be "wrapped" into a function, but we have always described one procedure from beginning to end so far."
+The simple programs you have written so far are descriptions of a process - similar to cooking recipes. A sequence of steps that Python executes sequentially from the first to the last. Sometimes something is repeated and some steps can be "wrapped" into a function, but we have always described one procedure from beginning to end so far.
 
-"Programs for more complex applications look more like a manual for a car mechanic than a recipe. They describe what should happen in a given situation. For example, a program for a text editor could look like this:"
+Programs for more complex applications look more like a manual for a car mechanic than a recipe. They describe what should happen in a given situation. For example, a program for a text editor could look like this:
 
-<p>When the user presses a letter on the keyboard, add it to the document.</p>
-<p>When the user presses <kbd>⌫ Backspace</kbd>, erase the last letter.</p>
-<p>When the user presses the Save button, write the file to disk.</p>
++ When the user presses a letter on the keyboard, add it to the document.
++ When the user presses <kbd>⌫ Backspace</kbd>, erase the last letter.
++ When the user presses the Save button, write the file to disk.
 
-"And such a program can be written as a "recipe" - but that recipe is the same for all applications."
+And such a program can be written as a "recipe" - but that recipe is the same for all applications:
 
-"Round and round:
-Wait until something interesting happens (pressing a key, button, ...)
-React to the situation that has occurred."
++ do foreever:
+  * Wait until something interesting happens (pressing a key, button, ...)
+  * React to the situation that has occurred.
 
-"And that is exactly what `pyglet.app.run()` does. It processes *events*, situations that need to be responded to. In your program, it currently responds to the window close button and the <kbd>Esc</kbd> key by closing the window and exiting."
+And that is exactly what `pyglet.app.run()` does. It processes *events*, situations that need to be responded to. In your program, it currently responds to the window close button and the <kbd>Esc</kbd> key by closing the window and exiting.
 
 "Your programming task now is to describe what other events are interesting and how to respond to them."
 
