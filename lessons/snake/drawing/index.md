@@ -463,4 +463,4 @@ Try to think about it, let it settle in your head, maybe overnight. Go back to t
 
 Before you figure it out, the rest of the program won't run away from you. The caterpillar is just as playable as the snake, it just looks different. Feel free to switch to [writing game logic](../logic) with the caterpillar.
 
-Or do you [let yourself be submitted](../tile-selection)?
+Or do you [want to know the solution](../tile-selection)?
