@@ -1,0 +1,88 @@
+Title: Snake Workshop for PyLadies
+Subtitle: Brno
+Place: Red Hat, Building C, Purkyňova 665/115, Brno
+Time: 8:00am to 6:00pm
+Timezone: Europe/Prague
+Description: Playful programming taster
+Long_description: |
+
+    Do you want to learn how to program, but don't know where to start?
+    We have a workshop just for you!
+
+    Under the guidance of an instructor, you will create a version of the classic video game Snake,
+    which you may know from older Nokia phones.
+    You will experience writing code firsthand,
+    learn basic programming concepts, and see what it's like
+    when the computer stops misbehaving and starts following your commands.
+
+    (If you think the project is not practical enough, don't despair! Rather than being about the game itself,
+    the focus is on basic programming principles that you can use later on,
+    for example, when creating web applications, analyzing data, machine learning,
+    programming robots, or designing system tools.)
+
+    The workshop is for complete beginners.
+    You don't need to know anything about programming, just have a computer and know how to use it
+    (e.g. open/save a file, install a program).
+
+    The workshop is in Czech and free of charge.
+    However, capacity is limited and registration through the [pyladies.cz](https://pyladies.cz/brno) website is required.
+
+    If you like this taster, there is an opportunity to continue with one
+    of the PyLadies beginner courses that will start shortly after the workshop.
+
+Vars:
+  coach-present: true
+  user-gender: f
+
+Plan:
+- Title: Preparation
+  Slug: preparation
+  Serial: 0
+  Materials:
+  - Lesson: beginners/cmdline
+    Title: Command Line
+  - Lesson: beginners/install
+  - Lesson: beginners/venv-setup
+  - Lesson: beginners/install-editor
+- Title: Introduction to Python
+  Slug: intro
+  Date: 2022-08-20
+  Time:
+    Start: '8:00'
+    End: '13:00'
+  Materials:
+  - Title: Introduction
+    Url: https://docs.google.com/presentation/d/1pM5t3B4Qn-xVsWksDycYvHG5pxJbzmOZwLFPd9lDmGo/edit
+  - Title: Keyboard Shortcut Cheat Sheet (PDF)
+    Url: https://pyvec.github.io/cheatsheets/keyboard/keyboard-cs.pdf
+    Type: cheatsheet
+  - Lesson: fast-track/repl
+  - Lesson: fast-track/str
+  - Lesson: fast-track/conversion
+  - Lesson: fast-track/variables
+  - Lesson: fast-track/list
+  - Lesson: fast-track/random
+  - Lesson: fast-track/dict
+  - Lesson: fast-track/bool
+  - Lesson: fast-track/script
+  - Lesson: fast-track/if
+  - Lesson: fast-track/def
+  - Lesson: fast-track/for
+  - Lesson: fast-track/tuple
+  - Lesson: fast-track/class
+- Title: Snake
+  Slug: workshop
+  Date: 2022-08-20
+  Time:
+    Start: '13:30'
+    End: '18:00'
+  Materials:
+  - Lesson: fast-track/pyglet
+  - Lesson: snake/drawing
+  - Lesson: snake/logic
+- Title: Extensions
+  Slug: extensions
+  Materials:
+  - Lesson: snake/handling
+  - Lesson: snake/toroid
+  - Lesson: snake/tile-selection
