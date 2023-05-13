@@ -18,7 +18,7 @@ You have encountered an error! It says that objects of type 'int' (short for 'in
 6
 ```
 
-"ut it can also be done without quotation marks. There is also a function that *converts* a number to a string. It's called `str`.
+But it can also be done without quotation marks. There is also a function that *converts* a number to a string. It's called `str`.
 
 
 ```pycon
