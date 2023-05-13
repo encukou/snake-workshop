@@ -4,7 +4,7 @@ An important concept in programming are *variables*. A variable is nothing but a
 
 Let's say you want to name a string with your name as `name`. It would be written like this:
 
-``>>> name = 'Ola'```
+```>>> name = 'Ola'```
 
 The variable `name` will now have the value  `'Ola'`.
 
