@@ -71,13 +71,16 @@ for value, color in hand:
 
 The function `zip` returns an <var>N</var>-tuple or a sequence of <var>n</var>-tuples, which allows you to iterate through multiple lists simultaneously, where the elements correspond to each other.
 
+```python
 Items = ['grass', 'sun', 'carrot', 'river']
 Colors = ['green', 'yellow', 'orange', 'blue']
 Places = ['on the ground', 'up high', 'on the plate', 'behind the wall']
 
 
-"for item, color, place in zip(items, colors, places):
-    print(color, item, 'is', place)"
+for item, color, place in zip(items, colors, places):
+    print(color, item, 'is', place)
+```    
+    
 
 In this cycle, you will first receive a trio of the first elements from all three lists, then a trio of all second elements, then third, and so on.
 
