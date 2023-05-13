@@ -1,4 +1,4 @@
-#Strings
+# Strings
 
 Numbers are very useful for computers (as the word *computer* suggests), but Python can also work with other types of information. For example, with text.
 
