@@ -1,9 +1,9 @@
 Title: Snake Workshop for PyLadies
-Subtitle: Brno
-Place: Red Hat, Building C, Purkyňova 665/115, Brno
-Time: 8:00am to 6:00pm
+Subtitle: Europython 
+Place: XXX
+Time: XXX:00am to XXX:00pm
 Timezone: Europe/Prague
-Description: Playful programming taster
+Description: Try programming
 Long_description: |
 
     Do you want to learn how to program, but don't know where to start?
@@ -24,11 +24,11 @@ Long_description: |
     You don't need to know anything about programming, just have a computer and know how to use it
     (e.g. open/save a file, install a program).
 
-    The workshop is in Czech and free of charge.
-    However, capacity is limited and registration through the [pyladies.cz](https://pyladies.cz/brno) website is required.
+    The workshop is in English and free of charge.
+    However, capacity is limited and registration through the [XXX](XXX) website is required.
 
     If you like this taster, there is an opportunity to continue with one
-    of the PyLadies beginner courses that will start shortly after the workshop.
+    of the PyLadies beginner courses that are run on regular basis.
 
 Vars:
   coach-present: true
