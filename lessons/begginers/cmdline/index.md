@@ -1,12 +1,16 @@
 {%- macro sidebyside(titles=['Unix', 'Windows']) -%}
-{%- for title in titles -%}
-{{ title }}
+    <div class="row side-by-side-commands">
+        {%- for title in titles -%}
+            <div class="col">
+                <h4>{{ title }}</h4>
 {%- filter markdown() -%}
-
+```{%- if title.lower().startswith('win') -%}dosvenv{%- else -%}console{%- endif -%}
 {{ caller() | extract_part(loop.index0, '---') | dedent }}
-
+```
 {%- endfilter -%}
-{%- endfor -%}
+            </div>
+        {%- endfor -%}
+    </div>
 {%- endmacro -%}
 
 # Command line
