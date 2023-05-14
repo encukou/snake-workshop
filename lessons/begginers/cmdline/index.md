@@ -47,6 +47,7 @@ $
 >
 {% endcall %}
 
+
 According to the system, the actual commands you will be entering will also differ: Unix systems (Linux and macOS) understand different commands than Windows.
 
 >[Note] Font size
