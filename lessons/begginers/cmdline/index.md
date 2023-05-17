@@ -25,8 +25,7 @@ At first glance, it may look unnatural, but you can get used to it.
 
 Although it may not be the easiest way to start programming, mastering the basics of working with the command line will definitely pay off in the long run. And that's what this course is about.
 
-The command line (or program, also known as *console* or *terminal*;
-in English, *command line*, *console*, *terminal*) is opened differently on different systems:
+The command line (or program, also known as *console* or *terminal*) is opened differently on different systems:
 
 * Windows (Czech): Start → type "cmd" on the keyboard → Command Prompt
 * Windows (English): Start → type "cmd" on the keyboard → Command Prompt
