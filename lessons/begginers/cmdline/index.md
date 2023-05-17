@@ -38,7 +38,7 @@ If you don't know what to do, try either Googling or asking someone more experie
 
 After opening the console, you will be greeted by a *prompt*: a line that prompts you to enter a command. The prompt ends on Unix systems (such as Linux and macOS) with the character `$`; on Windows, it ends with the character `>`.
 
-Before the symbol '$' or '>' there will probably be some additional information, which is, however, omitted in these materials. And it will also be omitted in most other instructions you find on the internet. Because every computer can be a little different.
+Before the symbol `$` or `>` there will probably be some additional information, which is, however, omitted in these materials. And it will also be omitted in most other instructions you find on the internet. Because every computer can be a little different.
 
 {% call sidebyside(titles=['Unix (Linux, macOS)', 'Windows']) %}
 $
