@@ -76,7 +76,8 @@ pocitac\Helena
 {% endcall %}
 
 >[note]
->The character `$` or `>` in the example is only there to make it clear that you are entering a command into the command line. The computer will display it, usually with something before it, so >don't type it {{gnd('alone')}}! Just enter `whoami` and press <kbd>Enter</kbd>.
+>The character `$` or `>` in the example is only there to make it clear that you are entering a command into the command line. The computer will display it, usually with something before it, so 
+>don't type it {{gnd('alone')}}! Just enter `whoami` and press <kbd>Enter</kbd>.
 >
 >Similarly, the computer will display the login name on its own.
 
