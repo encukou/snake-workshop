@@ -1,7 +1,7 @@
 title: Snake Workshop for PyLadies
 subtitle: EuroPython
-place: XXX
-time: XXX:00am to XXX:00pm
+place: Prague Congress Centre
+time: 9:30 AM to 5:00 PM
 timezone: Europe/Prague
 description: Playful intro to programming
 long_description: |
@@ -45,8 +45,8 @@ plan:
   slug: intro
   date: 2022-08-20
   time:
-    start: '8:00'
-    end: '13:00'
+    start: '9:30'
+    end: '12:45'
   materials:
   - title: Introduction
     url: https://docs.google.com/presentation/d/1pM5t3B4Qn-xVsWksDycYvHG5pxJbzmOZwLFPd9lDmGo/edit
@@ -71,8 +71,8 @@ plan:
   slug: workshop
   date: 2022-08-20
   time:
-    start: '13:30'
-    end: '18:00'
+    start: '13:45'
+    end: '17:00'
   materials:
   - lesson: fast-track/pyglet
   - lesson: snake/drawing
