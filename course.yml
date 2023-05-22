@@ -1,9 +1,9 @@
 title: Snake Workshop for PyLadies
-subtitle: Europython
+subtitle: EuroPython
 place: XXX
 time: XXX:00am to XXX:00pm
 timezone: Europe/Prague
-description: Try programming
+description: Playful intro to programming
 long_description: |
 
     Do you want to learn how to program, but don't know where to start?
@@ -13,7 +13,7 @@ long_description: |
     which you may know from older Nokia phones.
     You will experience writing code firsthand,
     learn basic programming concepts, and see what it's like
-    when the computer stops misbehaving and starts following your commands.
+    when the computer stops acting funny and starts following your commands.
 
     (If you think the project is not practical enough, don't despair! Rather than being about the game itself,
     the focus is on basic programming principles that you can use later on,
@@ -25,10 +25,7 @@ long_description: |
     (e.g. open/save a file, install a program).
 
     The workshop is in English and free of charge.
-    However, capacity is limited and registration through the [XXX](XXX) website is required.
-
-    If you like this taster, there is an opportunity to continue with one
-    of the PyLadies beginner courses that are run on regular basis.
+    However, capacity is limited and registration through the [EuroPython](https://ep2023.europython.eu/pyladies-workshop) website is required.
 
 vars:
   coach-present: true
@@ -70,7 +67,7 @@ plan:
   - lesson: fast-track/for
   - lesson: fast-track/tuple
   - lesson: fast-track/class
-- title: Snake
+- title: The Snake
   slug: workshop
   date: 2022-08-20
   time:
