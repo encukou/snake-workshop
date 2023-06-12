@@ -2,9 +2,12 @@
 
 In addition to strings and whole numbers, Python has other types of values.
 
-Now we will look at one that is called *list*. This is a value that contains other values within it.
+Now we will look at one that is called *list*.
+This is a value that contains other values within it.
 
-Lists are entered by entering several values separated by commas, enclosed in square brackets. Try creating a list of numbers from the lottery, for example.
+Lists are entered by entering several values separated by commas, enclosed in square brackets.
+Try creating a list of numbers from the lottery, for example.
+
 ```pycon
 >>> [3, 42, 12, 19, 30, 59]
 [3, 42, 12, 19, 30, 59]
@@ -12,24 +15,32 @@ Lists are entered by entering several values separated by commas, enclosed in sq
 
 So that you could work with such a list, save it to a variable:
 
-```python
+```pycon
 lottery = [3, 42, 12, 19, 30, 59]
 ```
 
-So, you have a list! But what can you do with it? Look at how many numbers are on the list. You can use a function that you already know. Can you guess which one it is?
+So, you have a list!
+But what can you do with it?
+Look at how many numbers are on the list.
+You can use a function that you already know.
+Can you guess which one it is?
+
 {% filter solution %}
 ```pycon
 >>> len(lottery)
 6
 ```
 
-The function `len()` can determine not only the length of a string, but also the length of a list - that is, the number of its elements.{% endfilter %}
+The function `len()` can determine not only the length of a string, but also the length of a list - that is, the number of its elements.
+{% endfilter %}
 
 Now try to sort the list. There is a method called `sort` for that.
+
 ```pycon
 >>> lottery.sort()
 ```
 This method doesn't return anything, but it quietly changes the order of numbers in the list. Print it again to see what happened.
+
 ```pycon
 >>> lottery
 [3, 12, 19, 30, 42, 59]
@@ -37,32 +48,38 @@ This method doesn't return anything, but it quietly changes the order of numbers
 The numbers in the list are now sorted from lowest to highest value.
 
 The `reverse` method works similarly, it reverses the order of elements. Try it out!
+
 ```pycon
 >>> lottery.reverse()
 >>> lottery
 [59, 42, 30, 19, 12, 3]
 ```
 
-## Adding to the list.
+## Adding to the list
 
 Similarly to strings, lists can be concatenated using the `+` operator.
+
 ```pycon
 >>> lottery + [5, 6, 7, 8]
 [59, 42, 30, 19, 12, 3, 5, 6, 7, 8]
 ```
 This will create a new list, the original one remains unchanged.
+
 ```pycon
 >>> lottery
 [59, 42, 30, 19, 12, 3]
 ```
 
-If you want to add something to the original list, you can do so using the `append` method. But be careful! This method needs to know what to add to the list. The new value is entered in parentheses.
+If you want to add something to the original list, you can do so using the `append` method.
+But be careful! This method needs to know what to add to the list.
+The new value is entered in parentheses.
 
 ```pycon
 >>> lottery.append(199)
 ```
 
 The method again does not return anything, so it is necessary to write out a check for control.
+
 ```pycon
 >>> lottery
 [59, 42, 30, 19, 12, 3, 199]
@@ -70,13 +87,16 @@ The method again does not return anything, so it is necessary to write out a che
 
 ## Selecting elements
 
-When you want to take a closer look at one item from the list, it is useful to have the option to select a specific element. In Python, square brackets are used for this.
+When you want to take a closer look at one item from the list, it is useful to have the option to select a specific element.
+In Python, square brackets are used for this.
 
 If you want to select an element, enter the name of the list followed immediately by square brackets with the ordinal number of the element you want.
+
 ```pycon
 >>> lottery[1]
 ```
 Do you get the first element?
+
 {% filter solution %}
 ```pycon
 >>> lottery
@@ -87,31 +107,37 @@ Do you get the first element?
 No, you will receive the second element.
 
 Programmers count from zero. So if you want the first element, ask Python for element number zero.
+
 ```pycon
 >>> loterie[0]
 42
 ```
-At first, it's strange, but you can get used to it.{% endfilter %}
+At first, it's strange, but you can get used to it.
+{% endfilter %}
 
 The number of an element is also called an *index* and the process of selecting elements is called *indexing*.
 
-Try indexing with other indices: 3, 100, 7, -1, -2, -6 or -100. Try to predict the result before entering the command. How will you do?
+Try indexing with other indices: 3, 100, 7, -1, -2, -6 or -100.
+Try to predict the result before entering the command.
+How will you do?
 
 {% filter solution %}
 ```pycon
 >>> lottery
 [59, 42, 30, 19, 12, 3, 199]
+
 >>> lottery[3]
 19
 ```
 Index 3 means the fourth element.
+
 ```pycon
 >>> lottery[7]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list index out of range
 ```
-Element with index 100 does not exists - ends with error.
+Element with index 7 does not exist - it results in error.
 
 ```pycon
 >>> loterie[1000]
@@ -125,39 +151,50 @@ Same for index 1000.
 >>> loterie[-1]
 199
 ```
-Index -1 means the last element.
+Index -1 means the *last* element.
+
 ```pycon
 >>> loterie[-2]
 3
 ```
 Index -2 means the one before the last element.
+
 ```pycon
 >>> loterie[-6]
 42
 ```
 Index -6 means the sixth element from the end.
+
 ```pycon
 >>> loterie[-100]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list index out of range
 ```
-Such element does not exist, we get error. {% endfilter %}
+
+Such element does not exist, we get error.
+{% endfilter %}
 
 
 ## Removal
 
-If you want to remove something from the list, you can use indexes again. This time with the `del` command. Use the following code to remove the first number from the list, i.e. element number 0:
+If you want to remove something from the list, you can use indexes again.
+This time with the `del` command.
+Use the following code to remove the first number from the list, i.e. element number 0:
+
 ```pycon
 >>> del lottery[0]
 ```
+
 Then list it again. Something is missing!
+
 ```pycon
 >>> lottery
 [42, 30, 19, 12, 3, 199]
 ```
 
-Would you like to remove the last element?
+How would you remove the last element?
+
 {% filter solution %}
 ```pycon
 >>> del lottery[-1]
@@ -166,7 +203,8 @@ Would you like to remove the last element?
 ```
 {% endfilter %}
 
-Sometimes it happens that you don't want to delete an element by position, but by what it is in the list. For this purpose, the `remove` value is used, which finds and removes the given value."
+Sometimes it happens that you don't want to delete an element by position, but by what its value in the list.
+For this purpose, the `remove` value is used, which finds and removes the given value:
 
 ```pycon
 >>> lottery
@@ -251,21 +289,25 @@ Slicing works also for the `del` command. Try deleting the middle two numbers:
 
 ## Slicing strings
 
-"quare brackets also work with strings where they select letters:
+Square brackets also work with strings where they select letters:
 
 ```pycon
 >>> food = 'chocolate'
 >>> food[3]
 'o'
->>> food[1:4]
-'hoc'
+>>> food[2:5]
+'oco'
 ```
 
 However, strings cannot be changed: `del`, `sort`, or `append` only work on lists.
 
-Task: Imagine you have a Czech female name in the variable `jmeno` such as `'Ola'`, `'Krystýna'`, or `'Růžena'`. How do you create the second case? 
+XXX: this task is probably not a good idea
+Task: Imagine you have a Czech female name in the variable `jmeno` such as `'Ola'`, `'Krystýna'`, or `'Růžena'`.
+How do you create the second case? 
 
 Take the name up to the last letter and add `'y'`. For example:
+
+{% filter solution %}
 ``` python
 >>> name = 'Růžena'
 >>> name[:-1] + 'y'
@@ -274,6 +316,7 @@ Take the name up to the last letter and add `'y'`. For example:
 >>> name[:-1] + 'y'
 'Krystýny'
 ```
+{% filter solution %}
 
 ## Summary
 

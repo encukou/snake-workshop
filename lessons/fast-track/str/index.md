@@ -1,25 +1,35 @@
 # Strings
 
-Numbers are very useful for computers (as the word *computer* suggests), but Python can also work with other types of information. For example, with text.
+Numbers are very useful for computers (as the word *computer* suggests), but Python can also work with other types of information.
+For example, with text.
 
 Try it: enter your name in quotation marks, as you can see below:
+
 ```pycon 
 >>> 'Ola'
 'Ola'
 ```
 
-You have now created your first *string*! A string is a programming term for *text* - a sequence of characters (letters) that can be processed by a computer.
+You have now created your first *string*!
+A string is a programming term for *text* - a sequence of characters (letters) that can be processed by a computer.
 
-When entering a string, you must always enclose it in quotation marks (apostrophes). Otherwise, Python would not recognize what is text to work with and what are instructions to execute. This is quite important for a computer - similar things can be understood by humans from context, but a computer is a dumb device.
+When entering a string, you must always enclose it in quotation marks (apostrophes).
+Otherwise, Python would not recognize what is text to work with and what are instructions to execute.
+This is quite important for a computer - people will understand such things from the context but a computer is just a machine.
 
-{{ figure( img=static('quote-comic.svg'), alt='(Ilustrační komiks. Člověk říká robotovi: "Řekni Pavlovi, ať mi zavolá!". Robot odpoví: "PAVLOVI AŤ MI ZAVOLÁ!")', ) }}
+{{ figure(
+     img=static('quote-comic.svg'),
+     alt='(Ilustrační komiks. Člověk říká robotovi: "Řekni Pavlovi, ať mi zavolá!". Robot odpoví: "PAVLOVI AŤ MI ZAVOLÁ!")',
+) }}
 
 Strings can be concatenated - "added" - using the `+` operator. Try this:
+
 ```pycon
->>> 'Já jsem ' + 'Ola'
-'Já jsem Ola'
+>>> 'I am ' + 'Ola'
+'I am Ola'
 ```
-Watch out for the space! When you enter 'I am' + 'Ola', the two words will be joined together.
+Watch out for the space!
+When you enter 'I am' + 'Ola', the two words will be joined together.
 The computer considers the space as a *character*; it behaves towards it like towards any letter.
 If you don't put the space in quotation marks, it won't be part of the string.
 
@@ -55,7 +65,10 @@ And what if you want to put an apostrophe inside your string? You can use double
 "I'd say they're properly crazy!"
 ```
 
-Python doesn't care which type of quotation marks you use to enter a string. The important thing is the letters inside. When Python prints a string, it can choose a different type of quotation marks than the ones you used.
+Python doesn't care which type of quotation marks you use to enter a string.
+The important thing is the letters inside.
+When Python prints a string, it can choose a different type of quotation marks than the ones you used.
+
 ```pycon
 >>> "Ola"
 'Ola'
@@ -63,7 +76,9 @@ Python doesn't care which type of quotation marks you use to enter a string. The
 
 ## Functions and methods
 
-You already know how to 'add' strings ('Hello ' + 'Ola!') and 'multiply' them ('la' * 3). For all other things that can be done with text, there are not enough symbols on the keyboard. Therefore, some operations are named verbally - for example, so-called *functions*.
+You already know how to 'add' strings ('Hello ' + 'Ola!') and 'multiply' them ('Ola' * 3).
+For all other things that can be done with text, there are not enough symbols on the keyboard.
+Therefore, some operations are named verbally - for example, so-called *functions*.
 
 If you want to know the number of letters in your name, call the function 'len'.
 Write 'len' (without quotes), then parentheses, and inside those parentheses, your name as a string (in quotes).
@@ -74,7 +89,8 @@ This way you will *call* the function 'len' on the string with your name.
 3
 ```
 
-There is a function called `type` which determines whether something is a number or a string. How would you call it on the number `123` or the string `'abc'`?
+There is a function called `type` which determines whether something is a number or a string.
+How would you call it on the number `123` or the string `'abc'`?
 
 {% filter solution %}
 ```pycon
@@ -87,13 +103,15 @@ There is a function called `type` which determines whether something is a number
 
 In addition to functions, there are *methods*, which are written a little differently.
 
-If you want to see your name in capital letters, call the `upper` method. Write a string, then a dot, the method name `upper` (without quotes), and empty parentheses.
+If you want to see your name in capital letters, call the `upper` method.
+Write a string, then a dot, the method name `upper` (without quotes), and empty parentheses.
 
 ``` pycon
 >>> 'Ola'.upper()
 'OLA'
 ``` 
-Strings also have a method called `lower`. Try calling it on your name.
+Strings also have a method called `lower`.
+Try calling it on your name.
 {% filter solution %}
 ```pycon
 >>> 'Ola'.lower()
@@ -107,16 +125,20 @@ What is a method (which you call with a dot, like `'Ola'.upper()`) and what is a
 
 You can use calling a function or method as another value.
 
-Let Python calculate the mathematical expression `(1 + 3) / 2`.\
+Let Python calculate the mathematical expression `(1 + 3) / 2`:
+
 ```pycon
 >>> 8 / (1 + 3)
 2.0
 ```
 
-Python first adds `1 + 3` and the result is 4. It replaces the sum with 4 in the original equation and gets `8 / 4`. Then it divides and gets `2.0`.
+Python first adds `1 + 3` and the result is 4.
+It replaces the sum with 4 in the original equation and gets `8 / 4`.
+Then it divides and gets `2.0`.
 
 
 Try to think about how Python will process these expressions:
+
 ```pycon
 >>> len('Ola') + 1
 4
@@ -143,19 +165,21 @@ Try to think about how Python will process these expressions:
 
 `len('Ola' * 3)` → `len('OlaOlaOla')` → `9`
 
-`len('Ola'.upper())` →` len('OLA')` → `3` {% endfilter %}
+`len('Ola'.upper())` →` len('OLA')` → `3`
+{% endfilter %}
 
-Similar composition is very common in programming. Most of the basic building blocks can be learned by beginners in a few weeks or months - and then throughout their programming career they discover new ways to assemble them into more and more complex structures.
+Similar composition is very common in programming.
+Most of the basic building blocks can be learned by beginners in a few weeks or months - and then throughout their programming career they discover new ways to assemble them into more and more complex structures.
 
 ## Summary
 
-OK, enough of the strings. What have you learned so far?"
+OK, enough of the strings. What have you learned so far?
 
-Strings are used for working with text.
-Operators `+` and `*` are used for concatenating and repeating strings.
-Functions and methods like `len()` and `upper()` perform some actions on strings.
-Expressions can be composed together.
+*   **Strings** are used for working with text.
+*   **Operators** `+` and `*` are used for concatenating and repeating strings.
+*   **Functions** and **methods** like `len()` and `upper()` perform some actions on strings.
+*   **Expressions** can be composed together.
 
 Numbers, strings, operators, and functions are the basics of most programming languages.
 
-Ready for something else? We bet you are!
+Ready for something new? We bet you are!
