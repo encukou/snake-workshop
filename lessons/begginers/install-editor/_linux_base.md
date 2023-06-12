@@ -1,14 +1,19 @@
-{% endblock %}
+{% extends lesson.slug + '/_base.md' %}
+
+{% block install %}
 
 On Linux, {{ editor_name }} is installed like any other program.
 
-Fedora: `sudo dnf install {{ editor_cmd }}`
+Fedora
+:   ```console
+    $ sudo dnf install {{ editor_cmd }}
+    ```
 
 
 Ubuntu: 
-```console
-$ sudo apt-get install {{ editor_cmd }}
-```
+:   ```console
+    $ sudo apt-get install {{ editor_cmd }}
+    ```
 
 If you use a different Linux, I assume that you know how to install programs. :)
 

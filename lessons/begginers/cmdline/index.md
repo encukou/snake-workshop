@@ -23,11 +23,12 @@ For most of what the command line can do, you can also use something else - an i
 
 At first glance, it may look unnatural, but you can get used to it.
 
-Although it may not be the easiest way to start programming, mastering the basics of working with the command line will definitely pay off in the long run. And that's what this course is about.
+Although it may not be the easiest way to start programming, mastering the basics of working with the command line will definitely pay off in the long run.
+And that's what this course is about.
 
 The command line (or program, also known as *console* or *terminal*) is opened differently on different systems:
 
-* Windows (Czech): Start → type "cmd" on the keyboard → Command Prompt
+* Windows (Czech): Start → type "cmd" on the keyboard → Příkazový řádek
 * Windows (English): Start → type "cmd" on the keyboard → Command Prompt
 * macOS (English): Applications → Utilities → Terminal
 * Linux (GNOME, Czech): Activities → search for "Terminál"
@@ -36,9 +37,12 @@ The command line (or program, also known as *console* or *terminal*) is opened d
 
 If you don't know what to do, try either Googling or asking someone more experienced.
 
-After opening the console, you will be greeted by a *prompt*: a line that prompts you to enter a command. The prompt ends on Unix systems (such as Linux and macOS) with the character `$`; on Windows, it ends with the character `>`.
+After opening the console, you will be greeted by a *prompt*: a line that prompts you to enter a command.
+The prompt ends on Unix systems (such as Linux and macOS) with the character `$`; on Windows, it ends with the character `>`.
 
-Before the symbol `$` or `>` there will probably be some additional information, which is, however, omitted in these materials. And it will also be omitted in most other instructions you find on the internet. Because every computer can be a little different.
+Before the symbol `$` or `>` there will probably be some additional information, which is, however, omitted in these materials.
+And it will also be omitted in most other instructions you find on the internet. 
+It's because they can look different on each computer.
 
 {% call sidebyside(titles=['Unix (Linux, macOS)', 'Windows']) %}
 $
@@ -47,7 +51,7 @@ $
 {% endcall %}
 
 
-According to the system, the actual commands you will be entering will also differ: Unix systems (Linux and macOS) understand different commands than Windows.
+Depending on the system, the actual commands you will be entering will also differ: Unix systems (Linux and macOS) understand different commands than Windows.
 
 >[Note] Font size
 >If the font in Windows is too small, click on the window icon and select Options.
@@ -72,18 +76,20 @@ $ whoami
 helena
 ---
 > whoami
-pocitac\Helena
+computer\Helena
 {% endcall %}
 
 >[note]
->The character `$` or `>` in the example is only there to make it clear that you are entering a command into the command line. The computer will display it, usually with something before it, so 
->don't type it {{gnd('alone')}}! Just enter `whoami` and press <kbd>Enter</kbd>.
+>The character `$` or `>` in the example is only there to make it clear that you are entering a command into the command line.
+>The computer will display it, usually with something before it, so 
+>don't type it in! Just enter `whoami` and press <kbd>Enter</kbd>.
 >
 >Similarly, the computer will display the login name on its own.
 
 ## Current directory
 
-The command line always works in some *directory*, also known as a *folder*. "Directory" and "folder" are synonyms, you can use either of them.
+The command line always works in some *directory*, also known as a *folder*.
+"Directory" and "folder" are synonyms, you can use either of them.
 
 The command that is called `pwd` or `cd` (from *print working directory* or *current directory*) will tell you in which directory you currently are in the system.
 
@@ -95,11 +101,13 @@ $ pwd
 C:\Users\helena
 {% endcall %}
 
-The second line "> cd C:\Users\helena" is a command used in Windows operating systems, which stands for "change directory". It changes the current directory to "C:\Users\helena".
+The current directory is usually displayed in the command line prompt, before the `$` or `>` sign.
+But it's good to know `pwd`/`cd` just in case you get lost.
+Sometimes it's displayed in a shortened form.
+And in the future, you may have to work on a computer that displays something else before the `$` sign.
 
-The current directory is usually displayed in the command line prompt, before the `$` or `>` sign. But it's good to know `pwd`/`cd` just in case you get lost. Sometimes it's displayed in a shortened form. And in the future, you may have to work on a computer that displays something else before the `$` sign.
-
-You may know something like the current directory from graphic programs where you select files: typically, the upper (or lower on Mac) part shows which directory is currently being displayed. The command line can also show files, but you have to ask for it.
+You may know something like the current directory from graphic programs where you select files: typically, the upper (or lower on Mac) part shows which directory is currently being displayed.
+The command line can also show files, but you have to ask for it.
 
 ## What is in the directory?
 
@@ -125,7 +133,10 @@ Music
      
 ## Change of the current directory
 
-The current directory can be changed using the `cd` command (from English 'change directory'). After `cd`, write the name of the directory you want to go to. If you have a directory named `Desktop` or `Plocha`, go there. Then don't forget to verify that you are in the right place.
+The current directory can be changed using the `cd` command (from English 'change directory').
+After `cd`, write the name of the directory you want to go to.
+If you have a directory named `Desktop` or `Plocha`, go there.
+Then don't forget to verify that you are in the right place.
 
 If you use Linux or macOS, be careful with letter case: on these systems, `Desktop` and `desktop` are two different names.
 
@@ -142,33 +153,38 @@ C:\Users\helena\Desktop
 {% endcall %}
 
 >[note] Note for Windows
->If you are switching to a directory on a different disk, for example `D:` instead of `C:`, you need to enter the name of the disk with a colon as a special command in addition to `cd` (for >example, `D:`).
+>If you are switching to a directory on a different drive, for example `D:` instead of `C:`,
+>you need to enter the name of the drive with a colon as a special command in addition to `cd` (for example, `D:`).
 
 ## Creating a directory
 
-How about trying to create a directory? This is done by the command 'mkdir' (from English 'make directory'). After this command, write the name of the directory you want to create - in our case 'zkouska'."
+How about trying to create a directory? This is done by the command 'mkdir' (from English 'make directory').
+After this command, write the name of the directory you want to create - in our case 'test'."
 
 {% call sidebyside() %}
-$ mkdir zkouska
+$ mkdir test
 ---
-> mkdir zkouska
+> mkdir test
 {% endcall %}
 
-When the directory is created, you can navigate to it similarly as you {{gnd('went', 'went')}} to `Desktop` or `Plocha` a moment ago.
+When the directory is created, you can navigate to it similarly as you went to `Desktop` or `Plocha` a moment ago.
 
 {% call sidebyside() %}
-$ cd zkouska
+$ cd test
 ---
-> cd zkouska
+> cd test
 {% endcall %}     
 
-List the contents of the current directory using `ls` or `dir` now. One of the listed directories will be `zkouska`.
+List the contents of the current directory using `ls` or `dir` now.
+One of the listed directories will be `test`.
 
 ## In the graphic search tool
 
-You will not often work *only* with the command line. It pays off to be able to open the current directory from the command line in other programs as well.
+You will not often work *only* with the command line.
+It pays off to be able to open the current directory from the command line in other programs as well.
 
-Open the file browser. This program is different on every system.
+Open the file browser.
+This program is different on every system.
 
 <div class="row side-by-side-commands">
     <div class="col">
@@ -194,22 +210,24 @@ Open the file browser. This program is different on every system.
     </div>
 </div>
 
-Maybe you know how to navigate to the directory that is active in the command line by clicking "navigate to" in this program. However, in the future, it will be more complicated, so it will be good to try copying the text from the command line and pasting it into the file browser.
+Maybe you know how to navigate to the directory that is active in the command line.
+However, in the future, it will be more complicated, so it's better to learn copying the text from the command line and pasting it into the file browser.
 
-Unfortunately, it is done differently on every system. And because the well-known shortcut <kbd>Ctrl</kbd>+<kbd>C</kbd> and <kbd>Ctrl</kbd>+<kbd>V</kbd> do something different in the command line than copying, it is probably done differently than you are used to.
+Unfortunately, it is done differently on every system.
+And because the well-known shortcut <kbd>Ctrl</kbd>+<kbd>C</kbd> and <kbd>Ctrl</kbd>+<kbd>V</kbd> does something different in the command line than copying, it is probably done differently than you are used to.
 
-First, use the command `cd` or `pwd` to have the full name of the directory `zkouska` printed out.
+First, use the command `cd` or `pwd` to have the full name of the directory `test` printed out.
 
 {% call sidebyside() %}
 $ pwd
-/home/helena/Desktop/zkouska
+/home/helena/Desktop/test
 ---
 > cd
-C:\Users\helena\Desktop\zkouska
+C:\Users\helena\Desktop\test
 {% endcall %}
 
 
-### Copying from the command line.
+### Copying from the command line
 
 On Linux, select the text with your mouse and then either:
 * right-click and select *Copy*, or
@@ -222,7 +240,8 @@ On Windows, in the command prompt menu (icons in the upper left corner), select 
 
 ### Opening in a file browser
 
-It depends on the program you are using on **Linux**. Either:
+It depends on the program you are using on **Linux**.
+Either:
 * press <kbd>Ctrl</kbd>+<kbd>L</kbd> and insert the directory name using
   <kbd>Ctrl</kbd>+<kbd>V</kbd>, or
 * select the directory name at the top, delete it, and insert a new one using
@@ -232,13 +251,16 @@ In both cases, confirm with <kbd>Enter</kbd>.
 On **macOS**, select the *Go* menu → *Go to Folder*, paste the directory name using
 <kbd>⌘ Command</kbd>+<kbd>V</kbd> and confirm by pressing <kbd>Enter</kbd>.
 
-On Windows, click on the name of the directory at the top. This will convert it to editable text. Delete it and use <kbd>Ctrl</kbd>+<kbd>V</kbd> to paste the new name instead. Confirm with <kbd>Enter</kbd>.
+On Windows, click on the name of the directory at the top.
+This will convert it to editable text. Delete it and use <kbd>Ctrl</kbd>+<kbd>V</kbd> to paste the new name instead.
+Confirm with <kbd>Enter</kbd>.
 
 Now you can look at the Desktop or in some graphic program for browsing directories: you will find that the directory was really created.
 
-### Inserting into the command line.
+### Inserting into the command line
 
-Sometimes you open a file in the file browser and you will want to switch to it in the command line. Copying the directory name should not be a problem; however, pasting it into the command line can be different than in other programs.
+Sometimes you open a file in the file browser and you will want to switch to it in the command line.
+Copying the directory name should not be a problem; however, pasting it into the command line can be different than in other programs.
 
 * Linux: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> 
 * macOS: <kbd>⌘ Command</kbd>+<kbd>V</kbd> 
@@ -250,24 +272,28 @@ Sometimes you open a file in the file browser and you will want to switch to it 
 >```console
 >$ cd "my super directory"
 >```
+>
+>However, it is better not to use spaces and special characters in file names.
 
-However, it is better not to use spaces and special characters in file names.
+## XXX: Observation of changes
 
-## Observation of Changes
+Test that changes to files and directories you make in a different way will also be reflected in the command line.
 
-"ry to see that changes you make to the text on the computer will also be reflected in the document.
-
-In a graphical browser that looks at the same directory that is active in your command line, create a new file or directory. Then, using the command `ls` or `dir`, check that it was actually created. Then delete it in the graphical program - and make sure in the command line that it is really deleted.
+In a graphical browser that looks at the same directory that is active in your command line, create a new file or directory.
+Then, using the command `ls` or `dir`, check that it was actually created.
+Now delete it in the graphical program - and make sure in the command line that it is really deleted.
 
 On the computer, you have only one set of files that can be manipulated by both graphic programs and command line.
 
 ## One level up
 
-And the last thing: if you are now in the directory `Desktop/zkouska` (or `Plocha/zkouska`, `Desktop\zkouska`, etc.), how do you get back to `Desktop`?
+And the last thing: if you are now in the directory `Desktop/test` (or `Plocha/test`, `Desktop\test`, etc.), how do you get back to `Desktop`?
 
-The command `cd Desktop` will not work: it would tell the computer to switch to the `Desktop` directory *in the current directory*. But there is no `Desktop` directory in the `zkouska` directory! On the contrary, `zkouska` is in `Desktop`. Technically speaking, the `Desktop` directory is *superior* to the current directory.
+The command `cd Desktop` will not work: it would tell the computer to switch to the `Desktop` directory *in the current directory*.
+But there is no `Desktop` directory in the `test` directory! On the contrary, `test` is in `Desktop`. Technically speaking, the `Desktop` directory is *superior* to the current directory.
 
-The parent directory has a special name `..`, which consists of two dots. Go to it by typing `cd ..` and then make sure that you are really in `Desktop`.
+The parent directory has a special name `..`, which consists of two dots. 
+Go to it by typing `cd ..` and then make sure that you are really in `Desktop`.
 
 {% call sidebyside() %}
 $ cd ..
@@ -281,17 +307,22 @@ C:\Users\helena\Desktop
 
 Another `cd ..` would move you to another parent directory - in our example, `helena`.
 
-## The End
+## The end
 
 There are of course many more commands.
 
-When you learn them, you can fully control the computer from the command line: create files, delete them, run programs, change settings, and so on. However, it would take a separate course to cover all of that, so we'll stop here.
+When you learn them, you can fully control the computer from the command line: create files, delete them, run programs, change settings, and so on.
+However, it would take a separate course to cover all of that, so we'll stop here.
 
 Try one more command, the one that closes the command line: `exit`.
 
-The command "exit" works the same on all systems. The same applies to surprisingly many commands (except for the basic ones like "cd", "pwd", and "ls"). Therefore, in the rest of these materials, I will not use examples that are specific to a particular operating system.
+The command "exit" works the same on all systems.
+The same applies to surprisingly many commands (except for the basic ones like "cd", "pwd", and "ls").
+Therefore, in the rest of these materials, I will not use examples that are specific to a particular operating system.
 
-And I will be using the Unix prompt `$`. You will come across this convention in most online tutorials. If you are using Windows, it is good to get used to `$` even though your command line uses `>` instead.
+And I will be using the Unix prompt `$`.
+You will come across this convention in most online tutorials.
+If you are using Windows, it is good to get used to `$` even though your command line uses `>` instead.
 
 Try then what the command 'exit' does.
 
@@ -299,7 +330,7 @@ Try then what the command 'exit' does.
 $ exit
 ```
      
-And that's the introduction to the command line done.
+And that's the introduction to the command line.
 
 ## Overview
 

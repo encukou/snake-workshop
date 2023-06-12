@@ -1,6 +1,7 @@
 # Installing Python for macOS
 
-Install the tool [Homebrew](http://brew.sh), which solves and simplifies the installation of applications and libraries that we will need for programming. How to do it?
+Install the tool [Homebrew](http://brew.sh), which simplifies the installation of applications and libraries that we will need for programming.
+How to do it?
 
 Run the command in the command line: 
 
@@ -21,4 +22,10 @@ $ python3 --version
 ``` 
 
 
-If "Python" and the version number appear (e.g. `Python 3.6.6`) and the version is 3.6 or higher, you have it installed. Otherwise, something is wrong; {% if var('coach-present') -%} consult with the coach. {%- else -%} try installing it again. If it doesn't work, consult with someone more experienced. {%- endif %}
+If "Python" and the version number appear (e.g. `Python 3.6.6`) and the version is 3.6 or higher, you have it installed.
+Otherwise, something is wrong;
+{% if var('coach-present') -%}
+consult with the coach.
+{%- else -%}
+try installing it again. If it doesn't work, consult with someone more experienced.
+{%- endif %}

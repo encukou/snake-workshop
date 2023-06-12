@@ -6,17 +6,19 @@ Editor {{ editor_name }} - download it from its [homepage]({{ editor_url }}) and
 
 {% endblock %}
 
-## Settings
+## Setup
 
 {% block setup %}
 
-(This shouldn't be seen.)
+(This shouldn't be visible)
 
 {% endblock %}
 
 ## Practice of indentation
 
-As already mentioned, in Python it is important how many spaces a line starts with. Therefore, it will be useful for us to know how to quickly indent blocks of text. Let's show how to do it.
+As already mentioned, in Python it is important how many spaces a line starts with.
+Therefore, it will be useful for us to know how to quickly indent blocks of text.
+Let's see how to do it.
 
 Copy this text into the editor:
 ```
@@ -53,10 +55,11 @@ Ofelie:
   I still have gifts from you, Prince,
   which I have longed to return. Please,
   accept them now.
-  and so on.
+and so on.
 ```
 
-To indent one line, set the cursor at the beginning of the line and press the <kbd>Tab</kbd> key. Each time you press it, the line will be indented by 4 spaces.
+To indent one line, set the cursor at the beginning of the line and press the <kbd>Tab</kbd> key.
+Each time you press it, the line will be indented by 4 spaces.
 
 If you indent too much, you can reduce the indentation using Shift+Tab.
 
