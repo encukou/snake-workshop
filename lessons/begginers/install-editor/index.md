@@ -60,7 +60,6 @@ On Linux, you probably already have Gedit or Kate installed. Try looking in the 
 
 There are also other editors for which we have guides or have recommended in older versions of these materials. If you decide to use one of them, you won't make a mistake.
 
-* [Atom]({{ subpage_url('atom') }}) - a quality editor with a simple design
 * [Notepad++]({{ subpage_url('notepad-plus-plus') }}) - an undemanding editor for Windows suitable for slower computers
 
 If you already have your favorite editor - Vim, Emacs, Geany, etc., use that one:

@@ -6,9 +6,6 @@ subpages:
     vscode:
         title: Instalace Visual Studio Code
         subtitle: Visual Studio Code
-    atom:
-        title: Instalace Atomu
-        subtitle: Atom
     kate:
         title: Instalace Kate
         subtitle: Kate
