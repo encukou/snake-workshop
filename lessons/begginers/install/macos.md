@@ -5,7 +5,7 @@ Install the tool [Homebrew](http://brew.sh), which solves and simplifies the ins
 Run the command in the command line: 
 
 ```console
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 Then enter the following command and Python will be installed:
