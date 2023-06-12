@@ -1,32 +1,38 @@
 # Variables
 
-An important concept in programming are *variables*. A variable is nothing but a *naming* of something that we will want to use later. Programmers use variables to store data so that their code is more readable and they don't have to remember specific values.
+An important concept in programming are *variables*.
+A variable is nothing but a *naming* of something that we will want to use later.
+Programmers use variables to store data so that their code is more readable and they don't have to remember specific values.
 
 Let's say you want to name a string with your name as `name`. It would be written like this:
 
-```>>> name = 'Ola'```
+```pycon
+>>> name = 'Ola'
+```
 
 The variable `name` will now have the value  `'Ola'`.
 
-As you may have noticed, this command did not return anything - Python did not output any result. How do you then find out if the variable really exists?
+As you may have noticed, this command did not return anything - Python did not output any result.
+How do you then find out if the variable really exists?
 
 Enter the variable name alone (i.e. `name`, without quotation marks) and press <kbd>Enter</kbd>: 
-```
+
+```pycon
 >>> jmeno
 'Ola'
 ```
 
 Try to set a different variable - for example, your favorite color.
 
-``` python
+``` pycon
 >>> color = 'blue'
 >>> color
 'blue'
 ``` 
 
-Whenever you can assign a variable again and thus change what is hidden under the given name:
+You can assign a value to a variable anytime again and thus change what is hidden under the given name:
 
-```
+```pycon
 >>> name
 'Ola'
 >>> name = "Soňa"
@@ -34,9 +40,10 @@ Whenever you can assign a variable again and thus change what is hidden under th
 'Soňa'
 ```
 
-You can also pass it to a function or use it in an expression. Python will substitute the current value for the variable name.
+You can also pass it to a function or use it in an expression.
+Python will substitute the current value for the variable name.
 
-```python
+```pycon
 >>> len(name)
 4
 >>> name * 4
@@ -46,27 +53,32 @@ You can also pass it to a function or use it in an expression. Python will subst
 Great, isn't it?
 The variable can contain anything, for example numbers. Try this:
 
-```python
->>> sirka = 4
->>> delka = 6
->>> sirka * delka
+```pycon
+>>> width = 4
+>>> length = 6
+>>> width * length
 24
 ```
 
 But what if you use the wrong name? Can you guess what will happen?
+
 {% filter solution %}
-```
+```pycon
 >>> city = "Tokyo"
->>> city
+>>> ccity
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-NameError: name 'city' is not defined
+NameError: name 'ccity' is not defined
 ```
 {% endfilter %}
 
 Error!
 
-Python has various types of errors. This one is called `NameError`. Python will return this error if you try to use a variable that has not been set yet. It is often a typo. So when you see `NameError`, check if you made a typo when you were setting or using the variable.
+Python has various types of errors.
+This one is called `NameError`.
+Python will return this error if you try to use a variable that has not been set yet.
+It is often a typo.
+So when you see `NameError`, check if you made a typo when you were setting or using the variable.
 
 ## Variable names
 Professional programmers name variables in English so that as many colleagues around the world as possible can understand them. 
@@ -101,7 +113,7 @@ In more complex variable names, an underscore is used. For example, `favorite_co
 
 ## Summary
 
-*Variables* are names for values.
-By using the assignment operator (`=`), you can set a variable to any value.
-Variables are named using *lowercase letters* without diacritics.
-We can use an *underscore* to separate words within a variable name.
+* **Variables** are names for values.
+* By using the assignment operator (`=`), you can set a variable to any value.
+* Variables are named using **lowercase letters** without diacritics.
+* We can use an **underscore** to separate words within a variable name.
