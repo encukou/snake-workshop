@@ -1,26 +1,23 @@
 # Editor installation
 
-Editor, a program for text editing, is a basic tool for every programmer.
-Therefore, it is good to invest a little time into it.
+A *text editor*, or just *editor*, is a programmer's most important tool.
+Let's invest a little time into setting one up.
 
-It's more or less irrelevant which programming editor you use.
-If you already have a favorite one, you just need to set it up; if not, we can recommend one for you.
+If you already have a favorite editor, you just need to set it up; if not, we can recommend one for you.
 However, if you're using Notepad in Windows or TextEdit (an editor pre-installed in macOS), it won't be enough.
-Similarly, programs like Word or Writer are not suitable.
+Fancy programs like Word or Writer are also not suitable.
 
-## What a programmer's editor can do
 
-The text editor for programmers allows you to edit plain text - letters.
+## What a programmer's text editor can do
+
+A good text editor allows you to edit plain text.
 Unlike programs such as Word, Writer or Pages, it does not allow you to *format* text, that is, to create headings, color, enlarge the font for individual words, insert images, and so on.
-
-Using the editor, you will enter commands to the computer, so you don't need formatting.
-Take a look at the difference between the following commands for someone who has to follow them:
+When we give commands to the computer, such formatting would only get in the way – for example, the following commands are exactly the same for someone who has to follow them:
 
 * Draw me a lamb!
 * <font color="green">Draw <big><big>me</big> <u>a lamb</u>!</big></font>
 
-Our editors do not know formatting, but it does not mean that they are completely "stupid" tools.
-To make it more convenient for you to edit these programs, they have several tricks.
+While our editors do not know formatting, they should know a few tricks to make programming more convenient:
 
 Support for multiple files
 :   Larger projects consist of multiple files that you can have open in the editor at the same time.
@@ -30,17 +27,17 @@ Line numbering
     This will be very useful when Python complains that the error is on line 183.
 
 Indentation
-:   In Python, it is important how many spaces a line starts with.
-    Properly set up editor significantly simplifies indentation for us.
+:   In Python, indentation – how many spaces a line starts with – is important .
+    An editor that's properly set up will help us keep track of this.
 
 Syntax highlighting
-:    Although we cannot set the color directly for individual letters,
-    the editor can give us a hint about how the computer will understand our instructions by syntax highlighting.
-    But it's just a hint: a programmer with a differently configured editor may have the same file colored quite differently.
+:    Although we cannot directly set the colour of individual letters,
+    the editor can apply formatting to give us a hint about how the computer will understand our instructions.
+    But it's just a hint: a programmer with a differently configured editor may have the same file coloured quite differently.
 
 > [note]
 >
-> As an illustration, this is what a piece of code can look like in an editor:
+> As an illustration, this is what a piece of code can look like in an editor.
 > 
 >```python
 >    1  @app.route('/courses/<course:course>/')
@@ -57,14 +54,15 @@ Syntax highlighting
 
 ## Editor selection and settings
 
-If you choose an editor, click on its name and you will be taken to instructions for downloading and setting it up.
+Choose an editor and click on its name for instructions for downloading and setting it up.
 (You don't have to come back to this page again.)
 
 * [Visual Studio Code]({{ subpage_url('vscode') }}) - recommended editor for Windows and macOS (and suitable for Linux as well).
-  Recently, it has become probably the most popular code editor.
-  It offers many features and has a large user and developer base, so it is constantly improving.
+  This is currently the most popular code editor among programmers.
+  It offers many features and is constantly improving.
 
-  Recently, it is capable of more and more - even things that are a bit disturbing for a beginner.
+  Recently, it is capable of more and more - even things that are a bit 
+  distracting for a beginner.
   Don't be afraid to adjust or turn off some features.
 
 On Linux, you probably already have Gedit or Kate installed.
@@ -76,13 +74,13 @@ If you don't have either, select Visual Studio Code (see above).
 * [Kate]({{ subpage_url('kate') }}) - is usually found on systems with the KDE environment.
 
 There are also other editors for which we have guides or have recommended in older versions of these materials.
-If you decide to use one of them, you won't make a mistake.
+It's perfectly fine to use one of them.
+And if you already have your favorite editor - Vim, Emacs, Geany, etc., use that one.
 
 * [Notepad++]({{ subpage_url('notepad-plus-plus') }}) - an undemanding editor for Windows suitable for slower computers
+* [Others]({{ subpage_url('others') }}) - If you have a different editor, make sure it is correctly set up.
 
-If you already have your favorite editor - Vim, Emacs, Geany, etc., use that one:
 
-[Others]({{ subpage_url('others') }}) - If you have a different editor, make sure it is correctly set up.
 
 ### IDE
 

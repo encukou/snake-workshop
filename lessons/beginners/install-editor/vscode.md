@@ -14,13 +14,13 @@ Then follow the installer instructions as with any other program.
 
 ### Sending telemetry data
 
-This text editor, however, sends data about your usage ([most likely including, for example, the content of open files][privacy]).
+Visual Studio Code can send data about your usage ([including the contents of files you have open][privacy]) to Microsoft.
 If you do not wish for the data to be sent, you can cancel the sending.
 
 Open **File** > **Preferences** > **Settings** (macOS: **Code** > **Preferences** > **Settings**).
 Find `telemetry.enableTelemetry` and uncheck this entry.
 
-Also see the [original English guide](https://code.visualstudio.com/docs/supporting/faq#_how-to-disable-telemetry-reporting).
+Also see the [official guide](https://code.visualstudio.com/docs/supporting/faq#_how-to-disable-telemetry-reporting) for this.
 
 [privacy]: https://privacy.microsoft.com/en-us/privacystatement
 

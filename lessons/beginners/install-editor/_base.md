@@ -1,4 +1,4 @@
-# Installation of {% block name_gen %} editor {{ var('editor_name') }} {% endblock %}
+# {% block heading %}Installation of {% block name_gen %} editor {{ var('editor_name') }} {% endblock %}{% endblock %}
 
 {% block install %}
 
@@ -14,7 +14,7 @@ Editor {{ editor_name }} - download it from its [homepage]({{ editor_url }}) and
 
 {% endblock %}
 
-## Practice of indentation
+## Indentation practice
 
 As already mentioned, in Python it is important how many spaces a line starts with.
 Therefore, it will be useful for us to know how to quickly indent blocks of text.
@@ -22,40 +22,49 @@ Let's see how to do it.
 
 Copy this text into the editor:
 ```
-Ofelie:
-Oh prince!
-How has Your Highness been for so long?
-Hamlet:
-Humbly thanking you: great, great, great.
-Ofelie:
-I still have gifts from you, prince,
-which I have longed to return. Please,
-accept them now.
-Hamlet:
-Who? Me? I never
-gave you anything.
-Ofelie:
-You did, Your Highness. And along with the gifts, words
-so sweet that each of them
-had their fragrance. It has now faded,
-and so I am returning them. The richest gifts
-turn into trash when the giver frowns.
-Here, Your Highness.
+OPHELIA:
+Good my lord,
+How does your honour for this many a day?
+HAMLET:
+I humbly thank you; well, well, well.
+OPHELIA:
+My lord, I have remembrances of yours
+That I have longed long to re-deliver.
+I pray you, now receive them.
+HAMLET:
+No, not I.
+I never gave you aught.
+OPHELIA:
+My honour’d lord, you know right well you did,
+And with them words of so sweet breath compos’d
+As made the things more rich; their perfume lost,
+Take these again; for to the noble mind
+Rich gifts wax poor when givers prove unkind.
+There, my lord.
 ```
-(An excerpt from the play Hamlet, written by W. Shakespeare, translated by E. A. Saudek to Czech and by chatGPT back to English :))
+(An excerpt from *Hamlet* by W. Shakespeare)
 
 This text is not very clear, so we will try to space it out to make it look like this:
 ```
-Ofelie:
-  Oh, Prince!
-  How has Your Highness been for so long?
-Hamlet:
-  Thank you humbly: great, great, great.
-Ofelie:
-  I still have gifts from you, Prince,
-  which I have longed to return. Please,
-  accept them now.
-and so on.
+OPHELIA:
+    Good my lord,
+    How does your honour for this many a day?
+HAMLET:
+    I humbly thank you; well, well, well.
+OPHELIA:
+    My lord, I have remembrances of yours
+    That I have longed long to re-deliver.
+    I pray you, now receive them.
+HAMLET:
+    No, not I.
+    I never gave you aught.
+OPHELIA:
+    My honour’d lord, you know right well you did,
+    And with them words of so sweet breath compos’d
+    As made the things more rich; their perfume lost,
+    Take these again; for to the noble mind
+    Rich gifts wax poor when givers prove unkind.
+    There, my lord.
 ```
 
 To indent one line, set the cursor at the beginning of the line and press the <kbd>Tab</kbd> key.
