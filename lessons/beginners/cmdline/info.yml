@@ -1,8 +1,8 @@
 title: Command line
 style: md
 attribution:
-- Pro PyLadies Brno napsal Petr Viktorin, 2014-2017.
 - |
-    Založeno na tutoriálu [Django Girls].
-    [Django Girls]: https://tutorial.djangogirls.org/en/intro_to_command_line/
+    Based on the [Django Girls tutorial](https://tutorial.djangogirls.org/en/intro_to_command_line/).
+- Written by Petr Viktorin for PyLadies Brno, 2014-2023.
+- Initial translation back to English by ChatGPT
 license: cc-by-sa-40
