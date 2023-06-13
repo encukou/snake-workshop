@@ -1,21 +1,18 @@
 # Installing Python for macOS
 
-Install the tool [Homebrew](http://brew.sh), which simplifies the installation of applications and libraries that we will need for programming.
-How to do it?
-
-Run the command in the command line: 
+Run the following command in the command line to install [Homebrew](http://brew.sh), a tool that simplifies the installation of applications and libraries that we will need for programming.
 
 ```console
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Then enter the following command and Python will be installed:
+Then install Python using the following command:
 
 ```console
 $ brew install python3
 ``` 
 
-Check that you have version 3.6 or higher.
+Check that you have Python version 3.6 or higher.
 
 ```console
 $ python3 --version
@@ -23,9 +20,4 @@ $ python3 --version
 
 
 If "Python" and the version number appear (e.g. `Python 3.6.6`) and the version is 3.6 or higher, you have it installed.
-Otherwise, something is wrong;
-{% if var('coach-present') -%}
-consult with the coach.
-{%- else -%}
-try installing it again. If it doesn't work, consult with someone more experienced.
-{%- endif %}
+Otherwise, something is wrong. Please send us an e-mail and we'll try to help.

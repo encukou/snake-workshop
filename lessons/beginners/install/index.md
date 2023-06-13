@@ -8,9 +8,4 @@ That is done a little differently on every type of operating system. Choose a pa
 * [Windows]({{ subpage_url('windows') }}) 
 * [macOS]({{ subpage_url('macos') }}) 
 
-If you have a system other than Linux, Windows or macOS, or if you do not know the administrator password for your computer,
-{% if var('coach-present') -%}
-consult with your coach immediately. Otherwise, ask if something is unclear.
-{%- else -%}
-please write us an email. {# XXX solve where to send self-students who have a problem #}
-{%- endif %}"
+If you have a different system, or if you do not know the administrator password for your computer, please send us an email and we'll try to help.
