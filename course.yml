@@ -27,10 +27,6 @@ long_description: |
     The workshop is in English and free of charge.
     However, capacity is limited and registration through the [EuroPython](https://ep2023.europython.eu/pyladies-workshop) website is required.
 
-vars:
-  coach-present: true
-  user-gender: f
-
 plan:
 - title: Preparation
   slug: preparation
@@ -48,9 +44,7 @@ plan:
     start: '9:30'
     end: '12:45'
   materials:
-  - title: Introduction
-    url: https://docs.google.com/presentation/d/1pM5t3B4Qn-xVsWksDycYvHG5pxJbzmOZwLFPd9lDmGo/edit
-  - title: Keyboard Shortcut Cheat Sheet (PDF)
+  - title: (Czech) Keyboard layout cheatsheet (PDF)
     url: https://pyvec.github.io/cheatsheets/keyboard/keyboard-cs.pdf
     type: cheatsheet
   - lesson: fast-track/repl
