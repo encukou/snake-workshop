@@ -316,7 +316,7 @@ Take the name up to the last letter and add `'y'`. For example:
 >>> name[:-1] + 'y'
 'Krystýny'
 ```
-{% filter solution %}
+{% endfilter %}
 
 ## Summary
 
