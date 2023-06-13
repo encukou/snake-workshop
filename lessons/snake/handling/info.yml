@@ -1,4 +1,6 @@
-title: Vylepšené ovládání
+title: "Snake extension: Better controls"
 style: md
-attribution: Pro PyLadies CZ napsal Petr Viktorin, 2019.
+attribution:
+- Written by Petr Viktorin for PyLadies Brno, 2019.
+- Initial translation to English by ChatGPT
 license: cc-by-sa-40
