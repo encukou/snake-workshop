@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
+
 # Picking pieces of a snake
 
 Instead of having the same piece of snake everywhere, we will always want to choose the right one.

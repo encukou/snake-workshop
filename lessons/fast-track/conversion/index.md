@@ -1,3 +1,7 @@
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
+
 # Type conversion
 
 Let's try something new: find out the length of a number the same way you found out the length of your name.

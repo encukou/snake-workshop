@@ -1,3 +1,7 @@
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
+
 # Comparing things
 
 Programmers often compare different values. Let's take a look at how to do it.

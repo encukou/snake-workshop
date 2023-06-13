@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
+
 #<var>N</var>-tuple
 
 Do you already know that you can return a value from a function using the `return` statement?

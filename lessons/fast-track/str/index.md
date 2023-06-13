@@ -1,3 +1,7 @@
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
+
 # Strings
 
 Numbers are very useful for computers (as the word *computer* suggests), but Python can also work with other types of information.

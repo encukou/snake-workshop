@@ -1,3 +1,7 @@
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
+
 # Interactive mode of Python
 
 If you want to start playing with Python, open the command line and activate the virtual environment.

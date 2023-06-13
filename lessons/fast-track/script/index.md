@@ -1,3 +1,7 @@
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
+
 # Save it
 
 So far, you have written all programs in the console in the interactive mode of Python, in which Python always responded with a result after a command was written. When you exit Python (or turn off the computer), everything you have programmed so far will be lost.

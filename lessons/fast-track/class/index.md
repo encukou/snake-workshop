@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
+
 # Classes
 
 You have already familiarized yourself with a lot of *classes* of objects that you can work with in Python: with numbers that can be added and multiplied, for example; with strings that can be converted to capital letters; with lists that you can sort; with dictionaries that can be searched.

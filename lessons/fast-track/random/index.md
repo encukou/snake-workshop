@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
+
 # Randomness
 
 Sometimes it is necessary to select a random value. There is no function available directly in Python for this, but it can be accessed using the `import` command.

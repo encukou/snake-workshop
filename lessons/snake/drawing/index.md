@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
+
 # Draw me a snake.
 
 Most video games have the entire game world stored as a bunch of numbers, texts, lists, and other data objects that describe everything in the game. This state changes over time, either automatically or based on the player's actions. And quite often - usually about sixty times per second - the state of the game is converted into an image that is shown to the player.
