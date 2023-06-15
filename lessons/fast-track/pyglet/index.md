@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
+
 # Graphics
 
 Now we will show you how to write a graphical application.

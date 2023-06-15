@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
+
 # Game logic
 
 You can already draw a snake from a list of coordinates. But the snake video game won't just be a "picture". The list will change and the snake will move!

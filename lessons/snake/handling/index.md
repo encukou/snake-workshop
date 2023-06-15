@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation.
+
 # Improvement of Snake controls
 
 Maybe you will notice, especially if you have played some version of the game Snake before, that the controls of your new game are a bit frustrating. And maybe it's not entirely easy to figure out why.

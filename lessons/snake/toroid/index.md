@@ -1,3 +1,6 @@
+> [warning]
+> This is a machine-generated translation.
+
 # Infinite cage
 
 Instead of ending the game when hitting the edge of the window, you can let the snake "pass through" and appear on the other side.

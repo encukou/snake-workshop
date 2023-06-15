@@ -1,6 +1,6 @@
 # Installing Python for Windows
 
-If you have Windows 10 with the latest update, enter `python3` in the command line.
+If you have Windows 10 with the latest updates, enter `python3` in the command line.
 
 If you don't have Python installed yet, the Microsoft Store page will automatically open for you. Install Python from there.
 
@@ -14,18 +14,18 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ``` 
 
-On the first line of the output is the version of Python. Make sure that the version is 3.6 or newer (for example, `Python 3.6.10`, `Python 3.7.4` or `Python 3.8.1`). 
-
-If not, continue with the section below.
-
-If yes, you have Python installed!
+On the first line of the output is the version of Python. Check that the version is 3.6 or newer (for example, `Python 3.6.10`, `Python 3.7.4` or `Python 3.8.1`). 
+If it is, you have Python installed!
 End it with the shortcut <kbd>Ctrl</kbd>+<kbd>Z</kbd> and <kbd>Enter</kbd> so that the line where you will write further commands does not start with "three beaks" (`>>>`).
 <br><!-- instructions in case the window is accidentally closed: -->
 (Or close the window with the command line. When you need it again, you can open a new one.)
 
+If you did not get the output above, or the versoin is too low, continue with the section below.
+
+
 ## Older Windows or existing Python
 
-If the shortcut `python` doesn't work or if you have an older version of Python, go to the [download page](https://www.python.org/downloads/) and download the installer for the latest stable version of Python.
+If the shortcut `python3` doesn't work or if you have an older version of Python, go to the [download page](https://www.python.org/downloads/) and download the installer for the latest stable version of Python.
 Make sure it is version **3.6.0 or newer** - version 3.6.0 has certain improvements that we will be using in this course.
 
 How to recognize which installer is the right one?

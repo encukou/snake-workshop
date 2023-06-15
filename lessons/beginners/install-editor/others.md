@@ -1,6 +1,6 @@
 {% extends lesson.slug + '/_linux_base.md' %}
 
-{% block name_gen %} editor {% endblock %}
+{% block heading %}Editor installation{% endblock %}
 
 {% block install %}
 
@@ -11,12 +11,12 @@ Here are a few tips on what to watch out for.
 
 {% block setup %}
 
-## Line numbering
+### Line numbering
 
 Make sure that your editor numbers the lines.
 If not, check the settings and find out how to turn it on.
 
-## Syntax highlighting 
+### Syntax highlighting 
 
 Save a file with the extension `.py`, for example `test.py`, and copy the following program into it:
 
@@ -28,7 +28,7 @@ def foo():
 If the text is automatically colored (even with colors different from here), your editor is set up correctly.
 Otherwise, check the settings and find out how to turn it on.
 
-## Indentation
+### Indentation
 
 By pressing the <kbd>Tab</kbd> key at the *beginning of a line*, 4 spaces are inserted.
 For writing and sharing code in Python, it is important that there are four spaces and that they are truly spaces.
@@ -38,7 +38,7 @@ If you can select individual spaces, everything is fine.
 
 If it is not possible to select individual spaces or if pressing <kbd>Tab</kbd> inserts a different number than 4, check the settings for options such as 'indentation size' or 'replace tabs with spaces'.
 
-## Checking the style of source code
+### Checking the style of source code
 
 Editors often support the installation of plugins that can make coding easier and help with its control.
 One of the most useful is a plugin for checking the correct style of source code.

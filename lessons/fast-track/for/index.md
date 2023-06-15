@@ -1,3 +1,7 @@
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
+
 # Cycles
 
 Programmers don't like to repeat themselves. Programming is about automation: we won't greet every person separately, let's take a list of fifty people and greet them all at once!

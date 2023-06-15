@@ -1,3 +1,7 @@
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
+
 # Dictionaries
 
 Another type of value that can contain additional values within it is a *dictionary*. Imagine a translation dictionary, such as this Czech-English one:
