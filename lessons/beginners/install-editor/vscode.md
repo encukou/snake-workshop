@@ -15,7 +15,7 @@ Then follow the installer instructions as with any other program.
 ### Sending telemetry data
 
 Visual Studio Code can send data about your usage ([including the contents of files you have open][privacy]) to Microsoft.
-If you do not wish for the data to be sent, you can cancel the sending.
+If you do not wish to send this data, you can turn this off.
 
 Open **File** > **Preferences** > **Settings** (macOS: **Code** > **Preferences** > **Settings**).
 Find `telemetry.enableTelemetry` and uncheck this entry.

@@ -28,6 +28,8 @@ Programmers create a lot of files. And they care where those files are stored.
 The procedure below is by no means the only way to organize files,
 but if everyone in the workshop uses it, it'll be easier for us to help you with any problems.
 
+### A directory for the workshop
+
 {% set rootname = 'learn-python' %}
 
 First, create a directory (folder) for the workshop.
@@ -44,13 +46,10 @@ Therefore, I do not recommend creating it on the Desktop.
 At the workshop, you will need to know where this directory is.
 Note down its full name, which you can then paste into a graphical file browser or into `cd` in the command line.
 
-
-### Directory for every lesson
-
 We could use the directory directly, but let's organize things a bit more.
 Create an additional directory inside `{{ rootname }}`, and name it `snake-workshop`.
 
-### Switching
+### Switching to the directory
 
 Then open the command line and use the `cd` command to switch to the directory `{{ rootname }}` (i.e. not all the way into `snake-workshop`).
 For example:

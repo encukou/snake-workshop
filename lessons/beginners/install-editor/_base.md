@@ -70,8 +70,8 @@ OPHELIA:
 To indent one line, set the cursor at the beginning of the line and press the <kbd>Tab</kbd> key.
 Each time you press it, the line will be indented by 4 spaces.
 
-If you indent too much, you can reduce the indentation using Shift+Tab.
+If you indent too much, you can reduce the indentation using <kbd>Shift</kbd>+<kbd>Tab</kbd>.
 
-If you want to indent multiple lines at once, select them all and press <kbd>Tab</kbd>. You can also "unindent" the selection using <kbd>Shift</kbd>+<kbd>Tab</kbd>.
+If you want to indent multiple lines at once, select them all and press <kbd>Tab</kbd>. You can also "unindent" the whole selection using <kbd>Shift</kbd>+<kbd>Tab</kbd>.
 
 And that's it! Now you not only have the editor set up, but you also know how to use it.
