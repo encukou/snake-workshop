@@ -2,21 +2,21 @@
 
 {% block install %}
 
-Na Linuxu se {{ editor_name }} instaluje jako ostatní programy:
+On Linux, {{ editor_name }} is installed like any other program.
 
 Fedora
 :   ```console
     $ sudo dnf install {{ editor_cmd }}
     ```
 
-Ubuntu
+
+Ubuntu: 
 :   ```console
     $ sudo apt-get install {{ editor_cmd }}
     ```
 
-Používáš-li jiný Linux, předpokládám že programy instalovat umíš. :)
+If you use a different Linux, I assume that you know how to install programs. :)
 
-Pro Windows a macOS se {{ editor_name }} dá stáhnout z [domovské stránky]({{ editor_url }}).
+For Windows and macOS, {{ editor_name }} can be downloaded from the [homepage]({{ editor_url }}).
 
 {% endblock %}
-

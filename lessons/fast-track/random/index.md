@@ -1,30 +1,28 @@
-# Náhoda
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
 
-Občas je potřeba vybrat náhodnou hodnotu.
-Na to není v Pythonu funkce k dispozici přímo, ale dá se zpřístupnit
-pomocí příkazu `import`:
+# Randomness
+
+Sometimes it is necessary to select a random value. There is no function available directly in Python for this, but it can be accessed using the `import` command.
 
 ```pycon
 >>> from random import randrange
 >>> randrange(6)
 3
 ```
+Which means:
+* From the `random` module (which contains functions related to random values), import the `randrange` function (which can select random numbers).
+* Select a random number from six possibilities.
 
-Neboli:
+Call the `randrange` function multiple times. What numbers can you get?
 
-* Z modulu `random` (který obsahuje funkce kolem náhodných hodnot)
-  zpřístupni (`import`) funkci `randrange` (která umí vybírat náhodná čísla).
-* Vyber náhodné číslo ze šesti možností.
-
-Volání funkce `randrange` několikrát opakuj.
-Jaká čísla můžeš dostat?
 
 {% filter solution %}
-Čísla od 0 do 5 – šestku ne.
-Programátoři totiž počítají od nuly, a když počítáš šest čísel od nuly,
-dostaneš se jen k pětce.
+Numbers from 0 to 5 - not including 6.
+Programmers count from zero, and when you count six numbers from zero,
+you only get to five.
 
-Když budeš chtít „házet kostkou“ – vybírat čísla od 1 do 6 – můžeš napsat:
+When you want to 'roll the dice' - select numbers from 1 to 6 - you can write:
 ```pycon
 >>> from random import randrange
 >>> randrange(6) + 1
@@ -32,32 +30,21 @@ Když budeš chtít „házet kostkou“ – vybírat čísla od 1 do 6 – mů�
 ```
 {% endfilter %}
 
-Modulů jako `random`, ze kterých se dají *naimportovat* užitečná rozšiření,
-je spousta – na práci s textem, kreslení obrázků, práci se soubory nebo dny
-v kalendáři, kompresi dat, posílání e-mailů, stahování z internetu…
-Stačí jen vědět (nebo umět najít), jak se ten správný modul a funkce jmenuje.
-A kdyby nestačilo to, co má Python zabudované v sobě, další rozšiřující moduly
-se dají doinstalovat.
+There are many modules like `random` from which useful extensions can be imported, for working with text, drawing images, working with files or days on the calendar, compressing data, sending emails, downloading from the internet... You just need to know (or be able to find) the name of the right module and function. And if what Python has built-in is not enough, additional extension modules can be installed.
 
-## Náhodný výběr
+## Random selection
 
-Když už jsme u náhody, zkusme si ještě vylosovat náhodné číslo v loterii.
-Na výběr ze seznamu má modul `random` funkci `choice`:
-
+When we're talking about chance, let's try to draw a random number in the lottery. From the list, we have the `random` module with the `choice` function to choose from.
 ```pycon
 >>> from random import choice
->>> loterie = [3, 42, 12, 19, 30, 59]
->>> choice(loterie)
+>>> lotery = [3, 42, 12, 19, 30, 59]
+>>> choice(lotery)
 12
 ```
 
-Podobně se dá vybrat náhodná karta z ruky, náhodný účastník kurzu,
-náhodná barva – cokoli, co umíš dát do seznamu.
+Similarly, you can choose a random card from your hand, a random participant in a course, a random color - anything you can put on a list.
 
+## Summary
 
-## Shrnutí
-
-* Příkaz **import** ti dá k dispozici funkčnost, která není k dispozici přímo
-  v Pythonu.
-* Modul **random** obsahuje funkce **randrange** (náhodné číslo) a **choice**
-  (náhodný prvek seznamu).
+The command **import** provides you with functionality that is not directly available in Python.
+The **random** module contains the **randrange** function (random number) and **choice** function (random element from a list).

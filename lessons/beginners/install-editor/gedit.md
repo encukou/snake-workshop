@@ -1,37 +1,35 @@
+
 {% set editor_name = 'Gedit' %}
 {% set editor_cmd = 'gedit' %}
 {% set editor_url = 'https://wiki.gnome.org/Apps/Gedit' %}
 {% extends lesson.slug + '/_linux_base.md' %}
 
-{% block name_gen %} Geditu {% endblock %}
-
+{% block name_gen %} Gedit {% endblock %}
 
 {% block setup %}
 
-Gedit se nastavuje v Předvolbách <span class="en">(Preferences)</span>.
+Gedit is configured in Preferences.
 
 {{ figure(img=static('gedit_prefs.png'), alt="") }}
 
-Číslování řádků
-:   V sekci Zobrazit/<span class="en">View</span> vyber
-    Zobrazovat čísla řádků/<span class="en">Display Line Numbers</span>.
+Line numbering
+:   In the View section, select Display Line Numbers.
 
     {{ figure(img=static('gedit_linenums.png'), alt="") }}
 
-Odsazování
-:   V sekci Editor vyber:
+Indentation
+:   In the Editor section, select:
 
-    * Šířka tabulátorů/<span class="en">Tab width</span>: 4
-    * Vkládat mezery místo tabulátorů<span class="en">/Insert spaces instead of tabs</span>
-    * Povolit automatické odsazování<span class="en">/Enable automatic indentation</span>
+    * Tab width: 4
+    * Insert spaces instead of tabs
+    * Enable automatic indentation
 
     {{ figure(img=static('gedit_indent.png'), alt="") }}
 
-Obarvování
-:   Obarvování funguje automaticky, ale způsob obarvování se vybírá podle
-    koncovky souboru – např. `.py` pro Python.
+Syntax Highlighting
+:   Syntax Highlighting works automatically, but the coloring method is 
+    selected based on the file extension - for example, `.py` for Python.
 
-    Proto jakmile v tomhle editoru vytvoříš nový soubor, měl{{a}} bys ho co
-    nejdřív uložit pod správným jménem.
+    Therefore, as soon as you create a new file in this editor, you should save it under the correct name as soon as possible.
 
 {% endblock %}

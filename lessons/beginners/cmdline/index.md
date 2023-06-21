@@ -13,48 +13,46 @@
     </div>
 {%- endmacro -%}
 
+# Command line
 
-# Příkazová řádka
+Let us introduce you to your first new friend: the *command line*!
 
-V této lekci se seznámíme s *příkazovou řádkou* – černým okýnkem,
-které programátoři používají na zadávání textových příkazů.
+This is the black window all hackers use.
+It might look a bit scary at first but really it's just a prompt waiting for commands from you.
 
-Na většinu z toho co příkazová řádka umí můžeš použít i něco jiného – ikonku
-na ploše, speciální program nebo editor, webovou aplikaci – ale tyhle
-vychytávky mají dvě nevýhody:
-* často se liší mezi různými počítači, takže s „tvojí“ variantou ti bude moci
-  pomoct míň lidí, a
-* z příkazové řádky se dá jednoduše kopírovat text, což zjednodušuje
-  spolupráci přes e-mail nebo chat.
+## What is the command line?
 
-Na první pohled to může vypadat nepřirozeně, ale dá se na to zvyknout.
+The command line is a text-based application for controlling your computer.
+Other names for it are: *cmd*, *command-line interface* *(CLI)*, *prompt*, *console* or *terminal*.
 
-I když to možná není úplně nejjednodušší způsob jak s programováním začít,
-dlouhodobě se ti základy práce s příkazovou řádkou určitě vyplatí.
-A i o tom tenhle kurz je.
+It can be used for viewing, handling, and manipulating files, much like Windows Explorer or Finder on the Mac, but without the graphical interface.
+Instead of clicking, you'll type in commands using a keyboard!
 
-Příkazová řádka (respektive program, kterému se říká i *konzole* či *terminál*;
-anglicky *command line*, *console*, *terminal*)
-se na různých systémech otevírá různě:
+Why do it this way? Graphical windows and buttons are familiar to most people, but they have two disadvantages:
+* they often differ between different computers, so fewer people will be able to help you with "your" version, and
+* text can be easily copied around, which makes it easy to collaborate via email or chat.
 
-* Windows (české): Start → napsat na klávesnici „cmd“ → Příkazový řádek
-* Windows (anglické): Start → napsat na klávesnici „cmd“ → Command Prompt
-* macOS (anglický): Applications → Utilities → Terminal
-* Linux (GNOME, čeština): Činnosti → hledat Terminál
-* Linux (GNOME, angličtina): Activities → hledat Terminál
-* Linux (KDE): Hlavní Menu → hledat Konsole
+Although it may not be the easiest way to start,
+this workshop is about giving you a taste of what programmers do,
+so we're starting here.
 
-Nevíš-li si rady, zkus buď googlit, nebo se zeptat někoho zkušenějšího.
 
-Po otevření konzole tě uvítá *výzva* (angl. *prompt*): řádek,
-kterým počítač vybízí k zadání příkazu.
-Výzva končí na Unixových systémech (např. Linux a macOS) znakem `$`;
-na Windows znakem `>`.
+## Opening the command line
 
-Před tím znakem `$` nebo `>` budou nejspíš ještě nějaké další
-informace, které jsou ovšem v těchto materiálech vynechané.
-A budou vynechané i ve většině ostatních návodů co najdeš na internetu.
-Na každém počítači totiž můžou být trochu jiné.
+The way to open the command line (also known as *console* or *terminal*) is different on different systems:
+
+* **Windows**: go to the Start menu → type "cmd" on the keyboard → select *Command Prompt*
+* **macOS**: go to Applications → Utilities → Terminal
+* **Linux** (GNOME): Activities → search for "Terminal"
+* **Linux** (KDE): Main Menu → search for "Konsole"
+
+If you don't know what to do, try Googling or asking someone more experienced.
+
+After opening the console, you will be greeted by a *prompt*: a line that asks you to enter a command.
+The prompt ends with the character `$` on Unix systems (such as Linux and macOS); and with `>` on Windows.
+
+Before the `$` or `>` symbol, there will probably be some additional information, which is different on each computer.
+The examples here (like most other instructions you find on the internet) will omit that information, and just show the final `$` or `>` like this:
 
 {% call sidebyside(titles=['Unix (Linux, macOS)', 'Windows']) %}
 $
@@ -62,57 +60,56 @@ $
 >
 {% endcall %}
 
-Podle systému se potom liší i samotné příkazy, které budeš zadávat:
-Unixové systémy (Linux a macOS) rozumí jiným příkazům než Windows.
+## Font size
 
-> [note] Velikost písma
-> Je-li ve Windows moc malé písmo, klikni na ikonku okna a vyber Možnosti.
-> V záložce Písmo si pak můžeš vybrat větší font.
-> <!-- XXX: are the Czech names correct? -->
->
-> {{ figure(
+On Windows, if the font is too small, click on the window icon and select Options.
+In the Font tab, you can then choose a larger font.
+
+{{ figure(
      img=static('windows-cmd-properties.png'),
-     alt='Screenshot menu příkazové řádky',
+     alt='Screenshot of command prompt menu',
 ) }}
->
-> Na ostatních systémech hledej v nastavení, nebo zkus
-> <kbd>Ctrl</kbd>+<kbd>+</kbd> a
-> <kbd>Ctrl</kbd>+<kbd>-</kbd> (příp. se Shift).
+
+On other systems, look for settings or try
+<kbd>Ctrl</kbd>+<kbd>+</kbd> and
+<kbd>Ctrl</kbd>+<kbd>-</kbd> (or with Shift).
 
 
-## První příkaz
+# Your first command
 
-Začněme ale příkazem, který je všude stejný.
-Napiš `whoami` (z angl. *who am I?* – kdo jsem?)
-a stiskni <kbd>Enter</kbd>.
-Objeví se přihlašovací jméno. Třeba u Heleny by to vypadalo takhle:
+Let's start with your first command: `whoami` (the question *“who am I”* without spaces).
+Type it after the `$` or `>` and press <kbd>Enter</kbd>.
+Your login name will appear.
+For example, if your name was <var>Helena</var> the conversation would look like this:
 
 {% call sidebyside() %}
 $ whoami
 helena
 ---
 > whoami
-pocitac\Helena
+computer\Helena
 {% endcall %}
 
-> [note]
-> Znak `$` nebo `>` je v ukázce jen proto, aby bylo jasné že zadáváš
-> příkaz do příkazové řádky.
-> Vypíše ho počítač, většinou ještě s něčím před ním,
-> takže ho nepiš {{gnd('sám','sama')}}! Zadej jen `whoami` a <kbd>Enter</kbd>.
+>[note]
+>The character `$` or `>` in this example is only there to make it clear that you are entering a command into the command line.
+>The computer will display it, usually with something before it, so 
+>don't type it in! Just enter `whoami` and press <kbd>Enter</kbd>.
 >
-> Stejně tak počítač sám vypíše přihlašovací jméno.
+>Similarly, the computer will display the login name on its own.
+
+Let's try some more commands!
+Each computer can have a slightly different set of commands, so make sure to follow instructions for your operating system.
 
 
-## Aktuální adresář
+## Current directory
 
-Příkazová řádka pracuje vždy v nějakém *adresáři* neboli *složce*
-(angl. *directory*, *folder*).
-Adresář a složka jsou synonyma; můžeš používat kterékoli z nich.
+It'd be nice to know where are we now, right?
 
-Ve kterém adresáři zrovna jsi, to ti poví příkaz, který se podle systému
-jmenuje `pwd` nebo `cd` (z angl. *print working directory* – vypiš pracovní
-adresář, resp. *current directory* – aktuální adresář).
+The command line always works in some *directory*, also known as a *folder*
+(these mean one and the same thing).
+
+The command `pwd` or `cd` (from *print working directory* or *current directory*) will tell you in which directory you currently are.
+Try it! You'll see something like this:
 
 {% call sidebyside() %}
 $ pwd
@@ -122,24 +119,19 @@ $ pwd
 C:\Users\helena
 {% endcall %}
 
-Aktuální adresář se většinou ukazuje i ve výzvě příkazové řádky, před znakem
-`$` nebo `>`.
-Ale je dobré `pwd`/`cd` znát, kdyby ses náhodou ztratil{{a}}.
-Občas totiž bývá vypsaný zkráceně.
-A taky třeba budeš v budoucnu muset pracovat na počítači který před `$`
-ukazuje něco jiného.
+The current directory is usually also displayed somewhere in the command line prompt, before the `$` or `>` sign.
+But in the future, you may have to work on a computer that displays it differently or not at all, so it's good to know the `pwd`/`cd` command.
 
-Něco jako aktuální adresář možná znáš z grafických programů,
-kterými vybíráš soubory: typicky mají v horní (nebo na Macu dolní)
-části uvedeno který adresář zrovna ukazují.
-Příkazová řádka umí soubory ukazovat taky – ale musíš si o to říct.
+You might be familiar with a “current directory” from the window used to select files in graphical programs.
+Typically, this  window shows the contents of a single directory.
+
+The command line can also show what's in the current directory, but you have to ask for it.
 
 
-## Co v tom adresáři je?
+## What is in the directory?
 
-Příkaz `ls` nebo `dir` (z angl. *list* – vyjmenovat, resp. *directory* – adresář)
-ti vypíše co aktuální adresář obsahuje: všechny soubory,
-včetně podadresářů, které se v aktuálním adresáři nacházejí.
+The command `ls` or `dir` (short for *list* or *directory*) will show you what the current directory contains: all the files, including subdirectories.
+Try it!
 
 {% call sidebyside() %}
 $ ls
@@ -159,19 +151,15 @@ Music
 {% endcall %}
 
 
-## Změna aktuálního adresáře
+## Changing the current directory
 
-Aktuální adresář se dá změnit pomocí příkazu `cd`
-(z angl. *change directory* – změnit adresář).
-Za `cd` se píše jméno adresáře, kam chceme přejít.
-Pokud máš adresář `Desktop` nebo `Plocha`, přejdi tam.
-Pak nezapomeň ověřit, že jsi na správném místě.
+Now, let's go to your `Desktop` directory.
+(If you don't see Desktop in the output from `ls` or `dir`, choose a different
+one.)
 
-Používáš-li Linux nebo macOS, dej si pozor na velikost písmen: na těchto
-systémech jsou `Desktop` a `desktop` dvě různá jména.
+Type `cd`, a space, and the name of the directory you want to go to.
 
-Používáš-li Windows, `cd` už jsi používal{{a}} – tento příkaz se chová různě
-podle toho, jestli něco napíšeš za něj nebo ne.
+If you use Linux or macOS, be careful with letter case: on these systems, `Desktop` and `desktop` are two different names.
 
 {% call sidebyside() %}
 $ cd Desktop
@@ -183,46 +171,52 @@ $ pwd
 C:\Users\helena\Desktop
 {% endcall %}
 
-> [note] Poznámka pro Windows
-> Pokud přecházíš do adresáře na jiném disku,
-> například `D:` místo `C:`, je potřeba kromě `cd`
-> zadat jméno disku s dvojtečkou jako zvláštní příkaz (např. `D:`).
+Afterwards, verify that you are in the right place using `pwd` or `cd`.
 
+If you use Windows, you have already used `cd` - this command behaves differently depending on whether you write something after it or not.
 
-## Vytvoření adresáře
+>[note] Note for Windows
+>If you are switching to a directory on a different drive, for example `D:` instead of `C:`,
+>you need to enter the name of the drive with a colon (for example, `D:`) as a separate command, in addition to `cd`.
 
-Co takhle si zkusit vytvořit adresář? To se dělá příkazem `mkdir`
-(z angl. *make directory* – vytvořit adresář).
-Za tento příkaz napiš jméno adresáře, který chceš vytvořit – v našem případě
-`zkouska`:
+> [note] PRO tip
+> If you type `cd D` and then hit <kbd>tab</kbd> on your keyboard,
+> the command line will automatically fill in the rest of the name
+> so you can navigate faster.
+> If there is more than one folder starting with *D*,
+> hit the <kbd>tab</kbd> key twice to get a list of options.
+
+## Creating a directory
+
+How about creating a practice directory on your desktop?
+For that you can use the command `mkdir` (short for *make directory*) followed
+by the name of the directory you want to create.
+Try it:
 
 {% call sidebyside() %}
-$ mkdir zkouska
+$ mkdir test
 ---
-> mkdir zkouska
+> mkdir test
 {% endcall %}
 
-Když je adresář vytvořený, můžeš do něj přejít podobně jako jsi před chvílí
-{{gnd('přešel', 'přešla')}} na `Desktop` nebo `Plocha`:
+After you do this, try to list the current directory using `ls` or `dir`.
+One of the listed directories will be the newly created `test`.
+
+Next, navigate to the new directory it in the same way
+as to `Desktop` a moment ago:
 
 {% call sidebyside() %}
-$ cd zkouska
+$ cd test
 ---
-> cd zkouska
+> cd test
 {% endcall %}
 
-Vypiš si teď obsah aktuálního adresáře pomocí `ls` nebo `dir`.
-Jeden z vypsaných adresářů bude `zkouska`.
+## Using a graphical window
 
+The command line is powerful, but sometimes it's not the right tool for what you need to do.
+Let's learn how to open the command line's current directory elsewhere.
 
-## V grafickém hledátku
-
-Často nebudeš pracovat *jenom* s příkazovou řádkou.
-Vyplatí se umět aktuální adresář z příkazové řádky otevřít i v jiných
-programech.
-
-Otevři si prohlížeč souborů.
-Tenhle program je na každém systému jiný:
+Open your system's file browser.
 
 <div class="row side-by-side-commands">
     <div class="col">
@@ -248,111 +242,98 @@ Tenhle program je na každém systému jiný:
     </div>
 </div>
 
-Možná umíš v tomhle programu klikáním „donavigovat“ do adresáře který je
-aktivní v příkazové řádce.
-V budoucnu to ale bude složitější, takže bude dobré si vyzkoušet kopírovat text
-z příkazové řádky a vložit ho do prohlížeče souborů.
+You can navigate by clicking around, but that can take too long and sometimes you can get lost.
+Let's instead copy a directory name from the command line and paste it into the file browser.
 
-Bohužel se to dělá na každém systému jinak.
-A protože známá zkratka <kbd>Ctrl</kbd>+<kbd>C</kbd> a
-<kbd>Ctrl</kbd>+<kbd>V</kbd> dělají v příkazové řádce něco jiného než
-kopírování, nejspíš se to dělá jinak než jsi zvykl{{gnd('ý', 'á')}}.
-
-Nejdřív si pomocí příkazu `cd` nebo `pwd` nech vypsat celé jméno adresáře
-`zkouska`:
+First, you need something to copy.
+Use `cd` or `pwd` to display the full name of your current directory, `test`:
 
 {% call sidebyside() %}
 $ pwd
-/home/helena/Desktop/zkouska
+/home/helena/Desktop/test
 ---
 > cd
-C:\Users\helena\Desktop\zkouska
+C:\Users\helena\Desktop\test
 {% endcall %}
 
-### Kopírování z příkazové řádky
+### Copying from the command line
 
-Na **Linuxu** vyber text myší a pak buď:
-* pravým tlačítkem myši otevři menu a vyber *Kopírovat* nebo *Copy*, nebo
-* zmáčkni <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>.
-  (Pozor, v příkazové řádce musíš použít navíc Shift.)
+Unfortunately, the way to copy text is different on every system.
+Even more unfortunately, on most systems you can't use the well-known shortcuts <kbd>Ctrl</kbd>+<kbd>C</kbd> and <kbd>Ctrl</kbd>+<kbd>V</kbd> to copy/paste in the command line.
 
-Na **macOS** vyber text myší a pak stiskni <kbd>⌘ Command</kbd>+<kbd>C</kbd>.
+On Linux, select the text with your mouse and then either:
+* right-click and select *Copy*, or
+* press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>.
+(Note that in the command line, you must add Shift to the usual copy shortcut.)
 
-Na **Windows** v menu příkazové řádky (ikonce vlevo nahoře) vyber
-*Edit* → *Mark*, text vyber myší a zkopíruj pomocí <kbd>Enter</kbd>.
+On macOS, select the text with your mouse and then press <kbd>⌘ Command</kbd>+<kbd>C</kbd>.
 
-### Otevření v prohlížeče souborů
+On Windows, in the command prompt menu (icons in the upper left corner), select *Edit* → *Mark*, select the text with your mouse, and copy it using <kbd>Enter</kbd>.
 
-Na **Linuxu** záleží na programu, který používáš. Buď:
-* zmáčkni <kbd>Ctrl</kbd>+<kbd>L</kbd> a jméno adresáře vlož pomocí
-  <kbd>Ctrl</kbd>+<kbd>V</kbd>, nebo
-* vyber jméno adresáře v horní části, smaž ho a vlož nové pomocí
+### Opening in a file browser
+
+On **Linux**, depending on the file browser you are using, either:
+* press <kbd>Ctrl</kbd>+<kbd>L</kbd> and insert the directory name using
+  <kbd>Ctrl</kbd>+<kbd>V</kbd>, or
+* select the directory name at the top, delete it, and insert a new one using
   <kbd>Ctrl</kbd>+<kbd>V</kbd>.
-V obou případech potvrď pomocí <kbd>Enter</kbd>
+In both cases, confirm with <kbd>Enter</kbd>.
 
-Na **macOS** vyber v menu *Go* → *Go to Folder*, vlož jméno adresáře pomocí
-<kbd>⌘ Command</kbd>+<kbd>V</kbd> a potvrď pomocí <kbd>Enter</kbd>.
+On **macOS**, select the *Go* menu → *Go to Folder*, paste the directory name using
+<kbd>⌘ Command</kbd>+<kbd>V</kbd> and confirm by pressing <kbd>Enter</kbd>.
 
-Na Windows klikni na jméno adresáře v horní části.
-Převede se tím na editovatelný text.
-Smaž ho a pomocí <kbd>Ctrl</kbd>+<kbd>V</kbd> místo něj vlož nové jméno.
-Potvrď pomocí <kbd>Enter</kbd>.
+On **Windows**, click on the name of the directory at the top.
+This will make the text editable.
+Delete the existing directory and use <kbd>Ctrl</kbd>+<kbd>V</kbd> to paste the new one instead.
+Confirm with <kbd>Enter</kbd>.
 
+Now, you should have Desktop open in your graphical window.
+Check that you can see `test`, the directory you created earlier.
 
-Teď se můžeš podívat na Plochu nebo do nějakého grafickém programu na
-prohlížení adresářů: zjistíš, že se adresář opravdu vytvořil.
+### Inserting back into the command line
 
-### Vkládání do příkazové řádky
+Sometimes you'll open a directory in the file browser and you will want to switch to it in the command line.
 
-Občas si otevřeš soubor v prohlížeči souborů a budeš do něj chtít přejít
-v příkazové řádce.
-Zkopírování jména adresáře doufám nebude problém; vkládání do příkazové řádky
-je ale občas jiné než v ostatních pogramech:
+Copy the directory name from the file browser. (You might need to make the text editable, as when pasting.)
 
-* Linux: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>
-* macOS: <kbd>⌘ Command</kbd>+<kbd>V</kbd>
-* Windows: Menu *Edit* → *Paste*
+Then, paste it into the command line.
+The shortcut for that can again be different than what you're used to:
+
+* Linux: <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> 
+* macOS: <kbd>⌘ Command</kbd>+<kbd>V</kbd> 
+* Windows: Menu *Edit* → *Paste* 
 
 > [note]
-> Pokud jsou ve jménu mezery nebo jiné speciální znaky jako `*#$%^()><;"?`,
-> musíš ho v příkazové řádce ještě uzavřít do uvozovek: před a za jméno napiš
-> `"`, např:
+> If there are spaces or other special characters such as `*#$%^()><;"?` in the name, you must enclose it in quotes in the command line. Before and after the name, type `"`, for example:
 >
-> ```console
-> $ cd "můj super adresář"
-> ```
+>```console
+>$ cd "my super directory"
+>```
 >
-> Lepší je ale mezery a zvláštní znaky ve jménech souborů nepoužívat.
+> You can also rename directories and files to remove any spaces
+> and special characters.
+> That'll make them easier to work with in the command line.
 
+## Observing changes
 
-## Pozorování změn
+The files on your computer can be manipulated by both graphical programs and the command line.
+Let's test that!
 
-Vyzkoušej si, že se v řádce projeví i změny, které na počítači
-uděláš jiným způsobem.
+In your graphical browser, you should have the command line's current directory open. Create a new file or directory there.
+Then switch to the command line, and use `ls` or `dir` to check that it was actually created.
+Now delete it in the graphical program – and verify that you can't see it any more in the command line.
 
-V grafickém prohlížeči, který se „dívá“ na stejný adresář který máš aktivní
-v příkazové řádce, vytvoř nový soubor nebo adresář.
-Pak se pomocí příkazu `ls` nebo `dir` podívej, že se opravdu vytvořil.
-Potom ho v grafickém programu smaž – a v příkazové řádce se ujisti,
-že je opravdu smazaný.
+## One level up
 
-Na počítači máš jen jednu sadu souborů, se kterou umí manipulovat jak grafické
-programy tak příkazová řádka.
+Remember `cd`? There's one more trick you'll need.
+If you are now in the directory `Desktop/test` or `Desktop\test`, how do you get back to `Desktop`?
 
+The command `cd Desktop` will not work: it would tell the computer to switch to `Desktop` *in the current directory*, or `Desktop/test/Desktop`.
+But there's no directory like that.
+And the command line does not dare second-guess what you mean.
 
-## O úroveň nahoru
-
-A poslední věc: jsi-li teď v adresáři `Desktop/zkouska` (nebo `Plocha/zkouska`,
-`Desktop\zkouska` atp.), jak se dostat zpátky do `Desktop`?
-
-Příkaz `cd Desktop` fungovat nebude: tím bys počítači řekl{{a}}, ať se přepne
-do adresáře `Desktop` *v aktuálním adresáři*.
-Ale v adresáři `zkouska` žádný `Desktop` není!
-Je to naopak: `zkouska` je v `Desktop`.
-Odborně řečeno, adresář `Desktop` je *nadřazený* aktuálnímu adresáři.
-
-Nadřazený adresář má speciální jméno `..`, dvě tečky.
-Přejdi do něj zadáním `cd ..` a pak se ujisti, že jsi opravdu v `Desktop`:
+The *parent* directory (the one contains the current one) has a special name: `..` ­– two dots.
+Go to it by typing `cd ..` and then make sure that you are really back in `Desktop`.
 
 {% call sidebyside() %}
 $ cd ..
@@ -364,77 +345,61 @@ $ pwd
 C:\Users\helena\Desktop
 {% endcall %}
 
-Další `cd ..` by tě přesunulo do dalšího nadřazeného adresáře – v našem
-příkladu `helena`.
+Another `cd ..` would move you to the next parent directory - in our example, `helena`.
 
+## The end
 
-## Konec
+There are many more commands you can use on the command line.
 
-Příkazů existuje samozřejmě daleko víc.
+When you learn them, you can fully control the computer just using text: create files, delete them, run programs, change settings, and so on.
+However, it would take a separate course to cover all of that.
 
-Když se je naučíš, můžeš z příkazové řádky plnohodnotně ovládat
-počítač: vytvářet soubory, mazat je, pouštět programy, měnit nastavení
-a podobně.
-Vydalo by to ale vydalo na samostatný kurz, a tak tady skončíme.
-
-Vyzkoušej si ještě jeden příkaz, ten, který příkazovou řádku zavírá: `exit`.
-
-Příkaz `exit` funguje stejně na všech systémech.
-To samé platí pro překvapivě mnoho příkazů (kromě těch základních jako
-`cd`, `pwd` a `ls`).
-Proto ve zbytku těchto materiálů nebudu používat ukázky dvojmo podle
-operačního systému.
-
-A budu používat unixovskou výzvu `$`.
-S touto konvencí se setkáš i ve většině návodů na internetu.
-Používáš-li Windows, je dobré si na `$` zvyknout i když ve své
-řádce máš místo něj `>`.
-
-Zkus si tedy, co dělá příkaz `exit`:
+So let's wrap up with just one more command – one that closes the command line:
 
 ```console
 $ exit
 ```
 
-A tím je úvod do příkazové řádky hotový.
+This command is the same on all systems, so I didn't give a separate example for Windows.
+And in the single example, I used the Unix-style prompt, `$` rather than `>`.
+Many online tutorials do that.
+They mean the same thing: the computer is asking for your command.
 
+## Overview
 
-## Přehled
-
-Tady je tabulka základních příkazů, se kterými si do začátku vystačíš:
+Here is a table of basic commands that you will need to get started.
 
 <table class="table">
     <tr>
         <th>Unix</th>
         <th>Windows</th>
-        <th>Popis</th>
-        <th>Příklad</th>
+        <th>Description</th>
+        <th>Example</th>
     </tr>
     <tr>
-        <td><code>cd <var>adresář</var></code></td>
-        <td><code>cd <var>adresář</var></code></td>
-        <td>změna adresáře</td>
+        <td><code>cd <var>directory</var></code></td>
+        <td><code>cd <var>directory</var></code></td>
+        <td>Change directory</td>
         <td><code>cd test</code><br><code>cd ..</code></td>
     </tr>
     <tr>
         <td><code>pwd</code></td>
         <td><code>cd</code></td>
-        <td>výpis aktuálního adresáře</td>
+        <td>Print working directory</td>
         <td><code>pwd</code><br><code>cd</code></td>
     </tr>
     <tr>
         <td><code>ls</code></td>
         <td><code>dir</code></td>
-        <td>výpis adresáře</td>
+        <td>List directory contents</td>
         <td><code>ls</code><br><code>dir</code></td>
     </tr>
     <tr>
         <td><code>exit</code></td>
         <td><code>exit</code></td>
-        <td>ukončení</td>
+        <td>Exit</td>
         <td><code>exit</code></td>
     </tr>
 </table>
 
-Další příkazy jako `python` nebo `git` si vysvětlíme až budou potřeba,
-po tom, co si je nainstaluješ.
+There are many others, and we'll learn about them when as we need them.

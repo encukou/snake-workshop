@@ -1,33 +1,23 @@
-# Instalace Pythonu pro macOS
+# Installing Python for macOS
 
-Nainstaluj si nástroj [Homebrew](http://brew.sh), který řeší a zjednodušuje
-instalaci aplikací a knihoven, které budeme potřebovat pro programování.
-Jak na to?
-
-Spusť v příkazové řádce příkaz:
+Run the following command in the command line to install [Homebrew](http://brew.sh), a tool that simplifies the installation of applications and libraries that we will need for programming.
 
 ```console
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Pak zadej následující příkaz a Python bude nainstalovaný:
+Then install Python using the following command:
 
 ```console
 $ brew install python3
-```
+``` 
 
-Zkontroluj si, že máš verzi 3.6 nebo vyšší:
+Check that you have Python version 3.6 or higher.
 
 ```console
 $ python3 --version
-```
+``` 
 
-Objeví-li se „Python“ a číslo verze (např. `Python 3.6.6`)
-a verze je 3.6 nebo vyšší, máš nainstalováno.
-Jinak je něco špatně;
-{% if var('coach-present') -%}
-poraď se s koučem.
-{%- else -%}
-zkus instalaci znovu.
-Když to nevyjde, poraď se s někým zkušenějším.
-{%- endif %}
+
+If "Python" and the version number appear (e.g. `Python 3.6.6`) and the version is 3.6 or higher, you have it installed.
+Otherwise, something is wrong. Please send us an e-mail and we'll try to help.

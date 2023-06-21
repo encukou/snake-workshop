@@ -1,8 +1,12 @@
-# Porovnávání věcí
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Programátoři často porovnávají různé hodnoty. Pojďme se podívat jak na to.
+# Comparing things
 
-``` pycon
+Programmers often compare different values. Let's take a look at how to do it.
+
+```pycon
 >>> 5 > 2
 True
 >>> 5 > 8
@@ -11,35 +15,28 @@ False
 True
 ```
 
-Když se Pythonu zeptáš, jestli je jedno číslo větší než druhé, odpoví ti
-`True` (pravda) nebo `False` (nepravda).
+When you ask Python if one number is greater than the other, it will answer either `True` or `False`.
 
-Funguje to i se složitějšími výrazy:
+It works even with more complex expressions.
+
 
 ``` pycon
 >>> 5 > 3 * 2
 False
 ```
 
-„Větší než“ a „menší než“ jsou značky známé z matematiky.
-Chceš-li se ale zeptat, jestli jsou dvě čísla stejná, je potřba použít
-trochu jiný zápis:
+"Greater than" and "less than" are symbols known from mathematics. However, if you want to ask if two numbers are equal, you need to use a slightly different notation:
 
-``` pycon
+```python
 >>> 1 == 1
 True
-```
+``` 
 
-Jedno rovnítko `=` používáme pro *přiřazení* hodnoty do proměnné.
-Když chceš zkontrolovat, jestli se věci navzájem *rovnají*, vždy, **vždy**
-musíš dát dvě rovnítka `==`.
+We use one equals sign `=` for *assignment* of a value to a variable. When you want to check if things are *equal* to each other, always, **always** use two equals signs `==`.
 
-Další možnosti porovnávání jsou nerovnost (≠), větší nebo rovno (≤)
-a meší nebo rovno (≥).
-Většina lidí tyhle symboly nemá na klávesnici, a tak Python používá `!=`, `<=`
-a `>=`.
+The other comparison options are inequality (≠), greater than or equal to (≤), and less than or equal to (≥). Most people do not have these symbols on their keyboard, so Python uses `!=`, `<=`, and `>=`.
 
-``` pycon
+``` python
 >>> 5 != 2
 True
 >>> 3 <= 2
@@ -48,7 +45,7 @@ False
 True
 ```
 
-Už jsi někdy slyšel{{a}} výraz „srovnávat jablka a hrušky“? Zkusme v Pythonu ekvivalent:
+Have you ever heard the expression "comparing apples and pears"? Let's try the Python equivalent:
 
 ``` pycon
 >>> 1 > 'krajta'
@@ -57,11 +54,9 @@ Traceback (most recent call last):
 TypeError: '>' not supported between instances of 'int' and 'str'
 ```
 
-Stejně jako nelze srovnávat „jablka a hrušky“,
-Python není schopen porovnávat řetězce (`str`) a čísla (`int`).
-Místo toho zobrazí `TypeError` a říká nám, že tyto dva typy nelze porovnat.
+Just like you can't compare apples and pears, Python is unable to compare strings (`str`) and numbers (`int`). Instead, it displays a `TypeError` and tells us that these two types cannot be compared.
 
-Co se stane, když v minulé ukázce zaměníš `>` za `==`?
+What happens when you replace `>` with `==` in the previous example?
 
 {% filter solution %}
 ```pycon
@@ -69,16 +64,14 @@ Co se stane, když v minulé ukázce zaměníš `>` za `==`?
 False
 ```
 
-Jablka a hrušky nemůžeš porovnávat, ale můžeš si potvrdit že jsou to dvě různé
-věci.
+You can't compare apples and pears, but you can confirm that they are two different things.
 {% endfilter %}
 
+## Logic
 
-## Logika
+Do you want to try something else? Enter this:
 
-Chceš zkusit ještě něco? Zadej tohle:
-
-``` pycon
+```
 >>> 6 > 2 and 2 < 3
 True
 >>> 3 > 2 and 2 < 1
@@ -89,72 +82,60 @@ True
 False
 ```
 
-V Pythonu můžeš zkombinovat několik porovnání do jednoho!
+In Python, you can combine several comparisons into one!
 
-*   Pokud použiješ operátor `and`, obě strany musí být pravdivé, aby byl celý výraz pravdivý.
-*   Pokud použiješ operátor `or`, stačí aby jen jedna strana z porovnání byla pravdivá.
-*   Operátor `not` “obrátí” výsledek porovnání.
+If you use the 'and' operator, both sides must be true for the whole expression to be true. If you use the 'or' operator, it is enough for only one side of the comparison to be true. The 'not' operator 'inverts' the result of the comparison.
 
+## Presence
 
-## Přítomnost
+Wouldn't it be nice to find out if your number won the lottery? If you have a list, you can use the `in` operator to ask if a given element is in it.
 
-Nebylo by pěkné zjistit, jestli tvoje číslo vyhrálo v loterii?
-Máš-li seznam, operátorem `in` se můžeš zeptat, jestli je v něm daný prvek:
-
-``` pycon
+``` 
 >>> loterie = [3, 42, 12, 19, 30, 59]
 >>> 18 in loterie
 False
 >>> 42 in loterie
 True
-```
+``` 
 
-Není to úplně porovnání, ale dostaneš stejný druh výsledku jako s `<` či `==`.
+It's not a complete comparison, but you'll get the same kind of result as with `<` or `==`.
+
+## Truth values
+
+You have just learned about a new type of object in Python. We already know types such as string, number, list, or dictionary; we have added to them the *truth value*, or more commonly in English, *boolean*.
+
+The truth values are only two: `True` (true) or `False` (false).
+
+In order for Python to understand that it is this type, it is necessary to pay attention to the capitalization. `true`, `TRUE`, `tRUE` will not work - only `True` is correct.
+
+Like any value, you can also save a *boolean* in a variable.
 
 
-## Pravdivostní hodnoty
-
-Právě ses dozvěděl{{a}} o novém typu objektu v Pythonu.
-Už známe typy řetězc, číslo, seznam nebo slovník; přidali jsme k nim
-*pravdivostní hodnotu*, nebo častěji anglicky *boolean*.
-
-Pravdivostní hodnoty jsou jenom dvě: `True` (pravda) nebo `False` (nepravda).
-
-Aby Python pochopil, že se jedná o tento typ,
-je potřeba dávat pozor na velikost písmen.
-`true`, `TRUE`, `tRUE` nebude fungovat – jedině `True` je správně.
-
-Jako každou hodnotu, i *boolean* můžeš uložit do proměnné:
-
-``` pycon
+```python
 >>> a = True
 >>> a
 True
-```
+``` 
 
-Stejně tak můžeš uložit i výsledek porovnání:
-
+You can also save the result of the comparison in the same way:
 ``` pycon
 >>> a = 2 > 5
 >>> a
 False
 ```
 
-A všechno to můžeš použít v logických výrazech:
 
+And you can use all of that in logical expressions:
 ``` pycon
 >>> a and True
 False
 ```
 
+## Summary
 
+In this section you have learned:
 
-## Shrnutí
-
-V této sekci ses dozvěděl{{a}}:
-
-*   V Pythonu můžeš **porovnávat** pomocí operátorů `>`, `>=`, `==` `<=`, `<`, `!=` a `in`
-*   Operátory `and` a `or` umí **zkombinovat** dvě pravdivostní hodnoty.
-*   Operátor `not` umí **obrátit** pravdivostní hodnotu.
-*   **Boolean** (pravdivostní hodnota) je typ, který může mít jednu ze dvou
-    hodnot: `True` (pravda) nebo `False` (nepravda).
+In Python, you can **compare** using operators `>`, `>=`, `==`, `<=`, `<`, `!=`, and `in`.
+* Operators `and` and `or` can **combine** two boolean values.
+* Operator `not` can **invert** a boolean value.
+* **Boolean** is a type that can have one of two values: `True` (true) or `False` (false).

@@ -1,117 +1,103 @@
-# Řetězce
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Čísla jsou pro počítače dost užitečná (ostatně slovo *počítač* to naznačuje),
-ale Python umí pracovat i s jinými druhy informací.
-Třeba s textem.
+# Strings
 
-Zkus si to: zadej své jméno do uvozovek, jak vidíš níže:
+Numbers are very useful for computers (as the word *computer* suggests), but Python can also work with other types of information.
+For example, with text.
 
-``` pycon
+Try it: enter your name in quotation marks, as you can see below:
+
+```pycon 
 >>> 'Ola'
 'Ola'
 ```
 
-Nyní jsi vytvořil{{a}} svůj první *řetězec*!
-Řetězec (angl. *string*) je programátorský termín pro *text* – posloupnost
-znaků (písmenek),
-které mohou být zpracovány počítačem.
+You have now created your first *string*!
+A string is a programming term for *text* - a sequence of characters (letters) that can be processed by a computer.
 
-Když řetězec zadáváš, musíš ho vždy uzavřít do uvozovek (apostrofů).
-Jinak by Python nepoznal, co je text se kterým má pracovat a co jsou instrukce
-které má provést.
-To je pro počítač docela důležité – lidem podobné věci dojdou z kontextu,
-ale počítač je hloupé zařízení.
+When entering a string, you must always enclose it in quotation marks (apostrophes).
+Otherwise, Python would not recognize what is text to work with and what are instructions to execute.
+This is quite important for a computer - people will understand such things from the context but a computer is just a machine.
 
 {{ figure(
-    img=static('quote-comic.svg'),
-    alt='(Ilustrační komiks. Člověk říká robotovi: "Řekni Pavlovi, ať mi zavolá!". Robot odpoví: "PAVLOVI AŤ MI ZAVOLÁ!")',
+     img=static('quote-comic.svg'),
+     alt='(Ilustrační komiks. Člověk říká robotovi: "Řekni Pavlovi, ať mi zavolá!". Robot odpoví: "PAVLOVI AŤ MI ZAVOLÁ!")',
 ) }}
 
-Řetězce se dají spojovat – „sečítat“ – pomocí `+`. Zkus toto:
+Strings can be concatenated - "added" - using the `+` operator. Try this:
 
-``` pycon
->>> 'Já jsem ' + 'Ola'
-'Já jsem Ola'
+```pycon
+>>> 'I am ' + 'Ola'
+'I am Ola'
+```
+Watch out for the space!
+When you enter 'I am' + 'Ola', the two words will be joined together.
+The computer considers the space as a *character*; it behaves towards it like towards any letter.
+If you don't put the space in quotation marks, it won't be part of the string.
+
+Spaces between the string and the operator (`+`) do not matter. All of the following commands do the same thing:
+```pycon
+>>> 'I am ' + 'Ola'
+'I am Ola'
+>>> 'I am '+'Ola'
+'I am Ola'
+>>> 'I am '                +     'Ola'
+'I am Ola'
+```
+But it is customary to write one space around the operator on each side - just like in these materials. The code is then more readable.
+
+Try putting the space itself in quotation marks - add up three strings:
+```pycon
+>>> 'I am' + ' ' + 'Ola'
+'I am Ola'
 ```
 
-Pozor na mezeru! Když zadáš `'Já jsem' + 'Ola'`, spojí se ti dvě slova dohromady.
-Počítač považuje i mezeru za *znak*; chová se k ní stejně jako k jakémukoli
-písmenku.
-Když nedáš mezeru do uvozovek, nebude součástí řetězce.
-
-Mezery mezi řetězcem a operátorem (`+`) naopak nehrají roli.
-Všechny následující příkazy dělají to samé:
-
-``` pycon
->>> 'Já jsem ' + 'Ola'
-'Já jsem Ola'
->>> 'Já jsem '+'Ola'
-'Já jsem Ola'
->>> 'Já jsem '                +     'Ola'
-'Já jsem Ola'
-```
-
-Je ale zvykem psát kolem operátoru jednu mezeru z každé strany – tak jako
-v těchto materiálech.
-Kód je pak čitelnější.
-
-Zkus si dát do uvozovek i mezeru samotnou – sečti tři řetězce:
-
-``` pycon
->>> 'Já jsem' + ' ' + 'Ola'
-'Já jsem Ola'
-```
-
-Kromě „sečítání“ můžeš řetězce i opakovat – násobit číslem:
-
-``` pycon
+In addition to "concatenation", you can also repeat strings - multiply by a number.
+```pycon
 >>> 'Ola' * 3
 'OlaOlaOla'
 ```
 
-## Uvozování
+## Quoting
 
-A co když budeš chtít dát dovnitř do svého řetězce apostrof?
-Můžeš kolem řetězce použít dvojité uvozovky:
+And what if you want to put an apostrophe inside your string? You can use double quotes around the string.
 
-``` pycon
->>> "To bych řek', že jsou pořádně praštěný!"
-"To bych řek', že jsou pořádně praštěný!"
+```pycon
+>>> "I'd say they're properly crazy!"
+"I'd say they're properly crazy!"
 ```
 
-Pythonu je jedno, se kterým druhem uvozovek řetězec zadáš.
-Podstatná jsou jen písmenka uvnitř.
-Když Python řetězec vypisuje, může si vybrat jiný druh uvozovek
-než jsi použil{{a}} ty:
+Python doesn't care which type of quotation marks you use to enter a string.
+The important thing is the letters inside.
+When Python prints a string, it can choose a different type of quotation marks than the ones you used.
 
-``` pycon
+```pycon
 >>> "Ola"
 'Ola'
 ```
 
-## Funkce a metody
+## Functions and methods
 
-Už umíš řetězce „sčítat“ (`'Ahoj ' + 'Olo!'`)
-a „násobit“ (`'la' * 3`).
-Na všechny ostatní věci, které se s textem dají dělat,
-ale na klávesnici není dost symbolů.
-Proto jsou některé operace pojmenované slovně – třeba takzvané *funkce*.
+You already know how to 'add' strings ('Hello ' + 'Ola!') and 'multiply' them ('Ola' * 3).
+For all other things that can be done with text, there are not enough symbols on the keyboard.
+Therefore, some operations are named verbally - for example, so-called *functions*.
 
-Chceš-li znát počet písmen ve svém jméně, zavolej funkci `len`.
-Napiš `len` (bez uvozovek), pak kulaté závorky, a do těch závorek
-své jméno jako řetězec (v uvozovkách).
-Tím funkci `len` *zavoláš* na řetězec se svým jménem:
+If you want to know the number of letters in your name, call the function 'len'.
+Write 'len' (without quotes), then parentheses, and inside those parentheses, your name as a string (in quotes).
+This way you will *call* the function 'len' on the string with your name.
 
 ``` pycon
 >>> len('Ola')
 3
 ```
 
-Existuje funkce `type`, která zjistí jestli je něco číslo nebo řetězec.
-Jak bys ji zavolal{{a}} na číslo `123` nebo řetězec `'abc'`?
+There is a function called `type` which determines whether something is a number or a string.
+How would you call it on the number `123` or the string `'abc'`?
 
 {% filter solution %}
-``` pycon
+```pycon
 >>> type(123)
 <class 'int'>
 >>> type('abc')
@@ -119,50 +105,43 @@ Jak bys ji zavolal{{a}} na číslo `123` nebo řetězec `'abc'`?
 ```
 {% endfilter %}
 
-Kromě funkcí existují *metody*, které se zapisují trochu jinak.
+In addition to functions, there are *methods*, which are written a little differently.
 
-Chceš-li vidět své jméno velkými písmeny, zavolej metodu `upper`.
-Napiš řetězec, pak tečku, jméno metody `upper` (bez uvozovek) a prázdné
-závorky:
+If you want to see your name in capital letters, call the `upper` method.
+Write a string, then a dot, the method name `upper` (without quotes), and empty parentheses.
 
 ``` pycon
 >>> 'Ola'.upper()
 'OLA'
-```
-
-Řetězce mají i metodu `lower`. Zkus ji zavolat na své jméno.
-
+``` 
+Strings also have a method called `lower`.
+Try calling it on your name.
 {% filter solution %}
-``` pycon
+```pycon
 >>> 'Ola'.lower()
 'ola'
 ```
 {% endfilter %}
 
-Co je metoda (kterou voláš s tečkou, jako `'Ola'.upper()`) a co je funkce
-(kde vložíš informaci do závorek jako `len('Ola')`),
-to si budeš muset u každé nové funkce/metody zapamatovat nebo vyhledat.
+What is a method (which you call with a dot, like `'Ola'.upper()`) and what is a function (where you insert information in parentheses like `len('Ola')`), you will have to remember or look up for each new function/method.
 
+## Expression evaluation
 
-{# XXX: Move elsewhere? #}
-## Skládání výrazů
+You can use calling a function or method as another value.
 
-Volání funkce nebo metody můžeš použít jako jinou hodnotu.
-
-Nech Python spočítat matematický výraz `(1 + 3) / 2`:
+Let Python calculate the mathematical expression `(1 + 3) / 2`:
 
 ```pycon
 >>> 8 / (1 + 3)
 2.0
 ```
 
-Python napřed sečte `1 + 3` a vyjde mu 4.
-Čtverku doplní místo `1 + 3` do původního příkladu, a dostane `8 / 4`.
-To vydělí a dostane `2.0`.
+Python first adds `1 + 3` and the result is 4.
+It replaces the sum with 4 in the original equation and gets `8 / 4`.
+Then it divides and gets `2.0`.
 
-Neboli: `8 / (1 + 3)` = `8 / 4` = `2.0`
 
-Zkus se zamyslet, jak Python zpracuje tyto výrazy:
+Try to think about how Python will process these expressions:
 
 ```pycon
 >>> len('Ola') + 1
@@ -170,9 +149,9 @@ Zkus se zamyslet, jak Python zpracuje tyto výrazy:
 ```
 
 ```pycon
->>> 'Já jsem ' + 'Ola'.upper()
-'Já jsem OLA'
-```
+>>> 'I am ' + 'Ola'.upper()
+'I am OLA'
+````
 
 ```pycon
 >>> len('Ola' * 3)
@@ -183,33 +162,28 @@ Zkus se zamyslet, jak Python zpracuje tyto výrazy:
 >>> len('Ola'.upper())
 3
 ```
-
-{% filter solution() %}
+{% filter solution() %} 
 `len('Ola') + 1` → `3 + 1` → `4`
 
-`'Já jsem ' + 'Ola'.upper()` → `'Já jsem ' + 'OLA'` → `'Já jsem OLA'`
+`'I am ' + 'Ola'.upper()` → `'I am ' + 'OLA'` → `'I am OLA'`
 
 `len('Ola' * 3)` → `len('OlaOlaOla')` → `9`
 
-`len('Ola'.upper())` → `len('OLA')` → `3`
+`len('Ola'.upper())` →` len('OLA')` → `3`
 {% endfilter %}
 
+Similar composition is very common in programming.
+Most of the basic building blocks can be learned by beginners in a few weeks or months - and then throughout their programming career they discover new ways to assemble them into more and more complex structures.
 
-Podobné skládání je v programování velice časté.
-Většinu základních stavebních bloků se začátečník naučí za pár
-týdnů či měsíců – a pak po celou svou progrmátorskou kariéru objevuje nové způsoby,
-jak je poskládat do složitějších a složitějších konstrukcí.
+## Summary
 
-### Shrnutí
+OK, enough of the strings. What have you learned so far?
 
-OK, dost bylo řetězců. Co ses zatím naučil{{a}}:
+*   **Strings** are used for working with text.
+*   **Operators** `+` and `*` are used for concatenating and repeating strings.
+*   **Functions** and **methods** like `len()` and `upper()` perform some actions on strings.
+*   **Expressions** can be composed together.
 
-*   **Řetězce** se používají na práci s textem.
-*   **Operátory** `+` a `*` se používají na spojování a opakování řetězců.
-*   **Funkce** a **metody** jako `len()` a `upper()` provádí na řetězcích
-    nějaké akce.
-*   **Výrazy** se dají skládat dohromady.
+Numbers, strings, operators, and functions are the basics of most programming languages.
 
-Čísla, řetězce a operátory a funkce jsou základy většiny programovacích jazyků.
-
-Připraven{{a}} na něco dalšího? Vsadíme se, že ano!
+Ready for something new? We bet you are!

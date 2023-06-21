@@ -1,20 +1,13 @@
-# Logika hry
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
 
-Už umíš vykreslit hada ze seznamu souřadnic.
-Hadí videohra ale nebude jen „fotka“.
-Seznam se bude měnit a had se bude hýbat!
+# Game logic
 
+You can already draw a snake from a list of coordinates. But the snake video game won't just be a "picture". The list will change and the snake will move!
 
-<!--
-# Ukládání revizí
+# Let's move the snake
 
-XXX - Nestíhám dopsat, omlouvám se
--->
-
-# Rozhýbejme hada
-
-Tvůj program teď, doufám, vypadá nějak takhle:
-
+Your program now, I hope, looks something like this:
 ```python
 import pyglet
 
@@ -27,8 +20,8 @@ class GameState:
 
     def draw(self):
         for x, y in self.snake:
-            before = 'end'     # (Tady případně je nějaké
-            after = 'end'      #  složitější vybírání políčka)
+            before = 'end'     
+            after = 'end'      
             key = before + '-' + after
             snake_tiles[key].blit(x * TILE_SIZE, y * TILE_SIZE,
                                   width=TILE_SIZE, height=TILE_SIZE)
@@ -53,7 +46,7 @@ window = pyglet.window.Window()
 @window.event
 def on_draw():
     window.clear()
-    # Lepší vykreslování (pro nás zatím kouzelné zaříkadlo)
+    # Better drawing (for us magic for now)
     pyglet.gl.glEnable(pyglet.gl.GL_BLEND)
     pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
 
@@ -61,11 +54,8 @@ def on_draw():
 
 pyglet.app.run()
 ```
-
-Zkus teď doplnit do třídy `GameState` metodu, která
-přidá hadovi políčko navíc:
-
-``` python
+Try to add to class GameState method that adds an tile to snake. 
+```python
     def move(self, dt):
         x, y = snake[-1]
         new_x = x + 1
@@ -73,110 +63,88 @@ přidá hadovi políčko navíc:
         new_head = new_x, new_y
         snake.append(new_head)
 ```
-
-A těsně nad řádek `pyglet.app.run` říct Pygletu, aby tuto funkci volal
-každou šestinu vteřiny:
-
+And just above the row `pyglet.app.run` tell Pyglet, that it should be called every 1/6 second:
 ```python
 pyglet.clock.schedule_interval(state.move, 1/6)
 ```
 
-Funguje?
-Tak do té metody ještě přidej `del snake[0]`, aby had nerostl donekonečna.
-Víš co tenhle příkaz dělá? Jestli ne, koukni znovu na poznámky k seznamům!
+Does it work?
+So add `del snake[0]` to that method so that the snake does not grow infinitely. 
+Do you know what this command does? If not, take a look at the notes on lists again!
 
-Zvládneš funkci upravit tak, aby se had plazil nahoru? Nebo dolů?
+Can you modify the function to make the snake crawl upwards? Or downwards?
 
-Jestli ano, gratuluji!
-Zbývá směr hada ovládat šipkami na klávesnici, a většina hry bude hotová!
+If yes, congratulations! The remaining part is to control the direction of the snake using the arrow keys on the keyboard, and most of the game will be done!
 
-Pro kontrolu přikládám svoje řešení:
+For sure, I am attaching my solution:
+{% filter solution %} 
+In the `move` method, it is necessary to set the variables `new_x` and `new_y` differently:
 
-{% filter solution %}
-V metodě `move` je potřeba jinak nastavit proměnné `new_x` a `new_y`:
-
-Pro pohyb nahoru:
+For upward movement:
 
 ```python
-        new_x = old_x
-        new_y = old_y + 1
-```
+new_x = old_x
+new_y = old_y + 1
+``` 
 
-A dolů:
+"And down:"
 
 ```python
-        new_x = old_x
-        new_y = old_y - 1
+new_x = old_x
+new_y = old_y - 1
 ```
+
+This code sets the value of `new_x` to be the same as `old_x`, and sets the value of `new_y` to be one less than the value of `old_y`.
+
 {% endfilter %}
 
 
-## Ovládání
+## Control
 
-Nyní k onomu slíbenému ovládání. Respektive nejdřív k změnám směru.
+Now to the promised control. Specifically, first to the direction changes.
 
-Had ze hry se plazí stále stejným směrem, dokud hráč nezmáčkne klávesu
-a směr nezmění.
+The snake in the game crawls in the same direction until the player presses a key and changes the direction.
 
-Aby si had „pamatoval“ kam se zrovna plazí, je potřeba mít směr jako součást
-stavu hry.
-Uložme ho tedy do atrubutu jménem `snake_direction`.
+To make sure that the snake "remembers" where it is crawling, it is necessary to have a direction as part of the game state. Let's save it in an attribute called `snake_direction`.
 
-Co tam ale přesně uložit?
-Jak reprezentovat směr v Pythonu – pomocí čísel, <var>n</var>-tic a tak?
+What exactly should be stored there? 
+How to represent direction in Python - using numbers, tuples, and so on?
 
-{{ figure(
-    img=static('coord-vectors.svg'),
-    alt="Mřížka s X a Y souřadnicemi",
-) }}
+{{ figure( img=static('coord-vectors.svg'), alt="Mřížka s X a Y souřadnicemi", ) }}
 
-Asi nejpříhodnější řešení je uložit si o kolik políček se had má posunout,
-a to zvlášť v <var>x</var>-ovém a zvlášť v <var>y</var>-ovém směru.
-Čili jako dvojici:
+The most convenient solution is probably to store how many squares the snake should move, separately in the <var>x</var> and <var>y</var> directions. So, as a pair:
 
-* (`1, 0`) = doprava (o jedno políčko v kladném <var>x</var>-ovém směru;
-   v <var>y</var>-ovém neposouvat)
-* (`-1, 0`) = doleva (o jedno políčko v záporném <var>x</var>-ovém směru)
-* (`0, 1`) = nahoru (+<var>y</var>, ale v <var>x</var> neposouvat)
-* (`0, -1`) = dolů (-<var>y</var>)
+(`1, 0`) = right (by one square in the positive <var>x</var> direction; do not move in the <var>y</var> direction)
+(`-1, 0`) = left (by one square in the negative <var>x</var> direction)
+(`0, 1`) = up (+<var>y</var>, but do not move in the <var>x</var> direction)
+(`0, -1`) = down (-<var>y</var>)
 
-Nový atribut přidej do metody `initialize`:
+Add the new attribute to the `initialize` method.
 
 ```python
-        self.snake_direction = 0, 1
+self.snake_direction = 0, 1
 ```
 
-A v metodě `move` změň nastavování `new_x` a `new_y` podle nového atributu:
-
+In the `move` method, change the setting of `new_x` and `new_y` according to the new attribute.
 ```python
-        dir_x, dir_y = self.snake_direction
-        new_x = old_x + dir_x
-        new_y = old_y + dir_y
+dir_x, dir_y = self.snake_direction
+new_x = old_x + dir_x
+new_y = old_y + dir_y
 ```
 
-Směr hada teď můžeš měnit změnou `snake_direction` v `initialize`.
-Funguje to? (Jestli ne, oprav to – a jestli to nejde, zavolej někoho na pomoc!)
+You can now change the direction of the snake by changing the `snake_direction` in the `initialize` function. Does it work? (If not, fix it - and if you can't, call someone for help!)
 
-Nyní zbývá atribut `snake_direction` měnit, když uživatel něco stiskne na
-klávesnici.
-To už je doména Pygletu.
+Now, the only thing left is to change the `snake_direction` attribute when the user presses something on the keyboard. That is already the domain of Pyglet.
 
-Je potřeba přidat funkci, která reaguje na stisk klávesy.
-Aby Pyglet tuhle funkci našel a uměl zavolat, musí se jmenovat `on_key_press`,
-musí mít dekorátor `@window.event`, a musí brát dva parametry:
-číslo klávesy, která byla zmáčknutá a informace o modifikátorech
-jako <kbd>Shift</kbd> nebo <kbd>Ctrl</kbd>:
-
+It is necessary to add a function that responds to a key press. For Pyglet to find and be able to call this function, it must be named 'on_key_press', it must have the decorator '@window.event', and it must take two parameters: the number of the key that was pressed and information about modifiers such as <kbd>Shift</kbd> or <kbd>Ctrl</kbd>.
 ```python
 @window.event
 def on_key_press(key_code, modifier):
     ...
 ```
 
-Důležitý je ten první parametr. Podle něho nastavíš aktuální směr hada.
-Čísla kláves jsou definována v modulu [`pyglet.window.key`][key-constants]
-jako konstanty se jmény `LEFT`, `ENTER`, `Q` či `AMPERSAND` .
-My použijeme šipky – `LEFT`, `RIGHT`, `UP ` a `DOWN`:
+The first parameter is important. It sets the current direction of the snake. The key codes are defined in the module [`pyglet.window.key`](https://pyglet.readthedocs.io/en/pyglet-1.3-maintenance/modules/window_key.html#key-constants) as constants with names like `LEFT`, `ENTER`, `Q`, or `AMPERSAND`. We will use arrows - `LEFT`, `RIGHT`, `UP`, and `DOWN`.
+
 
 ```python
 @window.event
@@ -191,95 +159,70 @@ def on_key_press(key_code, modifier):
         state.snake_direction = 0, 1
 ```
 
-Druhý parametr nebude v naší hře potřeba, ale v hlavičce funkce musí být.
+The second parameter will not be needed in our game, but it must be in the function header.
 
-[key-constants]: https://pyglet.readthedocs.io/en/pyglet-1.3-maintenance/modules/window_key.html#key-constants
+The function `on_key_press` needs to be placed somewhere after setting up the `window` (so that `window.event` is available) and before `pyglet.app.run()` (because setting up controls after the game has started is unnecessary). The best way is to place it next to another function with the `@window.event` decorator, so that they are nicely together.
 
-Funkci `on_key_press` je potřeba dát někam za nastavení `window` (aby byl
-k dispozici `window.event`) a před `pyglet.app.run()` (protože nastavovat
-ovládání až potom, co hra proběhne, je zbytečné).
-Nejlepší je ji dát vedle jiné funkce s dekorátorem `@window.event`,
-aby byly pěkně pohromadě.
+Does it work?
+Can you control the direction of the snake?
+That's great!
+However, during testing, you will definitely come across a few things that need to be finished.
 
-Funguje to?
-Můžeš ovládat směr hada?
-To je skvělé!
-Určitě ale při zkoušení narazíš na pár věcí, které je potřeba dodělat:
+* The snake shouldn't have the opportunity to climb out of the window.
+* The snake should eat food and grow.
+* The game should end when the snake hits itself or the edge of the window.
 
-* Had by neměl mít možnost vylézt ven z okýnka.
-* Had by měl jíst jídlo a růst.
-* Hra by měla skončit, když had narazí sám do sebe nebo do okraje okna.
-
-Pojďme je vyřešit, jednu po druhé.
+Let's solve them one by one.
 
 
-## Zatím dobrý, teď ale narazíme
+## So far so good, but now we will hit a bump
 
-„Hadí“ hry jako ta naše mají dvě varianty: buď je kolem hřiště „zeď“
-a hráč při nárazu do okraje prohraje, nebo je hřiště „nekonečné“ – had okrajem
-proleze a objeví se na druhé straně.
-My naprogramujeme tu první variantu – zeď.
+"Snake" games like ours have two variations: either there is a "wall" around the playground and the player loses when hitting the edge, or the playground is "endless" - the snake crawls through the edge and appears on the other side. We will program the first variation - the wall.
 
-Abys zjistil{{a}}, jestli had „vylezl“ z levého okraje okna ven,
-je potřeba zkontrolovat, jestli <var>x</var>-ová souřadnice hlavy
-je menší než 0.
-To je dobré udělat hned poté, co nové souřadnice hlavy získáš – konkrétně
-hned za řádkem `new_head = new_x, new_y` v metodě `move`.
+To find out if the snake "crawled out" of the left edge of the window, it is necessary to check if the <var>x</var>-coordinate of the head is less than 0. This should be done immediately after obtaining the new coordinates of the head - specifically, right after the line `new_head = new_x, new_y` in the `move` method.
 
-A co při takovém nárazu udělat?
-Pro začátek bude nejjednodušší ukončit hru.
-Na to má Python funkci `exit()`, která funguje podobně jako když v programu
-nastane chyba.
-Jen místo dlouhého chybového výpisu ukáže daný text.
+And what to do in such a crash?
+To start with, the easiest thing to do is to end the game.
+For this, Python has the `exit()` function, which works similarly to when an error occurs in the program.
+Instead of a long error message, it shows the given text.
 
-Ukončení programu není příliš příjemný způsob, jak říct hráčovi že prohrál.
-Za chvíli ale tuhle část předěláme, tak prozatím tenhle jednoduchý způsob postačí.
+The end of the program is not a very pleasant way to tell the player that they lost. However, we will change this part soon, so for now this simple way will suffice.
 
 ```python
-    def move(self):
-        old_x, old_y = self.snake[-1]
-        dir_x, dir_y = self.snake_direction
-        new_x = old_x + dir_x
-        new_y = old_y + dir_y
-        new_head = new_x, new_y
+def move(self):
+    old_x, old_y = self.snake[-1]  # Get the current position of the snake's head
+    dir_x, dir_y = self.snake_direction  # Get the direction in which the snake is moving
+    new_x = old_x + dir_x  # Calculate the new x-coordinate of the snake's head
+    new_y = old_y + dir_y  # Calculate the new y-coordinate of the snake's head
+    new_head = new_x, new_y  # Create a tuple with the new coordinates as the new head of the snake
+    
+    # New code - checking if the player has gone out of the playing area
+    if new_x < 0:
+        exit('GAME OVER')
 
-        # Nový kód – kontrola vylezení z hrací plochy
-        if new_x < 0:
-            exit('GAME OVER')
-
-        self.snake.append(new_head)
-        del self.snake[0]
+    self.snake.append(new_head)
+    del self.snake[0]
 ```
+I believe that you can manage to do the same check for climbing out from the bottom edge.
 
-Věřím, že zvládneš udělat stejnou kontrolu pro vylezení ze spodního okraje.
+But how to treat the remaining edges - the right and the top ones? It is necessary to know the size of the window. And Pyglet knows it; the class with state should not have access to the window!
 
-Jak ale ošetřit ty zbylé okraje – pravý a horní?
-Na to je potřeba znát velikost okýnka.
-A tu zná Pyglet; třída se stavem by k okýnku neměla mít přístup!
-
-Na velikosti herní plochy závisí chování hry.
-Tahle informace tedy bude tedy muset být součást stavu.
-Pro začátek nějakou velikost – třeba 10×10 – nastav v `initialize`:
-
+The behavior of the game depends on the size of the game board. This information will therefore have to be part of the state. For starters, set a size - say 10x10 - in `initialize`.
 ```python
         self.width = 10
         self.height = 10
 ```
-
-A pak zařiď, aby po nárazu na neviditelnou stěnu kolem hřiště velkého
-10×10 políček hra skončila.
-Pořádně vyzkoušej všechny varianty – severní, jižní, východní i západní zeď.
-Had je virtuální, nemusíš se bát že mu z narážení do zdí vyroste boule.
+And then arrange for the game to end after hitting an invisible wall around the large 10x10 square field. Test all variants thoroughly - the northern, southern, eastern and western wall. The snake is virtual, so you don't have to worry about creating a bump on it by hitting the walls.
 
 {% filter solution %}
-```python
+
     def move(self):
         old_x, old_y = self.snake[-1]
         dir_x, dir_y = self.snake_direction
         new_x = old_x + dir_x
         new_y = old_y + dir_y
 
-        # Kontrola vylezení z hrací plochy
+        # Checking if the player has gone outside of the game area
         if new_x < 0:
             exit('GAME OVER')
         if new_y < 0:
@@ -292,44 +235,31 @@ Had je virtuální, nemusíš se bát že mu z narážení do zdí vyroste boul
         new_head = new_x, new_y
         self.snake.append(new_head)
         del self.snake[0]
-```
+
 {% endfilter %}
 
-A pak v souboru se hrou hned po tom co vytvoříš stav (`state = GameState()`)
-a okýnko (`window`) nastav *opravdovou* velikost.
-Použij celočíselné dělení, aby počet políček byl v celých číslech:
-
+And then in the file with the game, right after you create the state (`state = GameState()`) and the window, set the *actual* size. Use integer division so that the number of tiles is in whole numbers.
 ```python
 state.width = window.width // TILE_SIZE
 state.height = window.height // TILE_SIZE
 ```
 
+## Feeding
 
-## Krmení
+So. The snake is in the cage, it can't climb out anymore. What's next?
 
-Tak. Had je v kleci, už nemůže vylézt.
-Co dál?
+Now you have to take care of the snake: feed it regularly. But before that, it is necessary to teach it how to eat at all - it is not yet accustomed to our food. When you manage to do that, it will grow like crazy!
 
-Teď se musíš o hada postarat: pravidelně ho krmit.
-Ale ještě předtím je potřeba ho naučit, jak se vůbec jí – na naši potravu
-ještě není zvyklý.
-Když to zvládneš, poroste jako z vody!
+Specifically, you must ensure that when the snake crawls onto a square with food, the food disappears. To achieve this, you can use:
+* the `in` operator, which determines whether something (such as coordinates) is in a list (such as a list of food coordinates), and
+* the `remove` method, which removes a specified element from a list (based on the *value* of the element - as opposed to `del`, which removes based on position).
 
-Konkrétně musíš hlavně zajistit aby, když se had připlazí na políčko
-s jídlem, jídlo zmizelo.
-K tomu se dá použít:
-* operátor `in`, který zjišťuje jestli něco (třeba
-  souřadnice) je v nějakém seznamu (třeba seznamu souřadnic jídla), a
-* metoda `remove`, která ze seznamu odstraní daný prvek (podle *hodnoty* prvku
-  – na rozdíl od `del`, který maže podle pozice).
+To check the climb out of the playing area, you need to enter a code that does the following:" 
 
-Za kontrolu vylezení z hrací plochy potřebuješ dát kód,
-který dělá následující:
++ If the new position of the head is in the list of food coordinates:
+  * Remove this position from the list of food coordinates."
 
-* Pokud je nová pozice hlavy v seznamu souřadnic jídla:
-  * Odeber tuhle pozici ze seznamu souřadnic jídla
-
-Zvládneš ho napsat?
+Can you write it?
 
 {% filter solution %}
 ```python
@@ -338,25 +268,20 @@ Zvládneš ho napsat?
 ```
 {% endfilter %}
 
-Vyzkoušej, jestli to funguje. Had by měl jíst jídlo.
+Try to see if it works. The snake should eat food.
 
-Ještě ale zbývá zařídit, aby po každém soustu trochu povyrostl.
-Ale jak? Kterým směrem má růst?
+But there is still a need to arrange so that after each bite it grows a bit. But how? Which direction should it grow?
 
-Tady je dobré se podívat na existující kód a uvědomit si, co dělá.
+Here it is good to look at the existing code and realize what it does.
 
-Náš had se plazí tak, že napřed vepředu povyroste (pomocí `append`)
-a potom se vzadu zmenší (pomocí `del self.snake[0]`).
+Our snake crawls in such a way that it first grows in the front (using `append`) and then shrinks in the back (using `del self.snake[0]`). 
 
-Aby tedy po snězení jídla vyrostl, stačí *přeskočit* ono zmenšování!
-A tím *přeskočit* myslím podmínit pomocí `if`.
-Logika jezení a zmenšování hada tedy bude:
+So in order for the snake to grow after eating, it is enough to *skip* the shrinking! And by *skip* I mean to condition it using `if`. The logic of eating and shrinking of the snake will be:
 
-* Když had sní jídlo, jídlo zmizí. Had se nezmenší.
-* Jinak (tedy když had *nesní* jídlo) se had zmenší (a tudíž neroste).
++ When a snake eats food, the food disappears. The snake does not get smaller. 
++ Otherwise (when the snake does not eat food), the snake will shrink (and thus not grow).
 
-Neboli přeloženo do Pythonu:
-
+Translated into Python:
 ```python
         if new_head in self.food:
             self.food.remove(new_head)
@@ -364,9 +289,7 @@ Neboli přeloženo do Pythonu:
             del self.snake[0]
 ```
 
-Pro ty, co se začínají ztrácet, dám k dispozici celou metodu `move`.
-Běda ale těm, kdo opisují kód aniž by se mu snažili porozumět!
-
+For those who are beginning to get lost, I will provide the entire 'move' method. But woe to those who copy the code without trying to understand it!
 {% filter solution %}
 ```python
     def move(self):
@@ -395,13 +318,11 @@ Běda ale těm, kdo opisují kód aniž by se mu snažili porozumět!
 {% endfilter %}
 
 
-### Nové jídlo
+## New food 
 
-Když už had umí jíst, je potřeba mu zajistit pravidelný přísun jídla.
-Nejlépe tak, že se každé snězené jídlo nahradí novým.
+When a snake already knows how to eat, it is necessary to provide it with a regular supply of food. Ideally, each eaten meal should be replaced with a new one.
 
-Přidej do třídy `GameState` následující novou metodu, která umí přidat jídlo:
-
+Add the following new method to the `GameState` class, which is able to add food:
 ```python
     def add_food(self):
         x = 0
@@ -410,29 +331,17 @@ Přidej do třídy `GameState` následující novou metodu, která umí přidat 
         self.food.append(position)
 ```
 
-Pak tuhle metodu zavolej – najdi v programu kód, který se provádí když
-je potřeba přidat nové jídlo, a přidej tam následující řádek:
-
-```python
-            self.add_food()
+Then call this method - find the code in the program that is executed when a new food needs to be added, and add the following line there:
+```python   
+        self.add_food()
 ```
+This method adds food at position (0, 0), which is always in the same corner. It's good just for... well, for verifying that the food is really being added to the list. It would be nice if the new food always appeared somewhere else, at a random location. You can use the `random.randrange` function for that. Remember that calling `randrange(N)` returns a random integer from 0 to <var>N</var> - 1.
 
-Tahle metoda přidává jídlo na pozici (0, 0), tedy stále do stejného rohu.
-To je dobré tak akorát na… no, na to, aby sis ověřil{{a}} že se jídlo do
-seznamu opravdu přidává.
-Bylo by fajn, kdyby se nové jídlo objevilo vždycky jinde,
-na náhodném místě.
-Na to můžeš použít funkci `random.randrange`.
-Vzpomeň si, že volání `randrage(N)` vrátí náhodné celé číslo od
-0 do <var>N</var> - 1.
+What range of numbers do you need for snake food?
 
-Jaký rozsah čísel potřebuješ pro hadí jídlo?
+When you realize it, try adding chance to the program: the food should appear on a *completely random* square on the game board.
 
-Až na to přijdeš, zkus přidat náhodu do programu: jídlo by se mělo objevit
-na *úplně náhodném* políčku na herní ploše.
-
-Nezapomeň na `import random` – to patří na úplný začátek souboru.
-Další změny ale už dělej jen v metodě `add_food`.
+Don't forget about `import random` - it belongs at the very beginning of the file. But make any further changes only in the `add_food` method.
 
 {% filter solution %}
 ```python
@@ -444,152 +353,109 @@ Další změny ale už dělej jen v metodě `add_food`.
 ```
 {% endfilter %}
 
-Až to budeš testovat, asi zjistíš, že *úplně náhodné* políčko není ideální.
-Občas se  totiž jídlo objeví na políčku s hadem, nebo dokonce na jiném jídle.
-Je proto dobré tuhle situaci zkontrolovat, a když volba padne na plné políčko,
-jídlo nepřidávat:
-
+When you test it, you will probably find out that a *completely random* tile is not ideal. Sometimes food appears on a tile with a snake, or even on another piece of food. It is therefore good to check this situation, and when the choice falls on a full tile, do not add food.
 ```python
         if (position not in self.snake) and (position not in self.food):
             self.food.append(position)
 ```
 
-Když ale zkusíš *tohle*, zjistíš, že občas se nové jídlo vůbec nepřidá.
-To taky není vhodná varianta – had by tak měl hlad.
-Co s tím?
+When you try *this*, you will find out that sometimes no new food is added at all. That's not a good option either - the snake would still be hungry. What to do about it?
 
-Překvapivě dobré (i když ne *úplně* ideální) řešení je zkusit políčko vybrat
-několikrát.
-Když padne prázdné políčko, šup tam s jídlem; když padne plné, tak to
-prostě zkusit znovu.
+Surprisingly good (although not *completely* ideal) solution is to try selecting the square several times. When an empty square falls, put the food there; when a full square falls, just try again.
 
-Je ale potřeba počet pokusů omezit, aby v situaci, kdy je pole *úplně* plné,
-počítač nevybíral donekonečna.
-Řekněme že když se na 100 pokusů nepodaří prázdné políčko vybrat,
-vzdáme to. Jídla už je nejspíš dost.
+However, it is necessary to limit the number of attempts so that in a situation where the field is *completely* full, the computer does not keep selecting endlessly. Let's say that if we don't manage to select an empty field after 100 attempts, we give up. There is probably enough food already.
 
-Metoda `add_food` po všech úpravách bude vypadat takhle:
+The method `add_food` after all modifications will look like this:
 
 ```python
-    def add_food(self):
-        for try_number in range(100):
-            x = random.randrange(self.width)
-            y = random.randrange(self.height)
-            position = x, y
-            if (position not in self.snake) and (position not in self.food):
-                self.food.append(position)
-                # Ukončení funkce ("vyskočí" i z cyklu for)
-                return
+def add_food(self):
+    for try_number in range(100):
+        x = random.randrange(self.width)
+        y = random.randrange(self.height)
+        position = x, y
+        if (position not in self.snake) and (position not in self.food):
+            self.food.append(position)
+            # End of the function ("jumps out" of the for loop as well)
+            return
 ```
 
-Jestli ti to funguje, ještě zařiď, aby na začátku hry bylo jídlo na náhodných
-pozicích.
-
-{% filter solution %}
-V metodě `initialize` se dá místo nastavení `self.food` na seznam s pozicemi
-jídla napsat:
+If it works for you, also arrange for food to be at random positions at the start of the game.
+{% filter solution %} 
+In the `initialize` method, instead of setting `self.food` to a list with food positions, you can write:
 ```python
         self.food = []
         self.add_food()
         self.add_food()
 ```
-Pak budou na začátku hry na hada čekat dvě náhodná jídla.
-{% endfilter %}
+Then at the beginning of the game, two random foods will be waiting for the snake.{% endfilter %}
 
+## End
 
-## Konec
+The snake can now grow to enormous dimensions - and the only way to lose is by hitting the wall. Make sure the game ends even if it hits itself.
 
-Had teď může narůst do obrovských rozměrů – a lze prohrát jen tím, že
-narazí do stěny.
-Zaříď, aby hra skončila i když narazí sám do sebe.
+How to do it?
+For the `move` method, in addition to checking if the player has climbed out of the playing area, provide code that will do the following:
 
-Jak na to?
-Do metody `move`, vedle kontroly vylezení z hrací plochy,
-dej kód který udělá následující:
++ If the coordinates of the new head are already part of the snake: 
+    * End the game (similarly to hitting the wall).
 
-* Pokud jsou souřadnice nové hlavy už součást hada:
-  * Ukonči hru (podobně jako po nárazu do stěny).
-
-Dokážeš to převést do Pythonu?
-
+Can you translate it into Python?
 {% filter solution %}
 ```python
-        # Kontrola, jestli had narazil
+        # Checking if the snake has collided
         if new_head in self.snake:
             exit('GAME OVER')
 ```
 {% endfilter %}
 
-Hotovo!
+Done!
 
-### Pauza
+## Pause
 
-Není ale dobré při konci hry ukončit celý program a zavřít okýnko.
+However, it is not good to end the whole program and close the window at the end of the game.
 
-Lepší je hru „zapauzovat“ a ukázat hráči situaci do které nešťastného hada
-dostal, aby se z ní mohl pro příště poučit.
+It's better to "pause" the game and show the player the situation in which the unfortunate snake ended up, so that they can learn from it for next time.
 
-Aby to bylo možné, dáme do stavu hry další atribut: `alive`.
-Ten bude nastavený na `True`, dokud bude had žít.
-Když had narazí, nastaví se `alive` na `False`, a od té doby se už had nebude 
-pohybovat.
-Je dobré i graficky ukázat, že hadovi není dobře – hráč pak spíš bude
-zpytovat svědomí.
+To make it possible, we will add another attribute to the game: 'alive'. It will be set to 'True' as long as the snake is alive. When the snake hits something, 'alive' will be set to 'False', and from then on the snake will not move anymore. It is also good to show graphically that the snake is not doing well - the player will then be more likely to feel guilty.
 
-Zkus zapřemýšlet, kam v kódu patří následující
-kousky kódu, které prohru implementují:
-
+Try to think where in the code the following pieces of code, which implement the game loss, belong.
 ```python
-        # Prvotní nastavení atributu
+        # Initial setting of the attribute
         self.alive = True
 ```
-
 ```python
-        # Zastavení hada
+        # Stopping the snake
         self.alive = False
 ```
-
 ```python
-        # Zabránění pohybu
+        # Preventing movement
         if not self.alive:
             return
 ```
 
 ```python
-        # Grafická indikace
+        # Graphic indication
         if after == 'end' and not state.alive:
             after = 'dead'
 ```
-
 {% filter solution %}
-* „Prvotní nastavení atributu“ do metody `initialize`.
-* „Zastavení hada“ místo *všech* výskytů `raise("Game Over")`.
-* „Zabránění pohybu“ na úplný začátek metody `move` (příkaz `return`
-  okamžitě ukončí provádění metody).
-* „Grafická indikace“ za sekci pro vybírání obrázku pro kousek
-  hada.
+* "Initial attribute setting" to the `initialize` method.
+* "Stopping the snake" instead of *all* occurrences of `raise("Game Over")`.
+* "Preventing movement" at the very beginning of the `move` method (the `return` statement will immediately terminate the execution of the method).
+* "Graphic indication" after the section for selecting the image for the snake piece.
 {% endfilter %}
 
+## And that's it?
 
-## A to je vše?
+Congratulations, you have a functional and playable game! I hope you are proud of yourself!
 
-Gratuluji, máš funkční a hratelnou hru!
-Doufám že jsi na sebe hrd{{gnd('ý', 'á')}}!
+Have something sweet, you deserve it.
 
-Dej si něco sladkého, zasloužíš si to.
+<hr>
 
----
-
-Tady je moje řešení.
-To se touhle dobou od toho tvého může dost lišit – to je úplně normální.
-
-(Nedívej se sem dokud hada nenaprogramuješ {{gnd('sám', 'sama')}}.
-Chybami a neustálým zkoušením se člověk učí – a programátor zvlášť.
-Čtením už vyřešeného se učí hůř.)
-
-
+Here is my solution. It may differ quite a bit from yours at this time - that is completely normal.
+Don't look here until you program the snake {{gnd('yourself', 'yourself')}}. A person learns from mistakes and constant testing - and especially a programmer. Learning from already solved problems is harder.
 {% filter solution %}
-
 ```python
 import random
 import pyglet
@@ -705,27 +571,18 @@ pyglet.app.run()
 ```
 {% endfilter %}
 
-## Co dál?
+## What's next? 
 
-Najdeš ještě nějaké další vylepšení, které by se dalo udělat?
+Can you find any other improvements that could be made?
 
-Zkus třeba následující rozšíření. Jsou seřazené zhruba podle složitosti:
+Try the following extensions, for example. They are roughly sorted by complexity:
 
-* Vylepši ovládání (a hratelnost!) podle [návodu](../handling).
++ Improve the controls (and gameplay!) according to the [manual](../handling).
 
-* Každých 30 vteřin hry přibude samo od sebe nové jídlo,
-  takže jich pak bude na hrací ploše víc.
++ Every 30 seconds of the game, new food will be added automatically, so there will be more of them on the playing field.
 
-* Když had vyleze ven z okýnka, místo konce hry se objeví na druhé straně.
-  (Viz [návod](../toroid).)
++ When the snake crawls out of the window, instead of the end of the game, it appears on the other side. (See [instructions](../toroid).)
 
-* Hadi budou dva; druhý se ovládá klávesami
-  <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>.<br>
-  *(Na to je nejlepší udělat novou třídu, `Snake`, a všechen stav hada
-  přesunout ze `GameState` do ní. Ve `GameState` pak měj seznam hadů.
-  Téhle změně je potřeba přizpůsobit celý zytek programu.)*
++ There will be two snakes; the second one is controlled by the keys <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>. (It's best to create a new class, `Snake`, and move all the snake's state from `GameState` to it. Then keep a list of snakes in `GameState`. This change needs to be adapted throughout the entire program.)
 
-* Hra se bude postupně zrychlovat.<br>
-  *(Na to je nejlepší předělat funkci `move`, aby *sama*
-  naplánovala, kdy se má příště zavolat. Volání `schedule_interval` tak už
-  nebude potřeba.)*
++ The game will gradually speed up. (It is best to modify the 'move' function so that it automatically plans when to call itself. The use of 'schedule_interval' will no longer be necessary.)

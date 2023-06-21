@@ -1,153 +1,137 @@
-# Podmínky
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Spoustu věcí v kódu budeš chtít provádět,
-jen pokud jsou splněny určité podmínky.
-Na to má Python *podmíněné příkazy*.
+# Conditions
 
-Zkusíme teď postupně napsat program, který ověřuje tajné heslo.
+You will want to perform a lot of things in the code only if certain conditions are met. Python has *conditional statements* for this purpose.
 
-Pro začátek napiš program, který vypíše `True`, když zadáš slovo `čokoláda`.
-Když bude zadané heslo jiné, napíše `False`:
+We will now try to gradually write a program that verifies a secret password.
 
-```python
-heslo = input('Zadej heslo: ')
-print(heslo == 'čokoláda')
-```
-
-## Když – tak
-
-Vypsání `True` ale není moc zajímavé.
-Lepší program by dělal tohle:
-
-* Zeptá se na tajné heslo
-* Když je heslo správné:
-    * Pustí uživatele dovnitř
-
-Anglicky se „když“ řekne *if*. A to je i jméno Pythonního příkazu.
-Používá se takhle:
+To start, write a program that outputs `True` when you enter the word `čokoláda` (chocolate in English). If a different password is entered, it will output `False`.
 
 ```python
-heslo = input('Zadej heslo: ')
-if heslo == 'čokoláda':
-    print('Správně! Račte vstoupit.')
+password = input('Enter password: ')
+print(password == 'chocolate')
 ```
 
-Podmíněný příkaz začíná `if`, pokračuje podmínkou (třeba porovnáním)
-a končí dvojtečkou.
+## If - then
 
-Po řádkem s `if` je příkaz *odsazený* – na začátku řádku jsou 4 mezery.
-Podle toho Python pozná, že tuhle část programu má provést,
-jen když je podmínka pravdivá.
+Printing `True` is not very interesting. A better program would do this:
 
-Ulož a spusť:
+* Asks for a secret password
+* If the password is correct:
+    * Allows the user inside.
 
-``` console
+A Python command for this is called `if`. It is used like this:
+
+```python
+password = input('Enter password: ')
+if password == 'chocolate':
+    print('Correct! Welcome.')
+```
+
+The conditional statement begins with `if`, continues with a condition (such as a comparison) and ends with a colon.
+
+After the line with `if`, there is an *indented* command - there are 4 spaces at the beginning of the line. Python recognizes that this part of the program should be executed only when the condition is true.
+
+Save and run:
+
+```
 (venv) $ python python_intro.py
-Zadej heslo: čokoláda
-Správně! Můžeš vstoupit.
+Enter password: chocolate
+Correct! You may enter.
 (venv) $ python python_intro.py
-Zadej heslo: sezam
+Enter password: sesame
 ```
 
-### Odsazování
+### Indenting
+Just because four spaces are needed at the beginning of a line doesn't mean you have to press the spacebar four times. Some editors automatically indent (if you write the line with 'if' correctly). However, in all properly configured editors, you can indent using the <kbd>↹ Tab</kbd> key, and the <kbd>⇧ Shift</kbd>+<kbd>↹ Tab</kbd> combination will return the line back one indentation level.
 
-To, že jsou na začátku řádku potřeba čtyři mezery, neznamená že musíš
-4× zmáčknout mezerník.
-Některé editory odsazují automaticky (pokud napíšeš řádek s `if` správně).
-Ve všech správně nastavených editorech ale lze odsadit pomocí klávesy
-<kbd>↹ Tab</kbd> a kombinace <kbd>⇧ Shift</kbd>+<kbd>↹ Tab</kbd> vrátí řádek o jednu úroveň odsazení zpátky.
+## Else
 
+In the previous example, the code was executed only if the condition was met. An even better program would be this one:
 
-## Jinak
+* Asks for the secret password
+* When the password is correct:
+    * Lets the user in
+* Otherwise <small>(i.e., if the password was incorrect)</small>:
+    * Triggers the alarm
 
-V předchozím příkladu byl kód proveden pouze v případě, že podmínka byla splněna.
-Ještě lepší program by ale byl tenhle:
-
-* Zeptá se na tajné heslo
-* Když je heslo správné:
-    * Pustí uživatele dovnitř
-* Jinak <small>(tedy pokud heslo nebylo správné)</small>:
-    * Spustí alarm
-
-K tomu má Python příkaz `else` – „jinak“:
+Python has the command `else` for that:
 
 ```python
-heslo = input('Zadej heslo: ')
-if heslo == 'čokoláda':
-    print('Správně! Račte vstoupit.')
+password = input('Enter password: ')
+if password == 'chocolate':
+    print('Correct! Welcome.')
 else:
-    print('POZOR! POZOR!')
-    print('NEOPRÁVNĚNÝ VSTUP!')
+    print('WARNING! WARNING!')
+    print('UNAUTHORIZED ACCESS!')
 ```
 
-Funuje to?
+Does it work?
 
-``` console
+```
 (venv) $ python python_intro.py
-Zadej heslo: čokoláda
-Správně! Můžeš vstoupit.
+Enter password: chocolate
+Correct! You may enter.
 (venv) $ python python_intro.py
-Zadej heslo: sezam
-POZOR! POZOR!
-NEOPRÁVNĚNÝ VSTUP!
+Enter password: sesame
+WARNING! WARNING!
+UNAUTHORIZED ENTRY!
 ```
 
+## More options
 
-## Více možností
+Sometimes it happens that a program needs to decide between multiple options. For this purpose, the `elif` command is used (short for "else if" in English).
 
-Občas se stane, že se program musí rozhodnout mezi více možnostmi.
-K tomu slouží příkaz `elif` (zkratka znglického *else if* – „jinak, pokud“).
+By using this method, it is possible to comment on the volume of the music.
 
-Třeba takovýmhle postupem se dá okomentovat hlasitost hudby:
+Ask about the volume, remember the numerical response.
+* When the volume is up to 20:
+    * it displays "It's quite quiet."
+* Otherwise, when the volume is up to 40:
+    * it displays "Like good background music."
+* Otherwise, when the volume is up to 60:
+    * it displays "Great, I hear all the details."
+* Otherwise, when the volume is up to 80:
+    * it displays "Good for a party."
+* Otherwise, when the volume is up to 100:
+    * it displays "A bit too loud!"
+* Otherwise:
+    * it displays "My ears are bleeding!"
 
-* Zeptej se na hlasitost, zapamatuj si číselnou odpověď.
-* Když je hlasitost do 20:
-    * vypíše „Je to dost potichu.“
-* Jinak, když je hlasitost do 40:
-    * vypíše „Jako hudba na pozadí dobré.“
-* Jinak, když je hlasitost do 60:
-    * vypíše „Skvělé, slyším všechny detaily.“
-* Jinak, když je hlasitost do 80:
-    * vypíše „Dobré na párty.“
-* Jinak, když je hlasitost do 100:
-    * vypíše „Trochu moc nahlas!“
-* Jinak:
-    * vypíše „Krvácí mi uši!“
-
-V Pythonu by se to zapsalo takto:
+In Python, it would be written like this:
 
 ```python
-hlasitost = int(input('Jaká je nastavená hlasitost rádia? '))
-if hlasitost < 20:
-     print("Je to dost potichu.")
-elif hlasitost < 40:
-     print("Jako hudba na pozadí dobré.")
-elif hlasitost < 60:
-     print("Skvělé, slyším všechny detaily.")
-elif hlasitost < 80:
-     print("Dobré na party.")
-elif hlasitost < 100:
-     print("Trochu moc nahlas!")
+volume = int(input('What is the radio volume set to? '))
+if volume < 20:
+     print("It's quite quiet.")
+elif volume < 40:
+     print("Good background music.")
+elif volume < 60:
+     print("Great, I can hear all the details.")
+elif volume < 80:
+     print("Good for a party.")
+elif volume < 100:
+     print("A bit too loud!")
 else:
-    print("Krvácí mi uši!")
+    print("My ears are bleeding!") 
 ```
 
-``` console
+```
 (venv) $ python python_intro.py
-Jaká je nastavená hlasitost rádia? 28
-Jako hudba v pozadí dobré.
+What is the radio volume set to? 28
+Good as background music.
 ```
 
-Všimni si, že se vybere vždycky jedna alternativa.
-Když zadáš `28`, Python se dostane k `hlasitost < 40`, vypíše
-příslušnou hlášku a všechny další možnosti přeskočí.
+Notice that only one option is always selected. If you enter `28`, Python will reach `volume < 40`, display the appropriate message, and skip all other options.
 
+## Summary.
 
-## Shrnutí
+What did you see in this lesson?
 
-Co jsi viděl{{a}} v této lekci?
+The following is the English translation of the Czech text:
 
-*   Příkazy **if** (pokud), **elif** (jinak, pokud) a **else** (jinak)
-    podmiňují jiné příkazy.
-*   **Odsazení** se používá pro podmíněné příkazy, které následují po
-    `if` apod..
+*The commands **if** (if), **elif** (else, if), and **else** (else) condition other commands.
+* **Indentation** is used for conditional commands that follow `if`, etc.

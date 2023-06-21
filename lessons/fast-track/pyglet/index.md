@@ -1,32 +1,27 @@
-# Grafika
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
 
-Teď si ukážeme, jak napsat grafickou aplikaci.
+# Graphics
 
-Samotný Python obsahuje nástroje na kreslení obrázků,
-ale pro tvorbu her nejsou příliš vhodné.
-Použijeme proto *knihovnu* (nadstavbu) jménem Pyglet, která je přímo stavěná
-na interaktivní grafiku.
+Now we will show you how to write a graphical application.
 
-Musíme si ji ale nejdřív zvlášť nainstalovat.
-Nejjistější je do příkazové řádky se zapnutým virtuálním prostředím
-zadat následující dva příkazy.
-(Existují i jednodušší způsoby, které ovšem vyžadují „správně“
-nastavený systém.)
+The Python language itself contains tools for drawing images, but they are not very suitable for creating games. Therefore, we will use a library (extension) called Pyglet, which is specifically built for interactive graphics.
 
-* Aktualizace nástroje `pip`, který umí instalovat knihovny pro Python:
-  ``` console
-  (venv)$ python -m pip install --upgrade pip
-  ```
-  (V překladu: **Python**e, spusť **m**odul **pip** a řekni mu,
-  ať na**instal**uje a kdyžtak aktualizuje (*upgrade*) knihovnu **pip**.)
-* Samotné nainstalování Pygletu:
-  ``` console
-  (venv)$ python -m pip install pyglet
-  ```
-  (V překladu: **Python**e, spusť **m**odul **pip** a řekni mu,
-  ať na**instal**uje knihovnu **pyglet**.)
+But we have to install it separately first. The safest way is to enter the following two commands into the command line with the virtual environment turned on. (There are also simpler ways, but they require a "correctly" configured system.)
 
-U mě vypadá instalace nějak takto:
+Update the `pip` tool, which is capable of installing libraries for Python:
+```console
+(venv)$ python -m pip install --upgrade pip
+```
+(In translation: **Python**, run the **m**odule **pip** and tell it to **in**stall and optionally **upgrade** the **pip** library.)
+
+Installing Pyglet itself:
+```console
+(venv)$ python -m pip install pyglet
+```
+(In translation: **Python**, run the **m**odule **pip** and tell it to **in**stall the **pyglet** library.)
+
+For me, the installation looks something like this:
 
 ```console
 (venv)$ python -m pip install --upgrade pip
@@ -37,171 +32,108 @@ Collecting pyglet
 Installing collected packages: pyglet
 Successfully installed pyglet-1.2.4
 ```
+The important thing is "Successfully installed", or "Requirement already satisfied" at the end. This means that the library is ready to use!
 
-Důležité je `Successfully installed`, resp. `Requirement already satisfied`
-na konci.
-To znamená že je knihovna připravená k použití!
+## Program skeleton
 
-
-## Kostra programu
-
-Teď zkus v editoru vytvořit nový soubor, uložit ho jako `grafika.py`
-a napsat do něj následující program:
+Now try to create a new file in the editor, save it as `graphics.py`, and write the following program in it:
 
 ```python
 import pyglet
 window = pyglet.window.Window()
 pyglet.app.run()
-print('Hotovo!')
+print('Done!')
 ```
 
-Spusť ho. Mělo by se objevit černé okýnko.
+Run it. A black window should appear.
+>[note] Is the window not black? On some computers (often with macOS and some types of Linux), it happens that the window is not black, but there is some "mess" in it. That's okay. Before we start drawing in the window, we >will clean up the mess.
 
-> [note] Okýnko není černé?
-> Na některých počítačích (často s macOS a některými druhy Linuxu) se stává,
-> že okýnko není černé, ale je v něm nějaký „nepořádek“.
-> To nevadí.
-> Než do okýnka začneme kreslit, nepořádek uklidíme.
+>[note] If you receive the error `AttributeError: module 'pyglet' has no attribute 'window'`, check that you named the file `graphics.py` and not `pyglet.py`. Save the file in the editor as `graphics.py`, delete any file named >`pyglet.py`, and try again.
 
-> [note] AttributeError?
-> Jestli dostaneš chybu
-> `AttributeError: module 'pyglet' has no attribute 'window'`, zkontroluj si,
-> zě jsi soubor pojmenoval{{a}} `grafika.py` a ne `pyglet.py`.
-> Soubor v editoru ulož jako `grafika.py`, případný soubor `pyglet.py` smaž,
-> a zkus to znovu.
+>[note] Another mistake?
+>Graphics are a sensitive matter - you are using a system with many parts that can break (Python, Pyglet, OpenGL, graphics card and its driver, operating system, ...).
+>If it doesn't work for you, it's best to consult with an expert.
 
-> [note] Jiná chyba?
-> Grafika je choulostivá záležitost – používáš systém se spoustou částí,
-> které se můžou pokazit (Python, Pyglet, OpenGL, grafická karta a
-> ovladač pro ni, operační systém, …).
->
-> Jestli ti to nefunguje, nejlepší bude se poradit s odborníkem.
+Done? Let's explain what is happening in this program.
 
-Hotovo? Pojďme si vysvětlit, co se v tomhle programu děje.
+The command `import pyglet` will give you access to the graphics library, just like `import random` gives you access to functions related to random numbers.
 
-Příkaz `import pyglet` ti zpřístupní grafickou knihovnu, tak jako třeba
-`import random` ti zpřístupní funkce okolo náhodných čísel.
+The call to `pyglet.window.Window()` creates a new *window* on the screen. It returns an object that can be used to control this window; it is stored in the variable `window`.
 
-Zavolání `pyglet.window.Window()` vytvoří nové *okýnko* na obrazovce.
-Vrátí objekt, kterým pak tohle okýnko můžeš ovládat; ten se uloží
-do proměnné `window`.
+The call to `pyglet.app.run()` then launches the application.
 
-Zavolání `pyglet.app.run()` pak spustí aplikaci.
-Co to znamená?
+The simple programs you have written so far are descriptions of a process - similar to cooking recipes. A sequence of steps that Python executes sequentially from the first to the last. Sometimes something is repeated and some steps can be "wrapped" into a function, but we have always described one procedure from beginning to end so far.
 
-Jednoduché programy, které jsi zatím psal{{a}}, jsou popisy procesu – podobně
-jako třeba recepty k vaření.
-Sled kroků, které Python postupně vykoná od prvního po poslední.
-Občas se něco opakuje a některé kroky se dají „zabalit“ do funkce,
-ale vždycky jsme zatím popisovali jeden postup od začátku po konec.
+Programs for more complex applications look more like a manual for a car mechanic than a recipe. They describe what should happen in a given situation. For example, a program for a text editor could look like this:
 
-Programy pro složitější aplikace vypadají spíš než jako recept jako příručka
-automechanika.
-Popisují, co se má stát v jaké situaci.
-Třeba program pro textový editor by mohl vypadat takhle:
++ When the user presses a letter on the keyboard, add it to the document.
++ When the user presses <kbd>⌫ Backspace</kbd>, erase the last letter.
++ When the user presses the Save button, write the file to disk.
 
-* <p>Když uživatel zmáčkne písmenko na klávesnici, přidej ho do dokumentu.</p>
-* <p>Když uživatel zmáčkne <kbd>⌫ Backspace</kbd>, poslední písmenko umaž.</p>
-* <p>Když uživatel zmáčkne tlačítko Uložit, zapiš soubor na disk.</p>
+And such a program can be written as a "recipe" - but that recipe is the same for all applications:
 
-I takový program se dá napsat i jako „recept“ – ale ten recept je pro všechny
-aplikace stejný:
++ do foreever:
+  * Wait until something interesting happens (pressing a key, button, ...)
+  * React to the situation that has occurred.
 
-* Pořád dokola:
-  * Počkej, než se něco zajímavého stane (zmáčknutí klávesy, tlačítka, …)
-  * Zareaguj na nastalou situaci
+And that is exactly what `pyglet.app.run()` does. It processes *events*, situations that need to be responded to. In your program, it currently responds to the window close button and the <kbd>Esc</kbd> key by closing the window and exiting.
 
-A to je přesně to, co dělá `pyglet.app.run()`.
-Zpracovává *události*, situace na které je potřeba zareagovat.
-V tvém programu zatím reaguje na zavírací tlačítko okýnka a na klávesu
-<kbd>Esc</kbd> tím, že okno zavře a ukončí se.
+Your programming task now is to describe what other events are interesting and how to respond to them.
 
-Tvůj programátorský úkol teď bude popsat, jaké další události jsou zajímavé
-a jak na ně reagovat.
+## Event management
 
+The easiest event you can handle is typing on a keyboard.
 
-## Obsluha událostí
-
-Nejjednodušší událost, kterou můžeš obsloužit, je psaní textu na klávesnici.
-
-Zkus do programu těsně nad řádek `pyglet.app.run()` dát následující kód:
-
-``` python
+Try putting the following code just above the line 'pyglet.app.run()' in the program:
+```python
 @window.event
 def on_text(text):
     print(text)
 ```
 
-Co to je?
-Je to definice funkce, ale na začátku má *dekorátor* – tu řádku začínající
-zavináčem.
-Dekorátor `window.event` je způsob, jak Pygletu říct, že má tuto funkci
-spustit, když se něco zajímavého stane.
+What is this?
+It is a function definition, but at the beginning it has a *decorator* - the line starting with an at sign.
+The `window.event` decorator is a way to tell Pyglet to run this function when something interesting happens.
 
-Co zajímavého?
-To Pyglet zjistí podle jména funkce: `on_text` reaguje na text.
-Vždycky, když uživatel zmáčkne klávesu, Pyglet zavolá tvoji funkci!
+What's interesting? Pyglet finds out based on the function name: 'on_text' reacts to text. Whenever the user presses a key, Pyglet calls your function!
 
-A co udělá tvoje funkce? Zavolá `print`. To už znáš.
-Zadaný text se vypíše na konzoli, ze které program spouštíš.
+And what does your function do? It calls `print`. You already know that. The text entered will be displayed on the console from which you are running the program.
 
-> [note]
-> Funkce `print()` vypisuje texty stále na stejné místo jako předtím.
-> To, že je otevřené grafické okýnko, neznamená že se najednou začne
-> všechno psát do něj.
+>[note]
+>The `print()` function still outputs text to the same place as before.
+>Just because a graphical window is open doesn't mean that everything will suddenly start writing to it.
 
+## Drawing
 
-## Kreslení
+How to write in a textbox? That is a bit more complicated than in a console. The text in the box can have different colors, sizes, fonts, and can be shifted or rotated in various ways.
 
-Jak psát do okýnka?
-To je trochu složitější než do konzole.
-Text tu může mít různé barvy, velikosti, druhy písma,
-může být všelijak posunutý nebo natočený…
-
-Všechny tyhle *atributy* písma je potřeba (i se samotným textem) uložit
-do objektu  `Label` („popisek“).
-Zkus to – dej následující kód pod řádek s `window = `:
-
+All these font attributes need to be saved (along with the text itself) in the `Label` object (meaning 'label'). Try it - put the following code under the line with `window = `:
 ```python
 label = pyglet.text.Label("Ahoj!", x=10, y=20)
 ```
-
-V proměnné `label` teď budeš mít máš popisek s textem `"Ahoj"`, který patří
-na pozici (10, 20) – 10 bodů od pravého okraje okna, 20 od spodního.
+In the variable `label` you will now have a label with the text "Hello" that belongs to position (10, 20) - 10 points from the right edge of the window and 20 points from the bottom.
 
 > [note]
-> Ostatní vlastnosti kromě pozice tu nejsou zadané, tak se použijí
-> rozumné „výchozí“ hodnoty: bílá barva, malý ale čitelný font.
+>  Other properties besides position are not specified here, so reasonable "default" values will be used: white color, small but readable font.
 
-Popisek se ale sám nevypíše.
-Podobně jako pro vypsání textu do konzole je potřeba zavolat `print`,
-pro nakreslení textu je potřeba reagovat na událost
-*vykreslení okna* – `on_draw`.
+The caption, however, will not write itself. Similarly to calling `print` to display text in the console, responding to the *window drawing* event - `on_draw` - is necessary to draw text.
 
-Dej pod funkci `on_text` tento kód:
-
+Put this code under the `on_text` function:
 ```python
 @window.event
 def on_draw():
     window.clear()
     label.draw()
 ```
+This function is called by Pyglet whenever it is necessary to draw the content of the window. In animations (movies or games), this is often required 60 times per second ("60 FPS").
 
-Tuhle funkci Pyglet zavolá vždycky, když je potřeba nakreslit obsah okýnka.
-U animací (filmů nebo her) to často bývá třeba 60× za sekundu
-(„[60 FPS](https://cs.wikipedia.org/wiki/Sn%C3%ADmkov%C3%A1_frekvence)“).
+The function does two things:
+* Clears the entire window (paints it black)
+* Renders text.
 
-Funkce dělá dvě věci:
-* Smaže celé okýnko (nabarví ho na černo)
-* Vykreslí text
+In the window, you will now see a greeting!
 
-V okně teď bude vidět pozdrav!
-
-
-Zkus ještě změnit `on_text` tak, aby se zadaný text místo na konzoli
-ukázal v okýnku.
-To se dělá přiřazením do *atributu* `label.text`:
-
+Try changing the `on_text` function so that the entered text is displayed in a window instead of on the console. This is done by assigning the text to the *attribute* `label.text`.
 ```python
 @window.event
 def on_text(text):
@@ -210,8 +142,7 @@ def on_text(text):
     print('Nový text:', label.text)
 ```
 
-Zvládneš v této funkci nový text přidat ke starému,
-aby program fungoval jako jednoduchý textový editor?
+Can you add new text to the old one in this function so that the program works as a simple text editor?
 
 {% filter solution %}
 ```python
@@ -221,23 +152,16 @@ def on_text(text):
 ```
 {% endfilter %}
 
+## Other events
 
-## Další události
+What other events can be responded to? They are all described in the Pyglet documentation (https://pyglet.readthedocs.io/en/latest/modules/window.html#pyglet.window.Window.on_activate). Here are a few interesting ones.
 
-Na jaké další události se dá reagovat?
-Všechny jsou popsané v [dokumentaci Pygletu](https://pyglet.readthedocs.io/en/latest/modules/window.html#pyglet.window.Window.on_activate).
-Tady uvádím pár zajímavých.
+### Key pressed
 
-### Stisk klávesy
+The keys that do not enter text (arrows, <kbd>Backspace</kbd> or <kbd>Enter</kbd>, etc.) can be recognized in the `on_key_press` event.
 
-Klávesy, které nezadávají text (šipky, <kbd>Backspace</kbd> nebo
-<kbd>Enter</kbd>, atp.) se dají rozpoznat v události `on_key_press`.
-
-Funkce `on_key_press` má dva argumenty: první je kód klávesy,
-který můžeš porovnat s konstantou z [pyglet.window.key](https://pyglet.readthedocs.io/en/latest/modules/window_key.html#key-constants).
-Druhý určuje stisknuté modifikátory jako <kbd>Shift</kbd> nebo <kbd>Ctrl</kbd>.
-
-``` python
+The function `on_key_press` has two arguments: the first one is the keycode, which you can compare with a constant from [pyglet.window.key](https://pyglet.readthedocs.io/en/latest/modules/window_key.html#key-constants). The second one determines the pressed modifiers such as <kbd>Shift</kbd> or <kbd>Ctrl</kbd>.
+```python
 @window.event
 def on_key_press(key_code, modifier):
     if key_code == pyglet.window.key.BACKSPACE:
@@ -248,17 +172,13 @@ def on_key_press(key_code, modifier):
         window.close()
 ```
 
-Na macOS budeš možná muset zaměňit `BACKSPACE` za `DELETE`. {# XXX: je to tak? #}
-(Nebo si doma nastuduj [způsob](https://pyglet.readthedocs.io/en/latest/programming_guide/keyboard.html#motion-events), jak to dělat automaticky a správně.)
+On macOS, you may need to replace `BACKSPACE` with `DELETE`.  (Or at home, study [the method](https://pyglet.readthedocs.io/en/latest/programming_guide/keyboard.html#motion-events) for doing it automatically and correctly.)
 
+### Mouse click
 
-### Kliknutí myši
+When handling the `on_mouse_press` event, you will receive information about the position of the click (the <var>x</var> and <var>y</var> coordinates) as well as information about the mouse button and modifier that was pressed.
 
-Při obsluze události `on_mouse_press` dostaneš informace o pozici
-kliknutí (<var>x</var>-ovou a <var>x</var>-ovou souřadnici)
-a navíc informaci o stisknutém tlačítku myši a modifikátoru.
-
-Takhle se třeba popisek přesune na místo kliknutí:
+Like this, for example, the caption will move to the location of the click:
 
 ```python
 @window.event
@@ -267,40 +187,34 @@ def on_mouse_press(x, y, button, modifier):
     label.y = y
 ```
 
-## Animace
+## Animation
 
-Trochu jiný druh události je *tiknutí hodin*: něco, co se provádí pravidelně.
+A slightly different type of event is the ticking of a clock: something that occurs regularly.
 
-Takhle vznikají animace, když se velice často – třeba 60× za sekundu – něco
-na obrazovce změní a překreslí.
+This is how animations are created, when something on the screen changes and is redrawn very often - for example, 60 times per second.
 
-Jak na to v Pygletu?
-Opět je třeba nadefinovat funkci, ale tentokrát nebude stačit jen
-`window.event`.
-Pyglet potřebuje vědět, jak často má funkci volat.
-To mu pověz zavoláním `pyglet.clock.schedule_interval` se dvěma argumenty:
-jménem funkce a časem mezi jednotlivými voláními – ¹/₆₀ vteřiny.
-Celé to opět napiš před řádek `pyglet.app.run()`:
-
+How to do it in Pyglet?
+Once again, it is necessary to define a function, but this time it will not be enough to just use `window.event`.
+Pyglet needs to know how often to call the function.
+Tell it by calling `pyglet.clock.schedule_interval` with two arguments:
+the name of the function and the time between each call - ¹/₆₀ seconds.
+Write all of this again before the line `pyglet.app.run()`:
 ```python
 def tik(dt):
     label.x = label.x + 1
 
 pyglet.clock.schedule_interval(tik, 1/60)
 ```
+Pyglet now moves the text 1 pixel to the right every sixtieth of a second.
 
-Pyglet teď každou šedesátinu vteřiny posune text o 1 pixel doprava.
+## The whole program
 
-
-## Celý program
-
-Pro případ, že by ses ztratil{{a}} nebo nevěděla,
-kam který kousek kódu patří, uvádím výsledný ukázkový program.
+In case you get lost or don't know where a particular piece of code belongs, I am providing a sample program for reference.
 
 ```python
 import pyglet
 window = pyglet.window.Window()
-label = pyglet.text.Label("Ahoj!", x=10, y=20)
+label = pyglet.text.Label("Hello!", x=10, y=20)
 
 
 @window.event
@@ -337,12 +251,8 @@ pyglet.clock.schedule_interval(tik, 1/60)
 pyglet.app.run()
 ```
 
-Tolik k trénovací grafické aplikaci.
-Co ses naučil{{a}}?
+So much for the training graphic application. What have you learned
 
-* Funkce `pyglet.window.Window()` z modulu `pyglet` vytvoří okýnko.
-* Dekorátor `@window.event` označuje funkci, kterou Pyglet zavolá
-  v reakci na určitou událost: vstup z klávesnice (`on_text`),
-  vykreslení (`on_draw`), stisk klávesy (`on_key_press`), atp.
-* Voláním `pyglet.app.run()` říkáš Pygletu, že je vše nastavené
-  a má spustit aplikaci.
+* The function `pyglet.window.Window()` from the `pyglet` module creates a window.
+* The decorator `@window.event` marks a function that Pyglet will call in response to a certain event: keyboard input (`on_text`), drawing (`on_draw`), key press (`on_key_press`), etc.
+* By calling `pyglet.app.run()`, you tell Pyglet that everything is set up and it should start the application.

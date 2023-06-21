@@ -5,33 +5,26 @@
 
 {% block name_gen %} Kate {% endblock %}
 
-
 {% block setup %}
 
-Číslování řádků
-:   V menu Pohled<span class="en">/View</span> vyber
-    Ukazovat čísla řádek<span class="en">/Show Line Numbers</span>.
+Line numbering
+:   In the View menu, select Show Line Numbers.
 
-Odsazování
-:   V Menu Nastavení<span class="en">/Settings</span> vyber
-    Nastavit 'Kate'<span class="en">/Configure Kate</span>.
+Indentation
+:   In the Settings menu, select Configure Kate.
 
-    Tam v Úpravy<span class="en">/Editing</span> vyber
-    Odsazování<span class="en">/Indentation</span>.
+    There in Editing select Indentation, and set there:
 
-    Tam nastav:
+    * Default indentation mode: Python
+    * Indent using: Spaces
+    * Tab Width: 4 characters
+    * Indentation width: 4 characters
+    * Backspace key in leading blank space unindents
 
-    * Výchozí režim odsazení<span class="en">/Default indentation mode</span>: Python
-    * Odsazovat pomocí<span class="en">/Indent using</span>: Mezer<span class="en">/Spaces</span>
-    * Šířka tabulátoru<span class="en">/Tab Width</span>: 4 znaky
-    * Odsadit pomocí<span class="en">/Indentation width</span>: 4 znaky
-    * Klávesa Backspace zpětně odsazuje v úvodních mezerách<span class="en">/Backspace key in leading blank space unindents</span>
+Syntax highlighting
+:   works automatically, but the way of coloring is chosen based on the
+    file extension - for example, `.py` for Python.
 
-Obarvování
-:   Obarvování funguje automaticky, ale způsob obarvování se vybírá podle
-    koncovky souboru – např. `.py` pro Python.
-
-    Proto, jakmile v tomhle editoru vytvoříš nový soubor, měl{{a}} bys ho co
-    nejdřív uložit pod správným jménem.
+    Therefore, as soon as you create a new file in this editor, you should save it under the correct name as soon as possible.
 
 {% endblock %}

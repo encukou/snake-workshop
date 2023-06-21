@@ -15,165 +15,128 @@
     </div>
 {%- endmacro -%}
 
-# Nastavení prostředí
+# Environment setup
 
-V této sekci si:
-* připravíš adresář, do kterého budeš ukládat soubory k začátečnickým kurzům
-  Pythonu a
-* aktivuješ virtuální prostředí.
+In this section, you will:
+* prepare a directory for this workshop, and
+* activate a virtual environment.
 
-## Příprava adresáře
+## Preparing a directory
 
-Programátoři vytváří spoustu souborů a víc než u mnoha jiných uživatelů
-počítače jim záleží na tom, kde jsou ty soubory uložené.
+Programmers create a lot of files. And they care where those files are stored.
 
-Níže uvedený postup zdaleka není jediná možnost, jak si organizovat soubory.
-Když ale použiješ tenhle ozkoušený způsob,
-může to hodně zjednodušit život těm, kteří ti budou pomáhat
-s případnými problémy.
+The procedure below is by no means the only way to organize files,
+but if everyone in the workshop uses it, it'll be easier for us to help you with any problems.
 
-{%- if var('pyladies') -%}
-{% set rootname = 'pyladies' %}
-{%- else -%}
-{% set rootname = 'naucse-python' %}
-{%- endif %}
+{% set rootname = 'learn-python' %}
 
-Nejdřív vytvoř adresář (složku), ve kterém budeš mít soubory ke kurzu Pythonu.
-Může to být třeba `{{ rootname }}` ve tvém domovském adresáři.
-(Můžeš ho pojmenovat i jinak, ale `{{ rootname }}` používají příklady níže.)
+First, create a directory (folder) for the workshop.
+It can be, for example, `{{ rootname }}` in your home directory.
+(You can name it differently, but `{{ rootname }}` is used in the examples below.)
 
-Zvolený adresář po vytvoření nesmíš přesouvat jinam.
-Proto ho nedoporučuji vytvářet na Ploše.
+You must not move this directory after creating it.
+Therefore, I do not recommend creating it on the Desktop.
 
 > [note]
-> Kdybys někdy adresář přece jen přesunul{{a}} jinam,
-> přestane fungovat *virtuální prostředí*, které za chvíli vytvoříme.
-> Musel{{a}} bys ho smazat a vytvořit nové.
+> If you ever do move the directory to another location, the *virtual environment* we will create in a moment will stop working.
+> In that case you will have to delete the environment and create a new one.
 
-Tenhle adresář budeš potřebovat na celý zbytek kurzu i na případné
-navazující kurzy.
-Poznamenej si proto kde přesně je – zkopíruj si celé jeho jméno, které pak
-můžeš vložit do `cd` v příkazové řádce nebo do grafického prohlížeče souborů.
+At the workshop, you will need to know where this directory is.
+Note down its full name, which you can then paste into a graphical file browser or into `cd` in the command line.
 
 
-### Adresář pro každou lekci
+### Directory for every lesson
 
-Nový adresář je zatím prázdný.
-To se ale brzo změní a čím víc věcí v něm bude, tím bude důležitější
-mít obsah zorganizovaný.
+We could use the directory directly, but let's organize things a bit more.
+Create an additional directory inside `{{ rootname }}`, and name it `snake-workshop`.
 
-Pro začátek si budeme tvořit nový podadresář pro každou lekci tohoto kurzu.
-Aby byly tyhle adresáře hezky seřazené, budeme je číslovat:
-tahle první lekce bude mít číslo `00`,
-příště si vytvoříš adresář `01` a tak dále.
+### Switching
 
-Všechny budou v tvém novém adresáři, který jsi vytvořil{{a}} před chvilkou.
+Then open the command line and use the `cd` command to switch to the directory `{{ rootname }}` (i.e. not all the way into `snake-workshop`).
+For example:
 
-Adresář `00` si vytvoř už teď.
-(Možná do něj dnes nic nedáš, ale hodí se ho mít jako ukázku pro příště.)
-
-
-### Přepnutí
-
-Pak otevři příkazovou řádku a příkazem `cd` přepni do adresáře,
-ve kterém jsi právě vytvořil{{a}} `00` (t.j. ne přímo do `00`).
-Například:
-
-```console
+ ```console
 $ cd {{ rootname }}
 ```
 
-Pak zkontroluj, že jsi na správném místě:
-* Pomocí příkazu `pwd` (na Windows `cd`) zkontroluj,
-  že opravdu jsi v nově vytvořeném adresáři.
-* Pomocí příkazu `ls` (na Windows `dir`) zkontroluj,
-  že v něm je podadresář `00`.
+Then check that you are in the right place:
+* Use the command `pwd` (on Windows `cd`) to check that you are really in the newly created directory.
+* Use the command `ls` (on Windows `dir`) to check that there is a subdirectory `snake-workshop` in it.
 
-Například:
+For example:
 
 {% call sidebyside(titles=['Unix (Linux, macOS)', 'Windows']) %}
 $ pwd
 /home/helena/{{rootname}}
 
 $ ls
-00
+snake-workshop
 ---
 > cd
 C:\Users\Helena\{{rootname}}
 
 > dir
  Directory of C:\Users\Helena\{{rootname}}
-05/08/2014 07:28 PM <DIR>  00
+05/08/2014 07:28 PM <DIR>  snake-workshop
 {% endcall %}
 
+## Virtual environment
 
-## Virtuální prostředí
+Now you will create a *virtual environment* for Python.
 
-Teď si vytvoříš *virtuální prostředí* pro Python.
-
-Virtuální prostředí je něco, co zajistí že se všechny počítače budou
-chovat zhruba stejně.
-Až ho zprovozníme, nebudu už potřebovat instrukce zvlášť pro Linux,
-zvlášť pro Windows a zvlášť pro macOS.
+A virtual environment is something that ensures that all computers on the workshop will behave roughly the same.
+Once we set it up, we won't need separate instructions for Linux, Windows, and macOS.
 
 > [note]
-> V budoucnu využiješ i druhou výhodu: každé virtuální prostředí je oddělené od
-> ostatních, takže když doinstaluješ nějakou knihovnu (rozšíření pro Python),
-> projeví se to jen v jednom virtuálním prostředí.
-> Kdyby se pak při práci na projektu něco pokazilo, neohrozí to další
-> projekty ve tvém počítači.
+> In the future, you will also benefit from the second advantage: each virtual environment is separated from the others, so when you install a library (an extension for Python), it will only affect one virtual environment.
+> If something goes wrong while working on one project, it will not endanger other projects on your computer.
 
-Jak na to?
-Na každém systému jinak!
+How to do it? It's different on every system!
 
-* **Linux**:
+### Linux:
 
-   Podle toho jak máš Python nainstalovaný bude fungovat jeden z následujících
-   příkazů.
-   Bude je rychlejší vyzkoušet než popsat kdy je který správný,
-   takže nejdřív zkus:
+Depending on how you have Python installed, one of the following commands will work.
+It will be faster to try them out than to describe which one is correct, so first try:
 
-   ```console
+```console
+$ python3 -m venv venv
+```
+
+And if you get the error `No module named venv`, try instead:
+
+```console
+$ virtualenv -p python3 venv
+```
+
+### macOS:
+
+```console
    $ python3 -m venv venv
-   ```
+ ```
 
-   A jestli dostaneš chybu `No module named venv`, zkus místo toho:
+### Windows:
 
-   ```console
-   $ virtualenv -p python3 venv
-   ```
+Depending on how you have Python installed, one of the following commands will work.
+It will be faster to try them out than to describe which one is correct, so try this first:
 
-* **macOS**:
+```doscon
+> py -3 -m venv venv
+```
 
-   ```console
-   $ python3 -m venv venv
-   ```
+And if you get an error like `'py' is not recognized`, try instead:
 
-* **Windows**:
+```doscon
+> python3 -m venv venv
+```
 
-   Podle toho jak máš Python nainstalovaný bude fungovat jeden z následujících
-   příkazů.
-   Bude je rychlejší vyzkoušet než popsat kdy je který správný,
-   takže nejdřív zkus:
+That created a directory called `venv`, which contains the virtual environment.
+You can look inside, but do not save your files there and never change anything there!
 
-   ```doscon
-   > py -3 -m venv venv
-   ```
-
-   A jestli dostaneš chybu `'py' is not recognized`, zkus místo toho:
-
-   ```doscon
-   > python3 -m venv venv
-   ```
-
-Tím se ti vytvořil adresář `venv`, který virtuální prostředí obsahuje.
-Můžeš se podívat dovnitř, ale neukládej tam své soubory a nikdy tam nic neměň!
-
-Zkontroluj si, že `00` a `venv` jsou pěkně vedle sebe:
+Check that `snake-workshop` and `venv` are nicely next to each other.
 
 {% call sidebyside(titles=['Unix', 'Windows']) %}
 $ ls
-01
+snake-workshop
 venv
 ---
 > dir
@@ -182,17 +145,17 @@ venv
 05/08/2014 07:38 PM <DIR>  venv
 {% endcall %}
 
-V grafickém prohlížeči souborů to vypadá např. takto:
+In a graphical file browser, it looks like this, for example:
 
-{{ figure(
+ {{ figure(
     img=static('dirs-00.png'),
     alt="(adresáře '00' a 'venv' vedle sebe)",
 ) }}
 
 
-### Aktivace virtuálního prostředí
+### Activation of the virtual environment
 
-Nakonec virtuální prostředí aktivuj:
+Finally, *activate* the new virtual environment:
 
 {% call sidebyside(titles=['Unix', 'Windows'], code=False) %}
 ```console
@@ -203,20 +166,15 @@ $ source venv/bin/activate
 > venv\Scripts\activate
 ```
 
-Jestli používáš  příkazovou řádku ve Visual Studio Code,
-je příkaz pro Windows složitější:
+If you use the command line in Visual Studio Code, the command for Windows is more complicated:
 ```doscon
 > &powershell -ExecutionPolicy bypass
 > venv/Scripts/Activate.ps1
 ```
 {% endcall %}
+ 
+After running this command, the word `(venv)` should appear at the beginning of the command line prompt (before `$` or `>`). This way you will know that the virtual environment is *active*.
 
-Po spuštění tohoto příkazu by se mělo na začátku příkazové řádky
-(před `$` nebo `>`) objevit slovo `(venv)`.
-Tak poznáš, že je virtuální prostředí *aktivní*.
+Write down the activation command.
 
-Aktivační příkaz si zapiš.
-
-Vždycky, když pustíš příkazovou řádku ve které budeš zkoušet své programy,
-budeš muset pomocí `cd` přepnout do `{{rootname}}` a zadat tento
-aktivační příkaz.
+When you open the command line at the workshop, you will need to switch to `{{rootname}}` using `cd` and enter this activation command.

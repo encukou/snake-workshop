@@ -1,81 +1,81 @@
-# Vlastní funkce
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Pamatuješ na funkce `len()`, `print()` nebo `randrange()` z modulu `random`?
-Jsou jako kouzelná zaříkadla z knihy vázané v kůži: když víš jak se jmenují
-a umíš je správně {# XXX: <s>vyslovit</s> #}napsat, něco pro tebe udělají.
+# Own function
 
-Teď postoupíme na další úroveň: vymyslíme si vlastní zaříkadla!
-Jak? Budeme kombinovat příkazy, které už známe.
+Do you remember functions like `len()`, `print()`, or `randrange()` from the `random` module?
+They are like magical spells from a leather-bound book: if you know their names and can write them correctly, they will do something for you.
 
-Třeba funkce, která tě pozdraví, by mohla:
+Now we will move on to the next level: we will come up with our own spells! How? We will combine commands that we already know.
 
-* Vypsat „ahoj!“
-* Vypsat „jak se máš?“
+Perhaps a function that greets you could:
 
-Definice funkce v Pythonu začíná klíčovým slovem `def`,
-dále je uveden název a následují závorky (zatím prázdné).
-Pak je jako po `if` dvojtečka a odsazené příkazy – tentokrát
-příkazy, které má funkce provést.
-Napiš to do programu:
+* Write "hello!"
+* Write "how are you?"
 
-```python
-def pozdrav():
-    print('Ahoj!')
-    print('Jak se máš?')
+The definition of a function in Python starts with the keyword 'def', followed by the name and parentheses (currently empty). Then, like with 'if', there is a colon and indented commands - this time the commands that the function should execute.
+
+```
+def function_name():
+    # commands to be executed by the function
 ```
 
-Tvoje první funkce je připravena!
-
-Když ale tenhle program spustíš, nic neudělá.
-To proto, že tohle je jen *definice* funkce.
-Python teď ví jak pozdravit – ale neřeklo se, že to má udělat!
-
-Na konec programu přidej volání.
-To už *není součást funkce*, ale pokračování samotného programu.
-Proto nesmí být odsazené:
-
-```python
-def pozdrav():
-    print('Ahoj!')
-    print('Jak se máš?')
-
-pozdrav()
+Write in your program:
+```
+def greeting():
+    print('Hello!')
+    print('How are you?')
 ```
 
-Co se stane, když funkci zavoláš několikrát po sobě?
+Your first function is ready!
 
-```python
-def pozdrav():
-    print('Ahoj!')
-    print('Jak se máš?')
+When you run this program, it won't do anything. That's because this is just a *definition* of a function. Python now knows how to say hello - but it wasn't told to actually do it!
 
-pozdrav()
-pozdrav()
-pozdrav()
+At the end of the program, add a call. This is no longer part of the function, but a continuation of the program itself. Therefore, it must not be indented.
+
+```
+def greeting():
+    print('Hello!')
+    print('How are you?')
+
+greeting()
 ```
 
-{% filter solution %}
-Každé volání spustí tělo funkce znovu.
+What happens when you call the function several times in a row?
 
-``` console
+```
+def greeting():
+    print('Hello!')
+    print('How are you?')
+
+greeting()
+greeting()
+greeting()
+```
+
+{% filter solution %}  Each call triggers the body of the function again.
+
+```
 (venv) $ python python_intro.py
-Ahoj!
-Jak se máš?
-Ahoj!
-Jak se máš?
-Ahoj!
-Jak se máš?
+Hello!
+How are you?
+Hello!
+How are you?
+Hello!
+How are you?
 ```
 {% endfilter %}
 
-Co se stane, když volání dáš *nad* definici funkce, místo na konec programu?
+What happens when you place a function call *above* the function definition, instead of at the end of the program?
 
-```python
-pozdrav()
 
-def pozdrav():
-    print('Ahoj!')
-    print('Jak se máš?')
+```
+greeting()
+
+def greeting():
+    print('Hello!')
+    print('How are you?')
 ```
 
 {% filter solution %}
@@ -85,156 +85,159 @@ Traceback (most recent call last):
 NameError: name 'pozdrav' is not defined
 ```
 
-Python si postěžuje na `NameError` – nezná nic jménem `pozdrav`.
+Python complains about `NameError` - it doesn't recognize anything called `pozdrav`.
 
-Python totiž program čte odzhora dolů.
-Až příkazem `def` se „naučí" jak zdravit.
-Předtím, než se k příkazu `def` dostane, funkce neexistuje.
+Python reads the program from top to bottom. It "learns" how to greet with the `def` command. Before it reaches the `def` command, the function does not exist.
 {% endfilter %}
 
-## Parametry
+## Parameters
 
-Tvoje funkce se dá volat jen jako `pozdrav()`.
-Funkce ale jako `len('slovo')` a `print(1 + 2)` umí navíc pracovat s hodnotou.
+Your function can only be called as `greeting()`. However, functions like `len('word')` and `print(1 + 2)` can also work with values.
 
-Poďme teraz napisať funkciu, ktorá ťa pozdraví menom.
-(Uľahčíme si to použitím jazyka, ktorý nepoužíva piaty pád.)
+Let's now write a function that will greet you by name. 
+
 
 ```python
-def pozdrav(meno):
-    print('Vítam ťa,', meno)
+def greeting(name):
+    print('Welcome,', name)
 
-pozdrav('Ola')
-pozdrav('Soňa')
-pozdrav('Hubert')
-pozdrav('Anička')
+greeting('Ola')
+greeting('Soňa')
+greeting('Hubert')
+greeting('Anička')
 ```
 
-Jak to funguje?
-V definici funkce uvedeš závorkách *parametr* – jméno proměnné se kterou bude
-funkce pracovat.
-Hodnotu pro tenhle parametr pak zadáš při volání funkce.
+How does it work? In the function definition, you specify a *parameter* in parentheses - the name of the variable that the function will work with. You then enter a value for this parameter when calling the function.
 
-Zvládneš napsat program, který se zeptá na jméno a pak tě pozdraví?
+Can you write a program that asks for a name and then greets you?
+
 
 {% filter solution %}
 ```python
-def pozdrav(meno):
-    print('Vitam ťa,', meno)
+def greeting(name):
+    print('Hello,', name)
 
-pozdrav(input('Ako sa voláš? '))
+greeting(input('What's your name?'))
 ```
 {% endfilter %}
 
-Co se stane, když funkci zavoláš bez hodnoty pro parametr?
+What happens when you call a function without a value for the parameter?
 
 {% filter solution %}
 ``` python
-def pozdrav(meno):
-    print('Vitam ťa,', meno)
+def greeting(name):
+    print('Welcome,', name)
 
-pozdrav()
+greeting()
 ```
 ``` pycon
 Traceback (most recent call last):
   File "<stdin>", line 9, in <module>
-TypeError: pozdrav() missing 1 required positional argument: 'meno'
+TypeError: greeting() missing 1 required positional argument: 'name'
 ```
-
-Python si stěžuje na `TypeError` – funkce `pozdrav` nedostala povinný
-argument `meno`.
+Python complains about `TypeError` - the function `pozdrav` did not receive the mandatory argument `name`.
 {% endfilter %}
 
-Funkce může obsahovat jakýkoli kód.
-Třeba podmíněný příkaz, `if`.
-Příkazy po `if` je pak potřeba odsatit o *další* čtyři mezery:
+The function can contain any code. For example, a conditional statement, 'if'. Commands after 'if' then need to be indented by *an additional* four spaces:
+
 
 ```python
-def pozdrav(meno):
-    print('Vitam ťa,', meno)
-    if meno == 'Ola':
-        print('Ty umíš programovať!')
+def greet(name):
+    print('Hello,', name)
+    if name == 'Ola':
+        print('You know how to program!') 
 
-pozdrav('Hubert')
-pozdrav('Ola')
-pozdrav('Soňa')
+greeting('Hubert')
+greeting('Ola')
+greeting('Soňa')
 ```
 
 
-## Vracení
+## Returning
 
-Další věc, kterou funkce jako `len` umí, je *vrátit* výsledek:
+The next thing that functions like `len` can do is *return* the result.
 
 ``` python
-delka = len('Ola')
-print(delka)        # napíše: 3
-```
+length = len('Ola')
+print(length)        # writes: 3
+``` 
 
-Jak na to, kdybys takovou funkci chtěl{{a}} napsat?
-V definici funkce můžeš použít příkaz `return`.
-Ten funkci okamžitě ukončí a vrátí danou hodnotu:
+How to do it if you wanted to write such a function? 
+In the function definition, you can use the `return` command. 
+It immediately terminates the function and returns the given value.
+
 
 ```python
-def dvojnasobek(x):
+def double(x):
     return x * 2
 
-print(dvojnasobek(42))
+print(double(42))
 ```
 
-Zkus se zamyslet, jak napsat funkci, která vrátí pátý pád nějakého jména. Třeba:
+Try to think about how to write a function that returns the fifth case of a noun. For example:
 
 * `paty_pad('Ola')` → 'Olo'
 * `paty_pad('Soňa')` → 'Soňo'
 * `paty_pad('Hubert')` → 'Huberte'
 
-Tohle je velice složitý úkol, tak si ho trochu zjednodušíme.
-Funkce by měla dělat tohle:
+These are examples of a function called "paty_pad" being applied to names in Czech. The function is changing the last letter of the name to match its grammatical case. 
 
-* Pokud jméno je „Hubert“:
-    * vrátí `Huberte`
-* Pokud jméno končí na `a`:
-    * vrátí jméno s `o` místo posledního písmenka
-* Jinak:
-    * Vrátí původní jméno. (Uživatel si toho snad nevšimne.)
+This is a very complicated task, so let's simplify it a bit. The function should do this:
+
+If the name is "Hubert":
+* it will return "Huberte"
+If the name ends with "a":
+* it will return the name with "o" instead of the last letter
+Otherwise:
+* it will return the original name. (The user probably won't notice.)
+
+This is a Python code that defines a function named "paty_pad" which takes a name as an input argument and returns the name in a modified form. Here is the translation of the code comments and function:
 
 ``` python
-def paty_pad(jmeno):
-    if jmeno == 'Hubert':
+# This function modifies the name based on certain conditions
+def paty_pad(name):
+    # If the name is 'Hubert', return 'Huberte'
+    if name == 'Hubert':
         return 'Huberte'
-    elif jmeno[-1] == 'a':
-        return jmeno[:-1] + 'o'
+    # If the last letter of the name is 'a', replace it with 'o'
+    elif name[-1] == 'a':
+        return name[:-1] + 'o'
+    # Otherwise, return the name as is
     else:
-        return jmeno
+        return name
 ```
 
-Dokážeš změnit funkci `pozdrav`, aby zdravila v češtině?
-Můžeš na to použít funkci `paty_pad`.
+So, if you call this function with the input argument 'Jana', it will return 'Jano'. If you call it with 'Petr', it will return 'Petr'. If you call it with 'Hubert', it will return 'Huberte'.
+
+Can you change the function `greeting` to greet in Czech? You can use the function `paty_pad`.
+
 
 {% filter solution %}
 ``` python
-def paty_pad(jmeno):
-    if jmeno == 'Hubert':
+def paty_pad(name):
+    if name == 'Hubert':
         return 'Huberte'
-    elif jmeno[-1] == 'a':
-        return jmeno[:-1] + 'o'
+    elif name[-1] == 'a':
+        return name[:-1] + 'o'
     else:
-        return jmeno
+        return name
+        
+def greeting(name):
+    print('Welcome,', paty_pad(name))
 
-def pozdrav(jmeno):
-    print('Vítam tě,', paty_pad(jmeno))
-
-pozdrav('Hubert')
-pozdrav('Ola')
-pozdrav('Soňa')
+greeting('Hubert')
+greeting('Ola')
+greeting('Soňa')
 ```
 {% endfilter %}
 
 
-## Shrnutí
+## Summary
 
-Co bylo nového tentokrát?
+What was new this time?
 
-* **Funkce** umožňuje pojmenovat nějkolik příkazů, a pak je zavolat najednou.
-* **Parametry** funkce, hodnoty se kterými funkce pracuje,
-  se zadávají v závorkách.
-* `return` ukončí funkci a vrátí hodnotu
+* **Function** allows you to name several commands and then call them all at once.
+* **Parameters** of the function, the values with which the function works,
+  are entered in parentheses.
+* `return` terminates the function and returns a value.
+* 

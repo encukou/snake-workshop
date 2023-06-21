@@ -1,65 +1,52 @@
 {% extends lesson.slug + '/_linux_base.md' %}
 
-{% block name_gen %} editoru {% endblock %}
+{% block heading %}Editor installation{% endblock %}
 
 {% block install %}
 
-Používáš-li editor, pro který nemáme instrukce, budeš ho muset nastavit
-{{ gnd('sám', 'sama') }}.
-Tady je pár tipů, na co si dát pozor.
+If you are using an editor for which we do not have instructions, you will have to set it up yourself.
+Here are a few tips on what to watch out for.
 
 {% endblock %}
 
 {% block setup %}
 
-## Číslování řádků
+### Line numbering
 
-Ujisti se, že ti editor čísluje řádky.
-Pokud ne, podívej se do nastavení a zjisti, jak se to zapíná.
+Make sure that your editor numbers the lines.
+If not, check the settings and find out how to turn it on.
 
+### Syntax highlighting 
 
-## Obarvování
-
-Ulož soubor s koncovkou `.py` – například `zkouska.py` – a zkopíruj do něj
-následující program:
+Save a file with the extension `.py`, for example `test.py`, and copy the following program into it:
 
 ```python
 def foo():
     return "abc" * 2
 ```
 
-Jestli se text automaticky obarví (klidně jinými barvami než tady),
-je tvůj editor nastavený správně.
-Jinak se podívej do nastavení a zjisti, jak se to zapíná.
+If the text is automatically colored (even with colors different from here), your editor is set up correctly.
+Otherwise, check the settings and find out how to turn it on.
 
+### Indentation
 
-## Odsazování
+By pressing the <kbd>Tab</kbd> key at the *beginning of a line*, 4 spaces are inserted.
+For writing and sharing code in Python, it is important that there are four spaces and that they are truly spaces.
 
-Stisknutím klávesy <kbd>Tab</kbd> na *začatku řádku* se vloží 4 mezery.
-Pro psaní a sdílení kódu v Pythonu je důležité,
-aby byly čtyři a aby to byly opravdu mezery.
+If they are spaces, you can find out by selecting the indentation at the beginning with the mouse.
+If you can select individual spaces, everything is fine.
 
-Jestli to jsou mezery, se dá zjistit tak, že odsazení na začátku vybereš myší.
-Jde-li vybírat po jednotlivých mezerách, je všechno v pořádku.
+If it is not possible to select individual spaces or if pressing <kbd>Tab</kbd> inserts a different number than 4, check the settings for options such as 'indentation size' or 'replace tabs with spaces'.
 
-Nejde-li vybírat po jednotlivých mezerách, nebo pokud se jich po stisknutí
-<kbd>Tab</kbd> vloží jiný počet než 4, podívej se do nastavení po možnostech
-jako „velikost odsazení“ nebo „nahrazovat tabulátory za mezery”.
+### Checking the style of source code
 
+Editors often support the installation of plugins that can make coding easier and help with its control.
+One of the most useful is a plugin for checking the correct style of source code.
+Python has typographic rules.
+For example, a space is written after a comma, but not before it.
+They are optional, the program will work even if they are not followed, but they help write clear code, so it is good to follow them from the beginning.
+These rules are described in the document [PEP8](https://www.python.org/dev/peps/pep-0008/).
 
-## Kontrola stylu zdrojového kódu
-
-Editory často podporují instalaci pluginů, které mohou psaní kódu usnadnit
-a pomoci s jeho kontrolou.
-Jeden z neužitečnějších je plugin pro kontrolu správného stylu zdrojového kódu.
-
-Tak jako čeština má Python typografická pravidla.
-Například za čárkou se píše mezera, ale před ní ne.
-Jsou nepovinná, program bude fungovat i při jejich nedodržení,
-ale pomáhají psát přehledný kód, tak je dobré je dodržovat už od začátku.
-Tato pravidla jsou popsána
-v dokumentu [PEP8](https://www.python.org/dev/peps/pep-0008/).
-
-Zkus takový plugin pro svůj editor najít a nainstalovat.
+Try to find and install such a plugin for your editor.
 
 {% endblock %}

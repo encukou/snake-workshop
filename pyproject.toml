@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "naucse-course"
+name = "snake=workshop"
 version = "0"
-description = "Python course for beginners"
+description = "Snake workshop for beginners"
 authors = ["Petr Viktorin <encukou@gmail.com>"]
 license = "CC-BY-SA-4.0"
 

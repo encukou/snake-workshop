@@ -1,23 +1,22 @@
-title: Instalace editoru
+title: Editor installation
 style: md
-attribution: Pro PyLadies Brno napsal Petr Viktorin, 2014-2017, Tomáš Roj (2019)
+attribution:
+- Written for PyLadies Brno by Petr Viktorin (2014-2023) and Tomáš Roj (2019).
+- Initial translation to English by ChatGPT
 license: cc-by-sa-40
 subpages:
     vscode:
-        title: Instalace Visual Studio Code
+        title: Visual Studio Code installation
         subtitle: Visual Studio Code
-    atom:
-        title: Instalace Atomu
-        subtitle: Atom
     kate:
-        title: Instalace Kate
+        title: Kate installation
         subtitle: Kate
     gedit:
-        title: Instalace Geditu
+        title: Gedit installation
         subtitle: Gedit
     notepad-plus-plus:
-        title: Instalace Notepadu++
+        title: Notepad++ installation
         subtitle: Notepad++
     others:
-        title: Nastavení editoru
-        subtitle: Nastavení
+        title: Editor setup
+        subtitle: Setup

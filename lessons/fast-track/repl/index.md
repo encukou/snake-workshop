@@ -1,8 +1,14 @@
-# Interaktivní režim Pythonu
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Chceš-li si začít hrát s Pythonem, otevři *příkazový řádek* a aktivuj virtuální prostředí.  Zkontroluj si, že na začátku příkazové řádky ti svítí `(venv)`.
+# Interactive mode of Python
 
-Je-li tomu tak, nezbývá než – konečně – pustit Python. K tomu použij příkaz `python`:
+If you want to start playing with Python, open the command line and activate the virtual environment.
+Check that at the beginning of the command line, you see `(venv)`.
+
+If that's the case, there's nothing left but to run Python.
+To do that, use the command `python`.
 
 ``` console
 $ python
@@ -11,55 +17,53 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-Příkaz vypíše několik informací. Z prvního řádku se můžeš ujistit, že používáš Python 3. (Vidíš-li číslo jako `2.7.11`, něco je špatně – popros o radu kouče.)
+The command will display several pieces of information.
+From the first line, you can make sure that you are using Python 3.
+(If you see a number like `2.7.11`, something is wrong - ask your coach for advice.)
 
-Třemi „zobáčky“ ``>>>` pak Python poprosí o instrukce. Je to jako v příkazové řádce, ale místo příkazů jako `cd` a `mkdir` sem budeš psát příkazy Pythonu.
+With three 'greater-than' signs `>>>`, Python will then ask for instructions.
+It's like a command line, but instead of commands like `cd` and `mkdir`, you will write Python commands here.
 
-Jako první instrukci použijeme Pythonu jako kalkulačku.
-Za tři zobáčky napiš třeba `2 + 3` a zmáčkni <kbd>Enter</kbd>.
+As the first instruction, we will use Python as a calculator.
+In three beaks, write for example `2 + 3` and press <kbd>Enter</kbd>.
 
 ``` pycon
 >>> 2 + 3
 5
 ```
 
-Zobrazila se ti správná odpověď?
-Pokud ano, gratuluji! První příkaz v Pythonu máš za sebou.
+Did you see the correct answer?
+If yes, congratulations! You've done your first Python command.
 
-Zkusíš i odečítání?
-
-A jak je to s násobením?
-{# XXX: Jak zapsat násobení? `4 x 5` `4 . 5` `4 × 5` `4 * 5` -#}
-Na kalkulačce bys zadala `4 × 5`, což se na klávesnici píše špatně.
-Python proto používá symbol `*`.
+Will you also try subtraction?
+And what about multiplication?
+On a calculator, you would enter `4 × 5`, which is hard to write on the keyboard.
+Therefore, Python uses the `*` symbol.
 
 ``` pycon
 >>> 4 * 5
 20
 ```
 
-Symboly jako `+` a `*` se odborně nazývají *operátory*.
+Symbols such as `+` and `*` are called *operators* in professional terminology.
 
-Operátor pro dělení je `/`.
+The operator for division is `/`.
 
-Při dělení může vzniknout necelé číslo, třeba dva a půl.
-Python používá desetinnou *tečku*, ukáže se tedy `2.5`:
+When dividing, an incomplete number can be created, for example two and a half. Python uses a decimal *point*, so it will show `2.5`.
 
 ``` pycon
 >>> 5 / 2
 2.5
 ```
 
-Z důvodů, do kterých teď nebudeme zabíhat, se při dělení desetinná tečka
-objeví i když vyjde číslo celé:
+For reasons we won't go into now, when dividing, a decimal point appears even if the number is a whole number:
 ``` pycon
 >>> 4 / 2
 2.0
 ```
 
-Občas se hodí použít dělení se zbytkem.
-Výsledek tak zůstane jako celé číslo.
-Na to má Python operátory `//` (podíl) a `%` (zbytek):
+Sometimes it is useful to use division with remainder.
+The result will remain as a whole number. For this, Python has operators `//` (quotient) and `%` (remainder):
 
 ``` pycon
 >>> 5 // 2
@@ -68,17 +72,10 @@ Na to má Python operátory `//` (podíl) a `%` (zbytek):
 1
 ```
 
+## Errors
 
-{# XXX:
-Kolik je
-<math mode="display" style="display:inline-box;" xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mrow><mn>123</mn> + <mn>456</mn></mrow><mrow><mn>789</mn></mrow></mfrac></math>?
-#}
-
-## Chyby
-
-Někdy se stane, že zadáš něco špatně – tak, že tomu Python nebude rozumět.
-Třeba když omylem použiješ neexistující operátor `%%`, dostaneš
-jako odpověď *chybovou hlášku*:
+Sometimes it happens that you input something incorrectly - something that Python won't understand.
+For example, if you accidentally use a non-existent operator `%%`, you will receive an *error message* as a response.
 
 ```pycon
 >>> 5 %% 2
@@ -88,25 +85,22 @@ jako odpověď *chybovou hlášku*:
 SyntaxError: invalid syntax
 ```
 
-Stává se to dost často – začátečníkům i profesionálním programátorům.
-Chybových hlášek se nemusíš bát.
-I když je něco špatně, stačí na dalším řádku zadat opravený příkaz.
+It happens quite often - to beginners as well as professional programmers.
+You don't have to be afraid of error messages.
+Even if something is wrong, you just need to enter the corrected command on the next line.
 
-V hlášce ti Python říká, že něco nepochopil nebo je něco jinak špatně.
-Snaží se co nejlíp naznačit, *co* a *kde* je špatně (ale je to jen hloupý
-stroj, tak mu to občas nevyjde).
-V chybové hlášce nahoře si všimni šipečky, `^`, která ukazuje na místo kde
-si Python chyby všiml.
+In the error message, Python tells you that something was not understood or something else is wrong.
+It tries to indicate as clearly as possible *what* and *where* the problem is (but it's just a silly machine, so sometimes it doesn't get it right).
+In the error message, notice the arrow symbol `^` at the top, which shows where Python noticed the error.
 
-Orientace v chybových hláškách patří k základním schopnostem programátorů.
-Až příště nějakou chybu dostaneš, zkus se zamyslet co ti v ní Python chce říct.
+Orientation in error messages is one of the basic skills of programmers.
+Next time you receive an error, try to think about what Python is trying to tell you.
 
+## Summary
 
-### Shrnutí
+What have you learned so far?
 
-Co ses zatím naučil{{a}}?
-
-*   **Interaktivní režim Pythonu** umožňuje zadávat příkazy (kód) pro
-    Python a zobrazuje výsledky/odpovědi.
-*   **Čísla** se používají na matematiku a práci s textem.
-*   **Operátor** jako `+` a `*` kombinuje hodnoty a vytvoří výsledek.
+*   **Interactive mode of Python** allows you to enter commands (code)
+    for Python and displays the results/answers.
+*   **Numbers** are used for mathematics and working with text.
+*   **Operators** such as `+` and `*` combine values and createw a result.

@@ -1,73 +1,58 @@
-# Instalace Pythonu pro Windows
+# Installing Python for Windows
 
-Máš-li Windows 10 s nejnovější aktualizací, zadej do příkazové řádky `python3`.
+If you have Windows 10 with the latest updates, enter `python3` in the command line.
 
-Pokud ještě Python nemáš nainstalovaný, otevře se ti automaticky stránka
-Microsoft Store. Python nainstaluj z ní.
+If you don't have Python installed yet, the Microsoft Store page will automatically open for you. Install Python from there.
 
-Jestli Python už nainstalovaný máš, ukáže se ti v příkazové řádce něco jako:
+If you already have Python installed, something like this will appear in the command line:
+
 
 ```plain
 > python3
 Python 3.8.1 (...)
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
-```
+``` 
 
-Na prvním řádku výstupu je verze Pythonu.
-Zkontroluj si, že verze je 3.6 nebo novější (např. `Python 3.6.10`,
-`Python 3.7.4` nebo `Python 3.8.1`).
+On the first line of the output is the version of Python. Check that the version is 3.6 or newer (for example, `Python 3.6.10`, `Python 3.7.4` or `Python 3.8.1`). 
+If it is, you have Python installed!
+End it with the shortcut <kbd>Ctrl</kbd>+<kbd>Z</kbd> and <kbd>Enter</kbd> so that the line where you will write further commands does not start with "three beaks" (`>>>`).
+<br><!-- instructions in case the window is accidentally closed: -->
+(Or close the window with the command line. When you need it again, you can open a new one.)
 
-Jestli ne, pokračuj sekcí níže.
-
-Jestli ano, Python máš nainstalovaný!
-Ukonči ho zkratkou <kbd>Ctrl</kbd>+<kbd>Z</kbd> a <kbd>Enter</kbd>, aby
-řádek, kam budeš psát další příkazy, nezačínal na „tři zobáčky“ (`>>>`).
-<br><!-- instrukce i pro případ, že si to okýnko zavře omylem: -->
-(Nebo okýnko s příkazovou řádkou zavři. Až ho budeš znovu potřebovat, můžeš
-otevřít nové.)
+If you did not get the output above, or the versoin is too low, continue with the section below.
 
 
-## Starší Windows nebo existující Python
+## Older Windows or existing Python
 
-Jestli zkratka `python` nefunguje, nebo jestli máš starší verzi Pythonu, běž na
-[stahovací stránku](https://www.python.org/downloads/)
-a stáhni si instalátor nejnovější stabilní verze Pythonu.
-Ověř si že je to verze **3.6.0 nebo novější** –
-verze 3.6.0 má jistá vylepšení, která budeme v tomto kurzu používat.
+If the shortcut `python3` doesn't work or if you have an older version of Python, go to the [download page](https://www.python.org/downloads/) and download the installer for the latest stable version of Python.
+Make sure it is version **3.6.0 or newer** - version 3.6.0 has certain improvements that we will be using in this course.
 
-Jak poznat, který instalátor je ten pravý?
-Pokud má tvůj počítač 64bitovou verzi Windows,
-stáhni si *Windows x86-64 executable installer*.
-Pokud máš starší počítač s 32bitovými Windows,
-stáhni si *Windows x86 executable installer*.
-(Rozdíl je v *x86-64* versus *x86*.)
+How to recognize which installer is the right one?
+If your computer has a 64-bit version of Windows,
+download the *Windows x86-64 executable installer*.
+If you have an older computer with 32-bit Windows,
+download the *Windows x86 executable installer*.
+(The difference is in *x86-64* versus *x86*.)
 
 > [note]
-> Kde zjistíš, zda máš 32bitové nebo 64bitové Windows? Otevři nabídku
-> **Start**, vyhledat „Systém“ a otevřít **Systémové informace**.
-> Pokud máš novější počítač, téměř jistě budeš mít Windows 64bitové.
+> Where can you find out if you have 32-bit or 64-bit Windows?
+>Open the **Start** menu, search for "System," and open **System Information**.
+>If you have a newer computer, you almost certainly have 64-bit Windows.
 >
-> {{ figure(
+>{{ figure(
     img=static('windows_32v64-bit.png'),
-    alt='Screenshot zjišťování verze systému',
+    alt='Screenshot of system version check',
 ) }}
 
-Stažený instalátor spusť.
-Na začátku instalace zaškrtni **Install launcher for all users**
-a také **Add Python to PATH**.
-Tyto volby ti zjednoduší vytvoření virtuálního prostředí.
+Run the downloaded installer. At the beginning of the installation, check **Install launcher for all users** and also **Add Python to PATH**.
+These options will simplify the creation of a virtual environment for you.
 
-(Jestli nemáš administrátorské oprávnění, volbu
-*Install launcher for all users* nezaškrtávej.)
+(If you don't have administrator privileges, do not check the option *Install launcher for all users*.)
 
-{{ figure(
-    img=static('windows_add_python_to_path.png'),
-    alt='Screenshot instalace Pythonu',
-) }}
+{{ figure( img=static('windows_add_python_to_path.png'), alt='Screenshot instalace Pythonu', ) }}
 
-Pak zmáčkni **Install now** a dále se drž instrukcí.
+Then press **Install now** and follow the instructions.
 
-Máš-li otevřenou příkazovou řádku, po instalaci Pythonu ji zavři a otevři
-novou.
-Instalace mění systémové nastavení, které se musí načíst znovu.
+If you have an open command line, close it after installing Python and open a new one.
+The installation changes system settings that need to be reloaded.

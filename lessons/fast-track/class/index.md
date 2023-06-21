@@ -1,161 +1,116 @@
-# Třídy
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
 
-Už ses seznámila se spoustou *tříd* objektů, se kterými v Pythonu můžeš
-pracovat: s čísly, která se dají třeba sečítat a násobit; řetězci, která se
-dají převádět na velká písmenka; seznamy, které umíš seřadit; slovníky,
-ve kterých se dá vyhledávat.
-Až budeš ve studiu programování pokračovat dál, objevíš další třídy objektů:
-soubory, ze kterých se dá číst; Webová stránky, které se dají poslat do
-prohlížeče; tlačítka, která jdou zmáčknout, a tak dále.
-Tříd je nepřeberné množství.
+# Classes
 
-A podobně jako si můžeš nadefinovat funkci pomocí `def`, i novou třídu si můžeš
-vytvořit {{gnd('sám', 'sama')}}.
-Používá se to hlavně tehdy, když v programu potřebuješ hodně objektů, které
-mají společné chování.
-Celá čísla, objekty třídy `int`, mají různou hodnotu ale všechna jdou sčítat.
-Každý seznam, objekt třídy `list`, může mít jiný obsah, ale všechny seznamy
-jsou seřadit.
+You have already familiarized yourself with a lot of *classes* of objects that you can work with in Python: with numbers that can be added and multiplied, for example; with strings that can be converted to capital letters; with lists that you can sort; with dictionaries that can be searched.
+As you continue studying programming further, you'll discover additional classes of objects: files that can be read; web pages that can be sent to a browser; buttons that can be pressed, and so on.
+There are countless classes.
 
-Úkol pro tuto sekci bude vytvořit třídu *koťátek*, která můžou mít různá jména,
-ale všechna umí mňoukat a jíst.
+And just as you can define a function using `def`, you can also create a new class {{gnd('himself', 'herself')}}. This is mainly used when you need a lot of objects in the program that have common behavior. Whole numbers, objects of the `int` class, have different values but they can all be added. Each list, object of the `list` class, can have different content, but all lists can be sorted.
 
-Začni mňoukáním:
+The task for this section is to create a class called *kitten*, which can have different names, but all of them can meow and eat.
+
+Start with meowing:
 
 ```python
-class Kotatko:
-    def zamnoukej(self):
-        print("Mňau!")
+class Kitten:
+    def purr(self):
+        print("Meow!")
+``` 
+
+Just like functions are defined using `def`, classes have the keyword `class`, after which you write the name of the class, a colon, and then the indented body of the class. Similar to how `def` creates a function, the `class` statement creates a new class and assigns it to a variable with the given name (here `Kitten`).
+
+Classes are traditionally named with a capital letter to avoid confusion with 'normal' values.
+
+>[note]
+>Basic classes (`str`, `int`, etc.) do not have capital letters, mainly for historical reasons - they were originally functions.
+
+In a class body, you can define methods that look just like functions - except they have a first argument `self`. But we'll explain that later - first, try purring:
 ```
+# Creating a specific object
+mourek = Kitten()
 
-Tak jako se funkce definují pomocí `def`,
-třídy mají klíčové slovo `class`,
-za které napíšeš jméno třídy, dvojtečku a pak odsazené tělo třídy.
-Podobně jako `def` dělá funkce, příkaz
-`class` udělá novou třídu a přiřadí ji
-do proměnné daného jména (tady `Kotatko`).
+# Method call
+mourek.purr() 
+``` 
 
-Třídy se tradičně pojmenovávají s velkým písmenem,
-aby se nepletly s „normálními“ hodnotami.
+When you define a class (using the `class` block), it doesn't mean that there is a kitten in your program yet. A class is like a recipe or a manual: when you buy a cookbook, you will theoretically know how to bake a cake, what such a cake will look like, and that it can be eaten. But it still doesn't mean that you have the actual cake!
 
-> [note]
-> Základní třídy (`str`, `int` atd.)
-> velká písmena nemají, a to hlavně z historických
-> důvodů – původně to byly opravdu funkce.
+You create a specific object by calling a class: you use the class as a function, `Kitten()`, and the result is a new object of your class that you can now use.
 
-V těle třídy můžeš definovat metody, které vypadají
-úplně jako funkce – jen mají první argument `self`.
-Ten si ale vysvětlíme později – napřed zkus zamňoukat:
+Meow!
+
+## Attributes
+
+In objects created from 'custom' classes, you can set *attributes* - information that is stored with the given object. Attributes are marked by writing a period between the value and the name of its attribute.
+```python
+mourek = Kitten()
+mourek.name = 'Mourek'
+print(mourek.name)
+```
+The string `'Mourek'` now "belongs" to a specific kitten. When you create another kitten, you can name it differently - set its attribute `name` to a different string.
 
 ```python
-# Vytvoření konkrétního objektu
-mourek = Kotatko()
+micka = Kitten()
+micka.name = 'Micka'
 
-# Volání metody
-mourek.zamnoukej()
+print(micka.name)
+print(mourek.name)
 ```
 
-Když definuješ třídu (pomocí bloku `class`), neznamená to zatím, že v tvém
-programu je nějaké koťátko.
-Třída je jako recept nebo manuál: když si koupíš kuchařku, budeš teoreticky
-vědět jak upéct dort, jak bude takový dort vypadat a že se dá sníst.
-Ale neznamená to ještě, že máš samotný dort!
+## Parameter `self`.
 
-Konkrétní objekt vytvoříš až zavoláním třídy: použiješ třídu jako funkci,
-`Kotatko()`, a výsledek je nový objekt tvé třídy, který už můžeš použít.
+Now let's briefly return to methods. Specifically, to the `self` parameter.
 
-Mňau!
-
-## Atributy
-
-U objektů vytvořených z „vlastních“ tříd můžeš nastavovat
-*atributy* – informace, které se uloží k danému objektu.
-Atributy se označují tak, že mezi hodnotu a jméno
-jejího atributu napíšeš tečku:
+Each method has access to a specific object it works on, precisely through the `self` argument. Now that you have named the kittens, you can use `self` in the `purr` method to access the name of the specific kitten.
 
 ```python
-mourek = Kotatko()
-mourek.jmeno = 'Mourek'
-print(mourek.jmeno)
+class Kitten:
+    def purr(self):
+        print("{}: Meow!".format(self.name))
+
+mourek = Kitten()
+mourek.name = 'Mourek'
+
+micka = Kitten()
+micka.name = 'Micka'
+
+mourek.purr()
+micka.purr()
 ```
 
-Řetězec `'Mourek'` teď „patří“ konkrétnímu koťátku.
-Když vytvoříš další koťátko, můžeš ho pojmenovat jinak – nastavit mu
-atribut `jmeno` na jiný řetězec.
+
+What happened? The expression `mourek.purr` represents a *method*. When you call it (`mourek.purr()`), the `mourek` object is passed to the `purr` function as the first argument, `self`.
+
+Can such a method take more than one argument?
+It can - `self` will be automatically added as the first argument,
+the rest of the arguments will be taken from the method call.
+For example:
 
 ```python
-micka = Kotatko()
-micka.jmeno = 'Micka'
+class Kitten:
+    def purr(self):
+        print("{}: Meow!".format(self.name))
 
-print(micka.jmeno)
-print(mourek.jmeno)
+    def eat(self, food):
+        print("{}: Yum yum! I like the {}!".format(self.name, food))" 
+
+mourek = Kitten()
+mourek.name = 'Mourek'
+mourek.eat('fish')
 ```
 
-## Parametr `self`
+## Summary
 
-Teď se na chvíli vraťme k metodám. Konkrétně k parametru `self`.
+Classes can do much more, but the basics are: all objects of a given class have some common behavior (for example, kittens can meow). And at the same time, each object also has its own information, just for it (for example, a kitten's meowing).
 
-Každá metoda má přístup ke konkrétnímu objektu, na
-kterém pracuje, právě přes argument `self`.
-Teď, když máš koťátka pojmenovaná, můžeš v metodě `zamnoukej` použít `self`
-a dostat se tak ke jménu daného koťátka:
+It is worth writing your own class when you have more objects with similar behavior in the program, or when you just need to have a set of functions (or methods) neatly together.
 
-```python
-class Kotatko:
-    def zamnoukej(self):
-        print("{}: Mňau!".format(self.jmeno))
+And that's it.
+*You are absolutely great!* 
+This was a difficult lesson, so you should be proud of yourself.
+We are very proud of you for coming this far!
 
-mourek = Kotatko()
-mourek.jmeno = 'Mourek'
-
-micka = Kotatko()
-micka.jmeno = 'Micka'
-
-mourek.zamnoukej()
-micka.zamnoukej()
-```
-
-Co se stalo? Výraz `mourek.zamnoukej` udělá *metodu*.
-Když ji pak zavoláš (`mourek.zamnoukej()`),
-objekt `mourek` se předá funkci `zamnoukej` jako první argument, `self` .
-
-Může taková metoda brát víc než jeden argument?
-Může – `self` se doplní na první místo,
-zbytek argumentů se vezme z volání metody.
-Třeba:
-
-```python
-class Kotatko:
-    def zamnoukej(self):
-        print("{}: Mňau!".format(self.jmeno))
-
-    def snez(self, jidlo):
-        print("{}: Mňau mňau! {} mi chutná!".format(self.jmeno, jidlo))
-
-mourek = Kotatko()
-mourek.jmeno = 'Mourek'
-mourek.snez('ryba')
-```
-
-## Shrnutí
-
-Třídy toho umí mnohem víc, ale základ: všechny objekty dané třídy mají nějaké
-společné chování (třeba koťátka umí mňoukat).
-A zároveň každý objekt má i vlastní informace, jen pro něj (třeba koťátko
-mňoukání).
-
-Vlastní třídu se vyplatí napsat, když v programu máš víc objektů s podobným
-chováním, anebo když jen potřebuješ mít nějakou sadu funkcí (resp. metod) pěkně
-pohromadě.
-
-
-A je to.
-*Jsi naprosto skvěl{{gnd('ý', 'á')}}!*
-Tohle byla složitá lekce, takže bys na sebe měl{{a}} být hrd{{gnd('ý', 'á')}}.
-My jsme na tebe velmi hrdí za to, že ses dostal{{a}} tak daleko!
-
-Běž si krátce odpočinout – protáhnout se, projít se,
-zavřít oči – než se pustíš do další kapitoly. :)
-
-🧁
+Take a short break - stretch, take a walk, close your eyes - before you start the next chapter. :)
 

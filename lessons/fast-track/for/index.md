@@ -1,82 +1,80 @@
-# Cykly
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Programátoři se neradi opakují.
-Programování je o automatizaci: nebudeme zdravit každého člověka zvlášť,
-vezměme seznam padesáti lidí a pozdravíme je všechny najednou!
+# Cycles
 
-(No, někteří programátoři asi nejsou moc sociálně nadaní.
-Ale jinde se ta automatizace fakt hodí!)
+Programmers don't like to repeat themselves. Programming is about automation: we won't greet every person separately, let's take a list of fifty people and greet them all at once!
 
-Ještě si vzpomínáš na seznamy?
-Udělej si seznam jmen:
+No, some programmers are probably not very socially gifted. But automation really comes in handy elsewhere!
 
-```python
-jmena = ['Rachel', 'Monica', 'Phoebe', 'Ola', 'Ty']
-```
-
-Se seznamem pak budeš chtít udělat tohle:
-
-* Pro každé jméno ze seznamu jmen:
-    * pozdrav daným jménem
-
-V Pythonu se takový *cyklus* – opakování „pro každý prvek seznamu“ – píše
-pomocí příkazu `for`:
-
-``` python
-for jmeno in jmena:
-    pozdrav(jmeno)
-```
-
-Celý program bude tedy vypadat takto:
+Do you still remember lists? Make a list of names.
 
 ```python
-def pozdrav(jmeno):
-    print('Vítam tě,', jmeno)
-
-jmena = ['Rachel', 'Monica', 'Phoebe', 'Ola', 'Ty']
-for jmeno in jmena:
-    pozdrav(jmeno)
+names = ['Rachel', 'Monica', 'Phoebe', 'Ola', 'Ty']
 ```
 
-A když ho spustíme:
+With the list, you will want to do this:
 
-``` console
+* For each name from the list of names:
++ greet by the given name.
+
+In Python, such a *loop* - repetition "for each element of the list" - is written using the `for` command.
+
+```
+for name in names:
+    greet(name)
+```
+
+The entire program will therefore look like this:
+
+
+```python
+def greet(name):
+    print('Welcome,', name)
+
+names = ['Rachel', 'Monica', 'Phoebe', 'Ola', 'Ty']
+for name in names:
+    greet(name)
+```
+
+And when we execute it:
+
+```
 $ python3 python_intro.py
-Vitam ťa, Rachel
-Vitam ťa, Monica
-Vitam ťa, Phoebe
-Vitam ťa, Ola
-Vitam ťa, Ty
+Welcome, Rachel
+Welcome, Monica
+Welcome, Phoebe
+Welcome, Ola
+Welcome, You
 ```
 
-Jak vidíš, vše, co jsi vložila dovnitř příkazu `for` s odsazením,
-se zopakuje pro každý prvek seznamu `jmena`.
+As you can see, everything you have indented inside the `for` loop will be repeated for each element of the `names` list.
 
-{# XXX: exercise? #}
 
-## Opakuj <var>n</var>-krát
+## Repeat <var>n</var> times
 
-Cyklus `for` můžeš použít i s jinými hodnotami než se seznamy.
+You can use the `for` loop with values other than lists.
 
-Často se používá s funkcí `range()`.
-Když chceš něco 200-krát zopakovat, napiš:
+It is often used with the `range()` function. When you want to repeat something 200 times, write:
+
 
 ```python
 for i in range(200):
-     print("Už nikdy nebudu házet igelit do táboráku!")
+     print("I will never throw a plastic bag into a campfire again!")
 ```
 
-Jak to funguje?
-`for i in range(X)` se dá přeložit jako „pro každé číslo
-od nuly do <var>X</var>“.
-Funkce `range` onu posloupnost čísel od nuly do <var>X</var> vytvoří.
-Do proměnné `i` Python postupně uloží každé číslo, podle toho po kolikáté
-cyklem prochází.
+How does it work
+`for i in range(X)` can be translated as "for every number from zero to <var>X</var>".
+The function `range` creates that sequence of numbers from zero to <var>X</var>.
+Python stores each number in the variable `i` as it iterates through the loop.
+
 
 ```python
 for i in range(5):
      print(i)
 ```
+
 ```
 0
 1
@@ -85,14 +83,14 @@ for i in range(5):
 4
 ```
 
-Všimni si, že samotné `5` není zahrnuto ve výsledku:
-`range(5)` počítá od 0 do 4.
-Když počítáš od nuly a chceš pět čísel, skončíš u čtyřky.
 
+Notice that the number `5` itself is not included in the result:
+`range(5)` counts from 0 to 4.
+When you start counting from zero and want to have five numbers, you end up with four.
 
-## Shrnutí
+## Summary
 
-Naučil{{a}} ses:
+You learned:
 
-*   **Cyklus** je způsob, jak opakovat nějaký postup několikrát po sobě
-*   `range` pomáhá když potřebuješ určitý konkrétní počet opakování.
+* "Cycle" means a way to repeat a certain procedure multiple times in a row.
+* "Range" helps when you need a specific number of repetitions.

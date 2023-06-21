@@ -1,79 +1,77 @@
-# Instalace {% block name_gen %} editoru {{ var('editor_name') }} {% endblock %}
-
+# {% block heading %}Installation of {% block name_gen %} editor {{ var('editor_name') }} {% endblock %}{% endblock %}
 
 {% block install %}
 
-Editor {{ editor_name }}
-si stáhni z jeho [domovské stránky]({{ editor_url }})
-a nainstaluj.
+Editor {{ editor_name }} - download it from its [homepage]({{ editor_url }}) and install it.
 
 {% endblock %}
 
-## Nastavení
+## Setup
 
 {% block setup %}
 
-(Tohle by nemělo být vidět)
+(This shouldn't be visible)
 
 {% endblock %}
 
+## Indentation practice
 
-## Nácvik odsazování
+As already mentioned, in Python it is important how many spaces a line starts with.
+Therefore, it will be useful for us to know how to quickly indent blocks of text.
+Let's see how to do it.
 
-Jak už bylo zmíňeno, v Pythonu je důležité, kolika mezerami řádek začíná.
-Proto se nám bude hodit vědět, jak rychle odsazovat bloky textu.
-Pojďme si ukázat, jak na to.
-
-Zkopíruj si do editoru tento text:
-
+Copy this text into the editor:
 ```
-Ofelie:
-Ach princi!
-Jak má se Vaše Výsost už tak dlouho?
-Hamlet:
-Děkují poníženě: skvěle, skvěle, skvěle.
-Ofelie:
-Mám od vás, princi, stále ještě dárky,
-Jež dávno toužím vrátit. Prosím vás,
-račte je přijmout teď.
-Hamlet:
-Kdo? Já? Já nikdy
-vám nedal nic.
-Ofelie:
-Dal, Výsosti. A spolu s dárky slova
-tak rozmilá, že každý z nich
-měl jejich vůni. Ta teď vyvanula,
-a tak je vracím. Dary nejbohatší
-se mění v trety, když se dárce mračí.
-Zde, Výsosti.
+OPHELIA:
+Good my lord,
+How does your honour for this many a day?
+HAMLET:
+I humbly thank you; well, well, well.
+OPHELIA:
+My lord, I have remembrances of yours
+That I have longed long to re-deliver.
+I pray you, now receive them.
+HAMLET:
+No, not I.
+I never gave you aught.
+OPHELIA:
+My honour’d lord, you know right well you did,
+And with them words of so sweet breath compos’d
+As made the things more rich; their perfume lost,
+Take these again; for to the noble mind
+Rich gifts wax poor when givers prove unkind.
+There, my lord.
+```
+(An excerpt from *Hamlet* by W. Shakespeare)
+
+This text is not very clear, so we will try to space it out to make it look like this:
+```
+OPHELIA:
+    Good my lord,
+    How does your honour for this many a day?
+HAMLET:
+    I humbly thank you; well, well, well.
+OPHELIA:
+    My lord, I have remembrances of yours
+    That I have longed long to re-deliver.
+    I pray you, now receive them.
+HAMLET:
+    No, not I.
+    I never gave you aught.
+OPHELIA:
+    My honour’d lord, you know right well you did,
+    And with them words of so sweet breath compos’d
+    As made the things more rich; their perfume lost,
+    Take these again; for to the noble mind
+    Rich gifts wax poor when givers prove unkind.
+    There, my lord.
 ```
 
-<small>(úryvek ze hry Hamlet, napsal W. Shakespeare, překlad E. A. Saudek)</small>
+To indent one line, set the cursor at the beginning of the line and press the <kbd>Tab</kbd> key.
+Each time you press it, the line will be indented by 4 spaces.
 
+If you indent too much, you can reduce the indentation using Shift+Tab.
 
-Tenhle text není moc přehledný, tak ho zkusíme poodsazovat, aby vypadal takhle:
+If you want to indent multiple lines at once, select them all and press <kbd>Tab</kbd>. You can also "unindent" the selection using <kbd>Shift</kbd>+<kbd>Tab</kbd>.
 
-```
-Ofelie:
-    Ach princi!
-    Jak má se Vaše Výsost už tak dlouho?
-Hamlet:
-    Děkují poníženě: skvěle, skvěle, skvěle.
-Ofelie:
-    Mám od vás, princi, stále ještě dárky,
-    Jež dávno toužím vrátit. Prosím vás,
-    račte je přijmout teď.
-atd.
-```
-
-Abys odsadil{{a}} jeden řádek, nastav kurzor na začátek řádku a stiskni
-klávesu <kbd>Tab</kbd>.
-Každým stisknutím řádek odsadíš o 4 mezery.
-
-Odsadíš-li moc, pomocí <kbd>Shift</kbd>+<kbd>Tab</kbd> odsazení zmenšíš.
-
-Chceš-li odsadit víc řádků najednou, všechny je vyber a stiskni <kbd>Tab</kbd>.
-I výběr můžeš „od-odsadit“ pomocí <kbd>Shift</kbd>+<kbd>Tab</kbd>.
-
-
-A to je vše! Teď máš nejen nastavený editor, ale umíš ho i používat.
+And that's it! Now you not only have the editor set up, but you also know how to use it.

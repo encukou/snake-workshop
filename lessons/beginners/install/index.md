@@ -1,18 +1,11 @@
-# Instalace Pythonu
+# Installing Python
 
-V této sekci nainstalujeme Python.
+In this section, we will install Python.
 
-To se na každém druhu operačního systému dělá trošku jinak.
-Vyber si stránku podle svého systému:
+That is done a little differently on every type of operating system. Choose a page according to your system:
 
-* [Linux]({{ subpage_url('linux') }})
-* [Windows]({{ subpage_url('windows') }})
-* [macOS]({{ subpage_url('macos') }})
+* [Linux]({{ subpage_url('linux') }}) 
+* [Windows]({{ subpage_url('windows') }}) 
+* [macOS]({{ subpage_url('macos') }}) 
 
-Pokud máš jiný systém než Linux, Windows nebo macOS,
-nebo pokud ke svému počítači neznáš administrátorské heslo,
-{% if var('coach-present') -%}
-poraď se s koučem hned. Jinak se ptej, až bude něco nejasné.
-{%- else -%}
-napiš nám prosím e-mail. {# XXX vyřešit kam poslat samostudenty co mají problém #}
-{%- endif %}
+If you have a different system, or if you do not know the administrator password for your computer, please send us an email and we'll try to help.

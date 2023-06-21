@@ -1,364 +1,336 @@
-# Seznamy
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Vedle řetězců a celých čísel má Python další druhy hodnot.
+# Lists
 
-Teď se podíváme na jeden, který se nazývá *seznam* (anglicky *list*).
-To je hodnota, která v sobě obsahuje jiné hodnoty.
+In addition to strings and whole numbers, Python has other types of values.
 
-{# Anglické termíny všude! #}
+Now we will look at one that is called *list*.
+This is a value that contains other values within it.
 
-Seznamy se zadávají tak, že dáš několik hodnot, oddělených čárkami,
-do hranatých závorek.
-Zkus si vytvořit třeba seznam čísel z loterie:
+Lists are entered by entering several values separated by commas, enclosed in square brackets.
+Try creating a list of numbers from the lottery, for example.
 
-``` pycon
+```pycon
 >>> [3, 42, 12, 19, 30, 59]
 [3, 42, 12, 19, 30, 59]
 ```
 
-Abys s takovým seznamem mohl{{a}} pracovat,
-ulož si ho do proměnné:
+So that you could work with such a list, save it to a variable:
 
-``` pycon
->>> loterie = [3, 42, 12, 19, 30, 59]
+```pycon
+lottery = [3, 42, 12, 19, 30, 59]
 ```
 
-Tak, a máš seznam! Co s ním ale můžeš dělat?
-Podívej se, kolik čísel v seznamu je.
-Dá se na to použít funkce, kterou už znáš.
-Tipneš si, která to je?
+So, you have a list!
+But what can you do with it?
+Look at how many numbers are on the list.
+You can use a function that you already know.
+Can you guess which one it is?
 
 {% filter solution %}
-``` pycon
->>> len(loterie)
+```pycon
+>>> len(lottery)
 6
 ```
 
-Funkce `len()` umí zjistit nejen délku řetězce, ale i délku seznamu – tedy
-počet jeho prvků.
+The function `len()` can determine not only the length of a string, but also the length of a list - that is, the number of its elements.
 {% endfilter %}
 
-Teď si zkus seznam seřadit. Na to existuje metoda `sort`:
+Now try to sort the list. There is a method called `sort` for that.
 
-``` pycon
->>> loterie.sort()
+```pycon
+>>> lottery.sort()
 ```
+This method doesn't return anything, but it quietly changes the order of numbers in the list. Print it again to see what happened.
 
-Tato metoda nic nevrátí, ale „potichu“ změní pořadí čísel v seznamu.
-Znovu si ho vypiš, ať vidíš co se stalo:
-
-``` pycon
->>> loterie
+```pycon
+>>> lottery
 [3, 12, 19, 30, 42, 59]
 ```
+The numbers in the list are now sorted from lowest to highest value.
 
-Čísla v seznamu jsou nyní seřazena od nejnižší k nejvyšší hodnotě.
+The `reverse` method works similarly, it reverses the order of elements. Try it out!
 
-Podobně funguje metoda `reverse`, která obrátí pořadí prvků.
-Vyzkoušej si ji!
-
-``` pycon
->>> loterie.reverse()
->>> loterie
+```pycon
+>>> lottery.reverse()
+>>> lottery
 [59, 42, 30, 19, 12, 3]
 ```
 
-## Přidávání do seznamu
+## Adding to the list
 
-Podobně jako u řetězců se seznamy dají spojovat pomocí `+`:
+Similarly to strings, lists can be concatenated using the `+` operator.
 
-``` pycon
->>> loterie + [5, 6, 7, 8]
+```pycon
+>>> lottery + [5, 6, 7, 8]
 [59, 42, 30, 19, 12, 3, 5, 6, 7, 8]
 ```
+This will create a new list, the original one remains unchanged.
 
-Tím se vytvoří nový seznam, ten původní zůstává nezměněný:
-
-``` pycon
->>> loterie
+```pycon
+>>> lottery
 [59, 42, 30, 19, 12, 3]
 ```
 
-Pokud chceš něco přidat do původního seznamu, můžeš to provést pomocí metody
-`append`.
-Ale pozor! Tahle metoda potřebuje vědět co má do seznamu přidat.
-Nová hodnota se zadává do závorek:
+If you want to add something to the original list, you can do so using the `append` method.
+But be careful! This method needs to know what to add to the list.
+The new value is entered in parentheses.
 
-``` pycon
->>> loterie.append(199)
+```pycon
+>>> lottery.append(199)
 ```
 
-Metoda opět nic nevrací, takže je potřeba seznam pro kontrolu vypsat:
+The method again does not return anything, so it is necessary to write out a check for control.
 
-``` pycon
->>> loterie
+```pycon
+>>> lottery
 [59, 42, 30, 19, 12, 3, 199]
 ```
 
-## Vybírání prvků
+## Selecting elements
 
-Když se budeš chtít na jednu věc ze seznamu podívat podrobněji,
-přijde vhod možnost vybrat si konkrétní prvek.
-Na to se v Pythonu používají hranaté závorky.
+When you want to take a closer look at one item from the list, it is useful to have the option to select a specific element.
+In Python, square brackets are used for this.
 
-{# XXX: MCQ #}
+If you want to select an element, enter the name of the list followed immediately by square brackets with the ordinal number of the element you want.
 
-Chceš-li vybrat prvek, zadej jméno seznamu a hned za ním hranaté závorky
-s pořadovým číslem prvku, který chceš:
-
-``` pycon
->>> loterie[1]
+```pycon
+>>> lottery[1]
 ```
-
-Dostaneš první prvek?
+Do you get the first element?
 
 {% filter solution %}
-``` pycon
->>> loterie
+```pycon
+>>> lottery
 [59, 42, 30, 19, 12, 3, 199]
->>> loterie[1]
+>>> lottery[1]
 42
 ```
+No, you will receive the second element.
 
-Ne, dostaneš druhý prvek.
+Programmers count from zero. So if you want the first element, ask Python for element number zero.
 
-Programátoři počítají od nuly.
-Chceš li tedy první prvek, popros Python o prvek číslo nula:
-
-``` pycon
+```pycon
 >>> loterie[0]
 42
 ```
-
-Je to zpočátku divné, ale dá se na to zvyknout.
+At first, it's strange, but you can get used to it.
 {% endfilter %}
 
-Číslu prvku se také říká *index* a procesu vybírání prvků *indexování*.
+The number of an element is also called an *index* and the process of selecting elements is called *indexing*.
 
-Zkus si indexování s dalšími indexy: 3, 100, 7, -1, -2, -6 nebo -100.
-Pokus se předpovědět výsledek před zadáním příkazu.
-Jak ti to půjde?
+Try indexing with other indices: 3, 100, 7, -1, -2, -6 or -100.
+Try to predict the result before entering the command.
+How will you do?
 
 {% filter solution %}
-``` pycon
->>> loterie
+```pycon
+>>> lottery
 [59, 42, 30, 19, 12, 3, 199]
 
->>> loterie[3]
+>>> lottery[3]
 19
 ```
-Index 3 označuje čtvrtý prvek.
+Index 3 means the fourth element.
 
-``` pycon
->>> loterie[7]
+```pycon
+>>> lottery[7]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list index out of range
-
 ```
-Prvek s indexem 100 v seznamu není – nastane chyba.
+Element with index 7 does not exist - it results in error.
 
-``` pycon
+```pycon
 >>> loterie[1000]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list index out of range
 ```
-Prvek s indexem 7 v seznamu taky není.
+Same for index 1000.
 
-``` pycon
+```pycon
 >>> loterie[-1]
 199
 ```
-Index -1 označuje *poslední* prvek.
+Index -1 means the *last* element.
 
-``` pycon
+```pycon
 >>> loterie[-2]
 3
 ```
-Index -2 označuje předposlední prvek.
+Index -2 means the one before the last element.
 
-``` pycon
+```pycon
 >>> loterie[-6]
 42
 ```
-Index -6 označuje šestý prvek od konce.
+Index -6 means the sixth element from the end.
 
-``` pycon
+```pycon
 >>> loterie[-100]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list index out of range
 ```
-Stý prvek od konce v seznamu není. Nastane chyba.
+
+Such element does not exist, we get error.
 {% endfilter %}
 
 
-## Odstraňování
+## Removal
 
-Chceš-li ze seznamu něco odstranit, můžeš opět použít indexy.
-Tentokrát s příkazem `del`.
-Následujícím kódem odstraň počáteční číslo seznamu, tedy prvek číslo 0:
+If you want to remove something from the list, you can use indexes again.
+This time with the `del` command.
+Use the following code to remove the first number from the list, i.e. element number 0:
 
-``` pycon
->>> del loterie[0]
+```pycon
+>>> del lottery[0]
 ```
 
-Pak si seznam opět vypiš. Kousek chybí!
+Then list it again. Something is missing!
 
-``` pycon
->>> loterie
+```pycon
+>>> lottery
 [42, 30, 19, 12, 3, 199]
 ```
 
-Zkusíš odstranit poslední prvek?
+How would you remove the last element?
 
 {% filter solution %}
-``` pycon
->>> del loterie[-1]
->>> loterie
+```pycon
+>>> del lottery[-1]
+>>> lottery
 [42, 30, 19, 12, 3]
 ```
 {% endfilter %}
 
-Občase se stane, že nechceš smazat prvek podle pozice, ale podle toho,
-co v seznamu je.
-K tomu slouží hodnota `remove`, která najde a odstraní danou hodnotu:
+Sometimes it happens that you don't want to delete an element by position, but by what its value in the list.
+For this purpose, the `remove` value is used, which finds and removes the given value:
 
 ```pycon
->>> loterie
+>>> lottery
 [42, 3]
->>> loterie.remove(3)
->>> loterie
+>>> lottery.remove(3)
+>>> lottery
 [42]
 ```
 
+## Slicing
 
-## Řezání
+Apart from selecting one element from the list, it is also possible to select several elements - a part of the list, called a "sublist".
 
-Ze seznamu se dá kromě jednoho prvku vybrat i prvků několik – část seznamu,
-takzvaný *podseznam*.
-
-Udělej si opět delší seznam čísel:
-
-``` pycon
->>> cisla = ["První", "Druhý", "Třetí", "Čtvrtý"]
-```
-
-Budeš-li chtít vybrat prvky od druhého dál, dej do hranatých závorek číslo
-tohohle prvku, a za něj dvojtečku.
-
-``` pycon
->>> cisla[1]
-'Druhý'
->>> cisla[1:]
-['Druhý', 'Třetí"', 'Čtvrtý']
-```
-
-Vybráním podseznamu se seznam nemění, tak můžeš vybírat dál:
+Make another longer list of numbers.
 
 ```pycon
->>> cisla
-['První', 'Druhý', 'Třetí', 'Čtvrtý']
->>> cisla[1:]
-['Druhý', 'Třetí"', 'Čtvrtý']
->>> cisla[2:]
-['Třetí', 'Čtvrtý']
->>> cisla[3:]
-['Čtvrtý']
->>> cisla[4:]
-[]
+>>> numbers = ["First", "Second", "Third", "Fourth"]
+``` 
+
+If you want to select elements from the second one onwards, put the number of this element in square brackets and then a colon.
+
+```pycon
+>>> numbers[1]
+'Second'
+>>> numbers[1:]
+['Second', 'Third', 'Fourth']
+``` 
+
+By selecting a sub-list, the main list does not change, so you can continue selecting further:
+
+```pycon
+>>> numbers
+['First', 'Second', 'Third', 'Fourth'].
+>>> numbers[1:] 
+['Second', 'Third', 'Fourth'].
+>> numbers[2:] 
+['Third', 'Fourth'].
+>> numbers[3:] 
+['Fourth'].
+>> numbers[4:] 
+[].
 ```
 
-Budeš-li chtít vybrat prvky od začátku *až po* některý prvek, dej dvojtečku
-*před* číslo prvku, který už ve výsledku nechceš
-
+If you want to select elements from the beginning *up to* a certain element, put a colon *before* the number of the element you don't want in the result.
 
 ``` pycon
->>> cisla[2]
-'Třetí'
->>> cisla[:2]
-['První', 'Druhý']
-```
+>>> numbers[2]
+'Third'
+>>>  numbers[:2]
+['First', 'Second']
+``` 
 
-Úkol: máš-li nějaký seznam, jak z něj vybereš všechny prvky kromě posledního?
+Task: If you have a list, how do you select all elements except the last one?
+{% filter solution %} 
+The last number has an index of -1, so I will select elements up to -1.
 
-{% filter solution %}
-Poslední číslo má index -1, vyberu tedy prvky do -1:
-
-``` pycon
->>> cisla[:-1]
-['První', 'Druhý', 'Třetí']
-```
-
-Taky v zápisu pro vybrání všeho kromě posledního prvku vidíš smajlík?
-\[:-1]
-
+```pycon
+>>> numbers[:-1]
+['First', 'Second', 'Third']
+``` 
+Do you also see a smiley face in the code for selecting everything except the last element?
 {% endfilter %}
 
-Začátek a konec se dá kombinovat – číslo můžeš dát před i za dvojtečku:
+The beginning and the end can be combined - you can put the number before or after the colon.
 
 ```pycon
->>> cisla
-['První', 'Druhý', 'Třetí', 'Čtvrtý']
+>>> numbers
+['First', 'Second', 'Third', 'Fourth']
 >>> cisla[1:-1]
-['Druhý', 'Třetí']
+['Second', 'Third']
 ```
 
-Řezání funguje i pro příkaz `del`.
-Zkus vymazat prostřední dvě čísla:
+Slicing works also for the `del` command. Try deleting the middle two numbers:
 
-``` pycon
->>> cisla
-['První', 'Druhý', 'Třetí', 'Čtvrtý']
->>> del cisla[1:-1]
->>> cisla
-['První', 'Čtvrtý']
+```pycon
+>>> numbers
+['First', 'Second', 'Third', 'Fourth']
+>>> del numbers[1:-1]
+>>> numbers
+['First', 'Fourth']
 ```
 
+## Slicing strings
 
-## Řezání řetězců
+Square brackets also work with strings where they select letters:
 
-Hranaté závorky fungují i u řetězců, kde vybírají písmenka:
-
-``` pycon
->>> jidlo = 'čokoláda'
->>> jidlo[3]
+```pycon
+>>> food = 'chocolate'
+>>> food[3]
 'o'
->>> jidlo[1:4]
-'oko'
+>>> food[2:5]
+'oco'
 ```
 
-Řetězce se ale nedají měnit: `del`, `sort` nebo `append` fungují jen
-na seznamech.
+However, strings cannot be changed: `del`, `sort`, or `append` only work on lists.
 
-Úkol: Představ si, že máš v proměnné `jmeno` ženské jméno jako `'Ola'`,
-`'Krystýna'` nebo `'Růžena'`.
-Jak z něj vytvoříš druhý pád (např. bez `'Růženy'`)?
+XXX: this task is probably not a good idea
+Task: Imagine you have a Czech female name in the variable `jmeno` such as `'Ola'`, `'Krystýna'`, or `'Růžena'`.
+How do you create the second case? 
+
+Take the name up to the last letter and add `'y'`. For example:
 
 {% filter solution %}
-Vezmi jméno až po poslední písmeno a přidej `'y'`. Například:
 ``` python
->>> jmeno = 'Růžena'
->>> jmeno[:-1] + 'y'
+>>> name = 'Růžena'
+>>> name[:-1] + 'y'
 'Růženy'
->>> jmeno = 'Krystýna'
->>> jmeno[:-1] + 'y'
+>>> name = 'Krystýna'
+>>> name[:-1] + 'y'
 'Krystýny'
 ```
 {% endfilter %}
 
+## Summary
 
-## Shrnutí
+Phew! There was quite a lot to learn about lists. Let's summarize what you already know:
 
-Uf! O seznamech toho bylo k naučení celkem hodně. Shrňme si, co už umíš:
+* A **list** is an ordered sequence of values.
+* Using **methods**, a list can be sorted (`sort`) and reversed (`reverse`), or an element can be added (`append`) or removed (`remove`) from it.
+* Elements can be **selected** or **deleted** (`del`) by index.
+* The numbering starts **from zero**, negative numbers take elements from the end.
+* A **sublist** is a certain part of a list.
+* With **strings**, selecting elements and substrings works similarly.
 
-* **Seznam** je seřazená sekvence hodnot.
-* Pomocí **metod** se seznam dá řadit (`sort`) a obrátit (`reverse`),
-  nebo se do něj dá přidat (`append`) či odebrat (`remove`) prvek.
-* Prvky se dají **vybrat** nebo **odstranit** (`del`) podle indexu.
-* Číslování začíná **od nuly**, záporná čísla berou prvky od konce.
-* **Podseznam** je určitá část seznamu.
-* U **řetězců** funguje vybírání prvků a podřetězců podobně
-
-Jsi připraven{{a}} na další část?
+Are you ready for the next part?

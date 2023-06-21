@@ -1,187 +1,131 @@
-# Ulož to!
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Zatím jsi psal{{a}} všechny programy v konzoli v interaktivním režimu Pythonu,
-ve kterém Python vždy po napsání příkazu odpověděl výsledkem.
-Když Python opustíš (nebo vypneš počítač),
-všechno co jsi zatím naprogramoval{{a}} se ztratí.
+# Save it
 
-Větší programy jsou trvanlivější: ukládají se do souborů a dají se kdykoli
-spustit znovu.
+So far, you have written all programs in the console in the interactive mode of Python, in which Python always responded with a result after a command was written. When you exit Python (or turn off the computer), everything you have programmed so far will be lost.
 
-Je čas si to vyzkoušet. Budeš potřebovat:
+Larger programs are more durable: they are saved in files and can be run again anytime.
 
-1. Ukončit interaktivní režim Pythonu
-2. Otevřít editor kódu
-3. Uložit kód do nového souboru
-4. Spustit kód ze souboru!
+It's time to try it out. You will need:
 
-Jako první krok vypni Python. Existuje na to funkce `exit()`:
+1. End interactive mode of Python
+2. Open code editor
+3. Save code to a new file
+4. Run code from the file!
 
-``` pycon
+As a first step, turn off Python. There is a function for that: `exit()`.
+
+```pycon
 >>> exit()
-```
+``` 
 
-Tak se dostaneš zpět do příkazové řádky. Pamatuješ na ni?
-Už neuvidíš `>>>`, ale řádek končící `$` nebo `>`.
-Budou tu fungovat příkazy jako `cd` a `mkdir`,
-ale ne příkazy Pythonu, jako `1 + 1`.
+So you'll get back to the command line. Do you remember it? You won't see `>>>` anymore, but a line ending with `$` or `>`. Commands like `cd` and `mkdir` will work here, but not Python commands like `1 + 1`.
 
-
-Doufám, že máš nainstalovaný [textový editor](../../beginners/install-editor/).
-Ten teď otevři, udělej si nový soubor a do něj napiš tento příkaz:
-
+I hope you have installed a text editor. Now open it, create a new file and write this command into it:
 ```python
 print('Hello, PyLadies!')
 ```
 
-Nový soubor ulož pod nějakým popisným názvem: `python_intro.py`.
-Ulož si jej do adresáře, kam si budeš dávat soubory k tomuto workshopu.
-Jméno musí končit na `.py`: tahle přípona říká editoru nebo i
-operačnímu systému, že jde o program v Pythonu a Python ho může spustit.
+Save a new file under a descriptive name: `python_intro.py`.
+Save it to a directory where you keep files for this workshop.
+The name must end with `.py`: this extension tells the editor or operating system that it is a Python program and Python can run it.
 
-> [note] Obarvování
-> Po uložení by se text měl obarvit.
-> V interaktivním režimu Pythonu mělo vše stejnou barvu,
-> ale nyní bys měla vidět, že jméno funkce `print` je vysázeno jinou barvou než
-> řetězec v závorkách.
-> Barvy nevolíš {{gnd('sám', 'sama')}}, vybírá je editor na základě toho,
-> jak potom Python kódu porozumí.
->
-> Nazývá se to "zvýrazňování syntaxe" a je to užitečná funkce.
-> Chce to trochu praxe, ale barvy můžou napovědět
-> že ti chybí uvozovka za řetězcem
-> nebo máš překlep v klíčovém slově jako `del`.
-> To je jeden z důvodů, proč používáme programátorské editory :)
+>[Note] Syntax highlighting
+>After saving, the text should be colored. In interactive Python mode, everything should have the same color, but now you should see that the function name `print` is set in a different color than the string in parentheses. >You don't choose the colors {{gnd('yourself', 'yourself')}}, the editor selects them based on how Python understands the code. It's called "syntax highlighting" and it's a useful feature. It takes a little practice, but > >colors can suggest that you're missing a quote after the string or have a typo in a keyword like `del`. That's one of the reasons we use programming editors :)
 
-Pokud máš soubor uložen, je čas jej spustit!
-Pomocí dovedností, které jsi se naučil{{a}} v sekci
-o příkazové řádce, *změň adresář* na ten, kam jsi soubor uložil{{a}}.
-{% if var('coach-present') -%}
-(Pokud nevíš jak dál, požádej o pomoc kouče.)
-{% endif %}
+If you have the file saved, it's time to run it! Using the skills you learned in the command line section, *change the directory* to where you saved the file. {% if var('coach-present') -%} (If you don't know what to do next, ask your coach for help.) {% endif %}"
 
-Nyní pomocí Pythonu spusť kód v souboru: zadej příkaz `python`, mezeru
-a jméno souboru ke spuštění.
-(Je to podobné jako příkaz `cd` pro konkrétní adresář –
-<code>cd <var>jmeno_adresare</var></code>.)
+Now, using Python, run the code in the file: enter the command `python`, a space and the name of the file to run. (It's similar to the `cd` command for a specific directory - <code>cd <var>directory_name</var></code>.)
 
-``` console
+```
 (venv) $ python python_intro.py
 Hello, PyLadies!
 ```
 
-Funguje? Vidíš text?
-Jesli ano, právě jsi spustil{{a}} svůj první opravdový program v Pythonu!
-Cítíš se úžasně?
+This is an output from running a Python script called `python_intro.py` while in a virtual environment (`venv`). The script outputs the message "Hello, PyLadies!" to the console.
 
+Does it work? Can you see the text? If yes, you have just run your first real Python program! Do you feel awesome?
 
-## Výstup
+## Output
 
-Funkce `print()`, kterou jsi použil{{a}}, umí něco *vypsat* na obrazovku.
-V konzoli se hodnoty výrazů vypisovaly automaticky, abys je mohl{{a}}
-průběžně kontrolovat, ale programy v souborech bývají složitější a výpisy
-z každého kroku by byly nepřehledné.
-Proto na vypsání potřebuješ `print()`.
-Zkus si s následujícím programem:
+The function `print()` that you used can *output* something on the screen. In the console, the values of expressions were automatically printed so that you could check them continuously, but programs in files tend to be more complex and outputs from every step would be confusing. Therefore, you need `print()` for outputting. Try the following program:
+```
+name = 'Ola'
 
-``` python
-jmeno = 'Ola'
-
-'Já jsem ' + jmeno  # Tohle Python nevypíše
-
-print(jmeno * 8)    # Tohle jo!
+"I am" + name     #  Python will not display this.
+print(name * 8)  #  This is displayed!
 ```
 
-Pak program spusť:
-
-``` console
+Then run the program.
+```
 (venv) $ python python_intro.py
 OlaOlaOlaOlaOlaOlaOlaOla
 ```
 
-Co se stalo?
-Když spustíš soubor s programem, Python jej prochází odshora dolů a postupně,
-řádek po řádku, plní jednotlivé příkazy:
-* proměnnou `jmeno` nastaví na řetězec `'Ola'`,
-* spojí řetězce `'Já jsem '` a `'Ola'`, ale výsledek zahodí,
-* zopakuje řetězec `'Ola'` osmkrát a výsledek vypíše pomocí `print()`.
+What happened?
+When you run a program file, Python goes through it from top to bottom, line by line, executing individual commands:
+* sets the variable `name` to the string `'Ola'`,
+* concatenates the strings `'I am'` and `'Ola'`, but discards the result,
+* repeats the string `'Ola'` eight times and prints the result using `print()`. 
 
-Do závorek funkce `print()` můžeš dát i víc hodnot oddělených čárkami.
-Zkus obsah souboru změnit na následující program a znovu ho spustit:
+You can put multiple values separated by commas inside the parentheses of the `print()` function. Try changing the contents of the file to the following program and run it again:
+```
+name = 'Amálka'
+age = 5
+print('I am', jmeno, 'and I am', vek, 'years old')
 
-``` python
-jmeno = 'Amálka'
-vek = 5
-print('Já jsem', jmeno, 'a je mi', vek)
-
-print('Za rok mi bude', vek + 1)
+print('Next year I will be', vek + 1)
 ```
 
-## Vstup
+## Input 
 
-Další užitečná funkce je `input()`, která se umí zeptat na otázku.
-Odpověď pak vrátí jako řetězec, který si můžeš uložit do proměnné:
-
-``` python
-jmeno = input('Jak se jmenuješ? ')
-
-print(jmeno, 'umí programovat!')
+Another useful function is `input()`, which can ask a question. It will then return the answer as a string, which you can save to a variable.
+```
+name = input('What is your name?')
+print(name, 'knows how to program!')
 ```
 
-Když program spustíš, zeptá se na otázku.
-Tu zadej na klávesnici *přímo do příkazové řádky*.
-Python ji načte a použije jako výsledek funkce `input`,
-který uloží do proměnné `jmeno`.
-A v rámci dalšího řádku programu ho vytiskne.
+When you run the program, it will ask you a question. Enter the answer directly into the command line using your keyboard. Python will read it and use it as the result of the `input` function, which will store it in the `name` variable. And as part of the next line of the program, it will print it out.
 
-``` console
+```
 (venv) $ python python_intro.py
-Jak se jmenuješ? Ola
-Ola umí programovat!
+What's your name? Ola
+Ola knows how to program!
 (venv) $ python python_intro.py
-Jak se jmenuješ? Princezna
-Princezna umí programovat!
+What's your name? Princess
+Princess knows how to program!
 ```
 
-Funkce `input()` z klávesnice vždycky načítá text: když uživatel zadá `1234`,
-Python to bere jako řetězec číslic 1, 2, 3, 4.
+The function `input()` from the keyboard always returns text: when the user enters `1234`, Python takes it as a string of digits 1, 2, 3, 4.
 
-Když budeš chtít z klávesnice načíst spíš číslo než text, musíš použít funkci,
-která umí převést řetězec na číslo:
+When you want to load a number from the keyboard instead of text, you have to use a function that can convert a string to a number:
 
-``` python
-letopocet = int(input('Jaký je letos rok? '))
-
-print('Loni byl rok', letopocet - 1)
+```python
+year = int(input('What is the current year? '))
+print('Last year was', year - 1)
 ```
 
+## Comments
 
-## Komentáře
+Did you notice in one of the previous program notes the symbol `"#"`?
 
-Všiml{{a}} sis u jednoho z předchozích programu poznámek za „mřížkou“ (`#`)?
-
-``` python
-jmeno = 'Ola'
-
-'Já jsem ' + jmeno  # Tohle Python nevypíše
-
-print(jmeno * 8)    # Tohle jo!
+```python
+name = 'Ola'
+"I am" + name   # This will not be printed by Python.
+print(name * 8) # This is it!
 ```
 
-To jsou takzvané *komentáře*.
-Jsou určené jen pro lidi: Python je úplně ignoruje.
+These are so-called "comments". They are intended for humans only: Python completely ignores them.
 
-Teď, když své programy ukládáš na disk a můžeš se k nim vracet,
-je důležité aby byly *čitelné*: aby z nich nejen počítače, ale i lidi
-poznali, co mají ty instrukce dělat.
-Vždycky když napíšeš nějaký složitější kus kódu k němu zkus přidat komentář
-s vysvětlivkou.
-Až se k programu za pár dní nebo měsíců vrátíš, poděkuješ si!
+"Now tha you are saving your programs to the disk and can return to them, it is important that they are *readable*: so that not only computers, but also people can recognize what those instructions are supposed to do. Whenever you write a more complex piece of code, try to add a comment with an explanation. When you return to the program in a few days or months, you will thank yourself!
 
+## Summary
 
-## Shrnutí
+The following is the English translation of the Czech text:
 
-* Příkaz **python** pustí uložený soubor jako program v Pythonu.
-* Funkce **print** vypisuje hodnoty.
-* Funkce **input** načítá řetězce, které uživatel zadá na klávesnici.
-* **Komentáře** můžou zpřehlednit složitější kód. Python je ignoruje.
+* The command **python** runs a saved file as a Python program.
+* The function **print** outputs values.
+* The function **input** reads strings that the user enters on the keyboard.
+* **Comments** can clarify complex code. Python ignores them.

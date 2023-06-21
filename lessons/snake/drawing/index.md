@@ -1,173 +1,99 @@
-# Nakresli mi hada
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
 
-Většina videoher má celý herní svět uložený jako spoustu čísel, textů, seznamů
-a jiných datových objektů, které popisují všechno, co ve hře je.
-Tenhle stav se časem mění, ať už automaticky nebo podle akcí hráče.
-A docela často – většinou zhruba šedesátkrát za vteřinu – se stav hry převede
-na obrázek, který se hráčovi ukáže.
+# Draw me a snake.
 
-Abys mohl{{a}} zobrazit hada, budeš napřed muset definovat stav hry – zadat
-to, co se má vykreslovat.
+Most video games have the entire game world stored as a bunch of numbers, texts, lists, and other data objects that describe everything in the game. This state changes over time, either automatically or based on the player's actions. And quite often - usually about sixty times per second - the state of the game is converted into an image that is shown to the player.
 
-Zkus se zamyslet, co všechno bude ten stav obsahovat: co všechno si počítač
-musí o hře „pamatovat“, aby mohl aktuální stav zobrazit?
+In order to display a snake, you will first need to define the game state - input what should be rendered.
 
-Bude potřebovat například aktuální polohu všech částí hada: kde má začátek?
-Kroutí se doprava nebo doleva? Jak je dlouhý?
-Naopak barvu hada ve stavu uložit nepotřebuješ – každý had v téhle hře bude
-stejný.
+Try to think about what the state will contain: what does the computer have to remember about the game to be able to display the current state?
 
-Napadne tě, jak polohu hada zapsat pomocí čísel, seznamů a dalších základních
-datových typů?
+It will need, for example, the current position of all parts of the snake: where does it start? Does it turn right or left? How long is it? On the other hand, you don't need to save the color of the snake state - every snake in this game will be the same.
 
+Have you ever wondered how to record the position of a snake using numbers, lists, and other basic data types?
 
-## Reprezentace hada
+## Representation of a snake
 
-Asi nejjednodušší způsob, jak si v počítači „zapamatovat“ herního hada,
-je pomocí seznamu souřadnic.
+Probably the easiest way to "memorize" a game snake on a computer is by using a list of coordinates.
 
-Pamatuješ si ze školy na kartézské souřadnice?
-To je taková ta část matematiky, co možná vypadala že nemá praktické využití.
-Pro počítačovou grafiku jsou ale souřadnice to co pro češtinu písmenka.
-Pojďme si je osvěžit.
+Do you remember from school the Cartesian coordinates? It's that part of mathematics that may have seemed to have no practical application. However, for computer graphics, coordinates are like letters for the Czech language. Let's refresh our memory.
 
-Každý bod v rovině (třeba na obrazovce!)
-je možné popsat dvěmi čísly: <var>x</var>-ovou a <var>y</var>-ovou souřadnicí.
-Ta <var>x</var>-ová říká, jak moc vlevo je bod od nějakého počátku,
-ta <var>y</var>-ová udává jak moc je nahoře.
-My za onen „počátek“ zvolíme roh okýnka, ve kterém se bude náš had plazit.
+Each point in the plane (even on the screen!) can be described by two numbers: the <var>x</var>-coordinate and the <var>y</var>-coordinate. The <var>x</var>-coordinate tells us how far to the left the point is from some origin, and the <var>y</var>-coordinate tells us how far up it is. We will choose the corner of the window in which our snake will crawl as that 'origin'.
 
-Na rozdíl od školní geometrie se had bude plazit po čtverečkové mřížce.
-Je to jako na šachovnici – když jde pěšec na D5, D značí, jak moc je to
-políčko vlevo od okraje a 5 jak moc „nahoře“.
+Unlike in school geometry, the snake will crawl on a square grid. It's like on a chessboard - when a pawn goes to D5, D indicates how much it is to the left of the edge and 5 how much "up".
 
-Tady je had, který začíná na souřadnicích (1, 2) a hlavu má na (4, 5):
+Here is a snake that starts at coordinates (1, 2) and has its head at (4, 5):
 
-{{ figure(
-    img=static('coords.svg'),
-    alt="Had na „šachovnici“ se souřadnicemi",
-) }}
+{{ figure( img=static('coords.svg'), alt="Had na „šachovnici“ se souřadnicemi", ) }}
 
-Možná si všimneš, že matematický zápis souřadnic – (1, 2) – odpovídá
-způsobu, jak se v Pythonu píšou <var>n</var>-tice.
-To není náhoda!
-Dvojice čísel je perfektní způsob, jak uložit souřadnice kousku hada.
+You may notice that the mathematical notation of the coordinates - (1, 2) - corresponds to the way <var>n</var>-tuples are written in Python. This is not a coincidence! A pair of numbers is a perfect way to store the coordinates of a snake piece.
 
-Had má ale kousků víc, a jinak dlouzí hadi jich budou mít různý počet.
-Na to je dobré použít seznam. Seznam souřadnic.
-A protože souřadnice pro nás budou dvojice čísel,
-seznam souřadnic bude seznam dvojic čísel.
+The snake has more pieces, and otherwise long snakes will have a different number of them. It is good to use a list for this. A list of coordinates. And because the coordinates for us will be a pair of numbers, the list of coordinates will be a list of pairs of numbers.
 
-Had z obrázku výše bude v Pythonu vypadat takto:
-
-```python
-had = [(1, 2), (2, 2), (3, 2), (3, 3), (3, 4), (3, 5), (4, 5)]
-```
-
-Tohle je reprezentace hada – to, co je z hlediska hry potřeba o konkrétním
-hadovi vědět.
-
-Počítačům (a programátorům?) to takhle stačí.
-My si to ale zkusme zobrazit barevně, jako obrázek, ať hadovi rozumí
-i hráč naší budoucí hry.
-Ale předtím trochu štábní kultury.
-
-## Profi software
-
-Teď, když začínáš psát profesionální software, přijdou dvě změny oproti
-tomu, jak jsi programy psal{{a}} v rozcvičce.
-
-První změna bude angličtina. Pro jména proměnných, funkcí a podobně
-se skoro vždy používá univerzálnější jazyk než je čeština, aby se pak do
-projektu mohl zapojit kdokoli z celého světa.
-Proměnná s hadem proto ponese jméno `snake`:
-
+The snake from the picture above will look like this in Python:
 ```python
 snake = [(1, 2), (2, 2), (3, 2), (3, 3), (3, 4), (3, 5), (4, 5)]
 ```
+This is the representation of a snake - what needs to be known about a specific snake in terms of the game.
 
-Komentáře budu pro přehlednost psát dál v češtině.
-Umíš-li anglicky dobře, přelož si do angličtiny i ty!
+To computers (and programmers?) this is enough. But let's try to display it in color, like an image, so that even the snake and the player of our future game understand it. But first, a little bit of staff culture.
 
-Druhou změnou bude použití vlastní třídy.
-To v tenhle moment příliš nedává smysl: hadí hra by se dala začít psát
-jen se zabudovanými třídami (seznamy, čísly atd.), ale až se dostaneme trochu
-dál, zjistl{{a}} bys, že se třídou bude všechno jednodušší.
-V reálném projektu bys pak třídu zavedla: provedl{{a}} bys *refactoring*,
-vylepšení struktury projektu bez změny funkčnosti.
+## Profi software
 
-Takové přepsání existujícího projektu je ovšem docela náchylné na chyby,
-zvlášť pokud programu nerozumíš na sto procent.
-Pro tenhle hadí projekt proto trošku zašvindlujeme a využijeme toho,
-že autor tohohle textu ví jak ten příběh skončí.
-Se třídou to nakonec bude jednodušší, věř mi.
+Now, when you start writing professional software, two changes will come compared to how you wrote programs during warm-up.
 
-Třída se bude jmenovat ``GameState`` (stav hry) a bude obsahovat
-stav hry a metody pro funkčnost okolo.
-První metoda se bude jmenovat `initialize` a nastaví úvodní stav hry – tedy
-pozici hada.
+The first change will be English. For variable names, functions, and similar, a more universal language than Czech is almost always used so that anyone from around the world can participate in the project. Therefore, a variable with a snake will be named `snake`.
+
+```python
+snake = [(1, 2), (2, 2), (3, 2), (3, 3), (3, 4), (3, 5), (4, 5)]
+``` 
+
+The second change will be the use of a custom class. At this moment, it doesn't make much sense: the snake game could be written using built-in classes (lists, numbers, etc.), but as we go further, you would find out that everything will be easier with a class. In a real project, you would then introduce the class: you would perform refactoring, an improvement of the project structure without changing its functionality.
+
+However, rewriting an existing project is quite prone to errors, especially if you don't fully understand the program. For this snake project, we will cheat a little and take advantage of the fact that the author of this text knows how the story ends. It will ultimately be easier with the class, trust me.
+
+The class will be named "GameState" and will contain the game state and methods for its functionality. The first method will be called "initialize" and will set the initial state of the game - that is, the position of the snake.
 
 ```python
 class GameState:
     def initialize(self):
         self.snake = [(1, 2), (2, 2), (3, 2), (3, 3), (3, 4), (3, 5), (4, 5)]
 
-# Vytvoření konkrétního objektu
+# Creating a specific object
 state = GameState()
 state.initialize()
 
-# Teď můžeš se stavem hry pracovat -- například vypsat seznam souřadnic hada
+# Now you can work with the game state - for example, print a list of snake coordinates.
 print(state.snake)
 ```
 
-Všimni si, že v rámci třídy je používá `self`, ale venku `state`.
-Mělo by to tak být i ve zbytku programu, který napíšeš.
-Podobně jsi v třídě `Kotatko` používal{{a}} `self`, ale venku `mourek`
-nebo `micka`.
+Notice that within the class `self` is used, but outside it's `state`. It should be the same throughout the rest of the program you write. Similarly, in the `Kotatko` class, you used `self` but outside it's `mourek` or `micka`.
 
-V editoru si otevři nový soubor, ulož ho jako `had.py` a napiš do něj
-tuhle kostru programu.
-Budeme ji dál rozvíjet.
+In the editor, open a new file, save it as 'snake.py' and write this program skeleton into it. We will further develop it.
 
-Program spusť (`cd` do adresáře s programem; `python had.py`). Funguje?
-(Je docela důležité, aby fungoval – nevidíš-li výpis seznamu,
-nečti dál a program radši oprav.)
+Start the program (`cd` to the directory with the program; `python had.py`). Does it work? 
+(It is quite important that it works - if you do not see a list output, do not continue reading and rather fix the program.)
 
-> [note]
-> Použij prosím pro třídu opravdu jméno `GameState` a atribut `snake` (a
-> později i další) pojmenuj podle materiálů.
-> Bude se ti to hodit.
+>[note]
+>Please use the name `GameState` for the class and name the attribute `snake` (and later others) according to the materials.
+>It will be useful for you.
 
+## Logical and screen coordinates
 
-## Logické a zobrazovací souřadnice
+We need to solve one basic problem when rendering a snake: converting *logical coordinates* to *screen coordinates*.
 
-U vykreslování hada musíme vyřešit jeden základní problém:
-převod *logických souřadnic* na souřadnice *obrazovky*.
+The displays of computers work similarly to our coordinate "chessboard": they are square grids full of squares. Each square - *pixel* - can be set to a color. The main difference compared to a chessboard is that there are many, many more pixels on the screen.
 
-Displeje počítačů fungují podobně jako naše souřadnicová „šachovnice“:
-jsou to čtvercové mřížky plné políček.
-Každému políčku – *pixelu* – lze nastavit barvu.
-Hlavní rozdíl proti šachovnici je v tom, že pixelů na obrazovce je mnohem,
-mnohem víc.
+If each "game" square was 10x10 pixels in size, then the snake head from the example, which has "game" coordinates (4, 5), will be rendered on the screen on the square that starts at (40, 50).
 
-Kdyby byl každý „herní“ čtvereček 10×10 pixelů velký,
-tak hlava hada z ukázky, která má „herní“ souřadnice (4, 5),
-se na obrazovku bude vykreslovat na čtverečku, který začíná na (40, 50):
+{{ figure( img=static('coords-px.svg'), alt="Had na „šachovnici“ se souřadnicemi obrazovky", ) }}
 
-{{ figure(
-    img=static('coords-px.svg'),
-    alt="Had na „šachovnici“ se souřadnicemi obrazovky",
-) }}
+The tail with "game" (*logical*) coordinates (1, 2) is drawn on a square with coordinates (10, 20).
 
-A ocas s „herními“ (*logickými*) souřadnicemi (1, 2) se vykreslí na čtvereček
-se souřadnicemi (10, 20).
+## Square setting
 
-
-## Sázení čtverečku
-
-Na to, abychom hada vykreslili, použijeme okýnko z Pygletu.
-Tady je základní kostra Pygletí aplikace, které už bys měl{{a}} rozumět:
-
+To draw a snake, we will use the Pyglet window. Here is the basic structure of a Pyglet application, which you should already understand:
 ```python
 import pyglet
 
@@ -180,10 +106,7 @@ def on_draw():
 pyglet.app.run()
 ```
 
-Kostru Pygletí aplikace připiš do svého programu.
-Řádek s importem patří podle konvencí úplně na začátek; zbytek připiš
-*za* svůj odsavadní kód.
-
+Add the Pyglet application skeleton to your program. The import line conventionally belongs at the very beginning; add the rest *after* your existing code.
 ```python
 import pyglet
 
@@ -203,56 +126,39 @@ def on_draw():
 pyglet.app.run()
 ```
 
+Download the file [green.png]({{ static('green.png') }}) - a green square - and put it in the directory where you write your code.
 
-<img src="{{ static('green.png') }}" alt="" style="display:block; float:right; margin: 2px; border: 1px solid #ccc; border-radius: 1px;">
-Stáhni si soubor [green.png]({{ static('green.png') }}) – zelený čtvereček –
-a dej ho do adresáře, kam píšeš kód.
-
-Před `window = ...` přidej řádek, který tento obrázek načte.
-
+Add a line before `window = ...` that loads this image.
 ```python
 green_image = pyglet.image.load('green.png')
 ```
 
-Potom zkus dovnitř do funkce `on_draw` přidat vykreslení obrázku na souřadnice
-(40, 50) s velikostí 10.
-
+Then try adding drawing of an image at the coordinates (40, 50) with a size of 10 inside the `on_draw` function.
 ```python
     green_image.blit(40, 50, width=10, height=10)
 ```
+Run the program (`cd` to the directory with the program; `python snake.py`). Does it work?
+(It is important again that it works - if you do not see a green square,
+do not read further and rather fix the program.)
 
-Program spusť (`cd` do adresáře s programem; `python had.py`). Funguje?
-(Je opět důležité, aby fungoval – nevidíš-li zelený čtvereček,
-nečti dál a program radši oprav.)
+As you can see, the square is quite small. We should use larger squares, let's say 64 pixels.
 
-Jak vidíš, čtvereček je docela malý.
-Budeme radši používat čtverečky větší, řekněme 64 pixelů.
-
-To číslo je „střelené od boku“.
-V programu ho použijeme několikrát a možná ho později budeš chtít upravit.
-Uložíme si ho proto do *konstanty* (proměnné, kterou nebudeme měnit).
-Konstanty se tradičně pojmenovávají velkými písmeny a píšou se hned za řádek
-`import` (i když to není technicky nutné).
-Přidej tedy za `import` řádek:
+That number is 'shot from the side'. We will use it several times in the program and you may want to modify it later. Therefore, we will save it as a *constant* (a variable that we will not change). Constants are traditionally named in capital letters and are written immediately after the `import` line (although it is not technically necessary). So, add the following line after the `import` line:
 
 ```python
 TILE_SIZE = 64
-```
-
-… a ve volání `green.blit` velikost čtverečku zohledni:
-
+``` 
+...and in the call of 'green.blit' take into account the size of the square:
 ```python
     green_image.blit(4 * TILE_SIZE, 5 * TILE_SIZE,
                      width=TILE_SIZE, height=TILE_SIZE)
 ```
 
-Kód je teď trochu delší, ale až budeš chtít velikost čtverečku změnit,
-stačí to udělat na jednom místě.
+The code is a bit longer now, but when you want to change the size of the square, you just need to do it in one place.
 
-Povedlo se? Máš větší čtvereček?
-Jestli ne, zkus si program celý, řádek po řádku, projít a zkontrolovat.
-Nebo ho porovnej se vzorovým řešením (což je rychlejší varianta, ale míň
-se naučíš).
+Did you succeed? Do you have a bigger square?
+If not, try to go through the program line by line and check it.
+Or compare it to the sample solution (which is a faster option, but you will learn less).
 
 {% filter solution %}
 ```python
@@ -281,15 +187,9 @@ pyglet.app.run()
 ```
 {% endfilter %}
 
+## Drawing a snake
 
-## Sázení hada
-
-Nechceme ale zobrazovat čtvereček, ale hada.
-Vlastně budeme chtít zobrazit celý stav hry – had bude jen ta nejdůležitější
-část.
-Udělej si proto ve třídě `GameState` novou metodu `draw` a vykreslení čtverečku
-(volání `green_image.blit`) zatím dej do ní.
-
+We don't want to display a square, but a snake. Actually, we will want to display the whole state of the game - the snake will be just the most important part. Therefore, create a new method called `draw` in the `GameState` class and for now, put the drawing of the square (calling `green_image.blit`) inside it.
 ```python
 ...
 class GameState:
@@ -306,31 +206,22 @@ def on_draw():
     state.draw()
 ```
 
-Změněný program by měl dělat to samé co předtím: vyktreslit čtvereček.
-Teď se ale kreslí v metodě `draw`, která má lepší přístup k souřadnicím hada.
-Zkus ho vykreslit!
+The modified program should do the same thing as before: draw a square. However, now it is drawn in the `draw` method, which has better access to the coordinates of the snake. Try to draw it!
 
-Vzpomeň si, že seznam dvojic můžeš „projít“ pomocí cyklu `for` a „rozbalení“
-<var>n</var>-tice:
+Remember that you can 'iterate' through a list of pairs using a 'for' loop and 'unpacking' an <var>n</var>-tuple.
 
 ```python
-    def draw(self):
-        for x, y in self.snake:
-            ...
-            # (Sem dej kód na vykreslení čtverečku se souřadnicemi x, y)
+def draw(self):
+    for x, y in self.snake:
+        ...
+        # (Put the code for drawing a square with coordinates x, y here)
 ```
 
-Zvládneš to?
-Ve výsledku by měl být vidět – aspoň zhruba – had poskládaný ze čtverečků.
+Can you handle it?
+In the end, there should be a snake made up of squares visible - at least roughly.
+{{ figure( img=static('coords-blocks.svg'), alt="Had na „šachovnici“ a ukázka programu", ) }}
 
-{{ figure(
-    img=static('coords-blocks.svg'),
-    alt="Had na „šachovnici“ a ukázka programu",
-) }}
-
-Jestli to nefunguje, nezoufej, zkontroluj si to znovu, poptej se na radu.
-Ukázkové řešení využij až jako krajní možnost, jak pokračovat dál.
-Anebo pro kontrolu!
+If it doesn't work, don't despair, check it again and ask for advice. Use the sample solution only as a last resort to move forward. Or for checking!
 
 {% filter solution %}
 ```python
@@ -364,26 +255,18 @@ pyglet.app.run()
 {% endfilter %}
 
 
-## Krmení
+## Feeding
 
-<img src="{{ static('apple.png') }}" alt="" style="display:block; float:right; margin: 2px; border: 1px solid #ccc; border-radius: 1px;">
-Aby bylo ve hře co dělat, budeme potřebovat pro hada krmení.
-Stáhni si do adresáře s projektem obrázek
-[apple.png]({{ static('apple.png') }}) a do metody `initialize`
-přidej souřadnice pro jídlo:
+To have something to do in the game, we will need food for the snake. Download the image [apple.png]({{ static('apple.png') }}) into the project directory and add coordinates for the food to the `initialize` method.
 
 ```python
-        self.food = [(2, 0), (5, 1), (1, 4)]
+self.food = [(2, 0), (5, 1), (1, 4)]
 ```
+Then try to draw apples on these coordinates using the `draw` method.
 
-Pak zkus v metodě `draw` na tyhle souřadnice vykreslit jablíčka.
-
-Budeš na to potřebovat několik věcí:
-* načíst obrázek `apple_image` podobně jako načítáš zelený čtvereček – 
-  nastavuješ proměnnou `green_image` a
-* několikrát vykreslit obrázek `apple_image` podobně jako vykresluješ
-  zelené čtverečky – voláním `green_image.blit` v cyklu
-
+You will need a few things for that:
+* to load the `apple_image` image similarly to how you load the green square - you set the `green_image` variable
+* to repeatedly draw the `apple_image` image similarly to how you draw green squares - by calling `green_image.blit` in a loop.
 
 {% filter solution %}
 ```python
@@ -421,57 +304,31 @@ pyglet.app.run()
 ```
 {% endfilter %}
 
-Možná si všimneš, že obrázek má ve hře trošičku „zubaté“ hrany.
-To je dáno způsobem, jakým v Pygletu vykreslujeme.
-Úplné vysvětlení by se do tohoto návodu nevešlo, potřebuje trochu hlubší
-znalosti počítačové grafiky.
-Proto uvedu jen řešení.
-Do funkce `on_draw`, hned za `clear`, dej následující tři řádky:
+You may notice that the image in the game has slightly jagged edges. This is due to the way we render in Pyglet. A full explanation would not fit in this guide and requires a deeper understanding of computer graphics. Therefore, I will only provide the solution. In the `on_draw` function, right after `clear`, add the following three lines:
 
 ```python
-    # Lepší vykreslování (pro nás zatím kouzelné zaříkadlo)
-    pyglet.gl.glEnable(pyglet.gl.GL_BLEND)
-    pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
+# Better rendering (a magical spell for us for now)
+pyglet.gl.glEnable(pyglet.gl.GL_BLEND)
+pyglet.gl.glBlendFunc(pyglet.gl.GL_SRC_ALPHA, pyglet.gl.GL_ONE_MINUS_SRC_ALPHA)
 ```
 
+## Loading snake pieces
 
-## Načítání kousků hada
+Now that you know how to draw a snake from squares, we will try to make it more beautiful. Download the archive [snake-tiles.zip]({{ static('snake-tiles.zip') }}) and unpack it so that the `snake-tiles` directory with images is at the same level as the game program. The directory structure should look like this:
 
-Teď, když umíš kreslit hada ze čtverců, zkusíme ho udělat hezčího.
-Stáhni si archiv [snake-tiles.zip]({{ static('snake-tiles.zip') }})
-a rozbal si ho tak, aby adresář `snake-tiles` s obrázky byl na stejné úrovni
-jako program s hrou.
-Struktura adresáře by měla vypadat takhle:
+{{ figure( img=static('screenshot-dir.png'), alt="Adresářová struktura", ) }}
 
-{{ figure(
-    img=static('screenshot-dir.png'),
-    alt="Adresářová struktura",
-) }}
+There are many 'pieces' of a snake stored in the archive, which we can draw instead of green squares. The pieces look like this. Notice the names - each piece of the snake either connects two sides of the picture, or a side of the picture with the head or tail. Depending on where the snake crawls from and to on a particular square, the picture is named <code><var>from</var>-<var>to</var>.png</code>.
 
-V archivuje spousta „kousků“ hada, které můžeme vykreslovat místo zelených
-čtverečků.
-Kousky vypadají následovně.
-Všimni si pojmenování – každý kousek hada buď spojuje dvě strany obrázku,
-nebo stranu obrázku s hlavou či ocasem.
-Podle toho, odkud kam se had na daném políčku plazí, se obrázek se jmenuje 
-<code><var>odkud</var>-<var>kam</var>.png</code>.
+{ figure( img=static('snake-tiles.png'), alt="Kousky hada", ) }}
 
-{{ figure(
-    img=static('snake-tiles.png'),
-    alt="Kousky hada",
-) }}
+>[note]
+>What are those strange "snake eggs"?
+><img src="{{ static('snake-tiles/end-end.png') }}" alt="" style="display:block; float:left; margin: 2px; border: 1px solid #ccc; border-radius: 1px;">
+>This is in case the snake is only one square long - and thus has its head and tail on the same square.
+>In the completed game, we will not get into such a state (the snake will start with a length of 2), but these images will be useful before we finish the game.
 
-> [note]
-> Co jsou taková ta divná „hadí vajíčka”?
-> <img src="{{ static('snake-tiles/end-end.png') }}" alt="" style="display:block; float:left; margin: 2px; border: 1px solid #ccc; border-radius: 1px;">
-> To je pro případ, že by had byl jen jedno políčko dlouhý – a tedy měl hlavu
-> i ocas na stejném políčku.
-> V dodělané hře se do takového stavu nedostaneme (had bude začínat s délkou 2),
-> ale než hru dokončíme, budou tyhle obrázky užitečné.
-
-Pojďme si teď tyhle obrázky *načíst*.
-Šlo by to dělat postupně, třeba takhle:
-
+Let's now *read* these pictures. We could do it gradually, for example like this:
 ```python
 bottom_left = pyglet.image.load('snake-tiles/bottom-left.png')
 bottom_right = pyglet.image.load('snake-tiles/bottom-right.png')
@@ -479,37 +336,32 @@ bottom_top = pyglet.image.load('snake-tiles/bottom-top.png')
 ...
 ```
 
-Ale obrázků je spousta, tímhle způsobem by to bylo zdlouhavé a nejspíš bys
-na některý zapomněl{{a}}.
+But there are a lot of pictures, doing it this way would be tedious and you would probably forget some.
 
-Proto si obrázky načteme automaticky, v cyklu, a dáme je do slovníku.
+So we will automatically load the pictures in a cycle and put them into a dictionary.
 
-Program bude vypadat takhle:
+The program will look like this:
 
-* Začni s prázdným slovníkem.
-* Pro každý *začátek* (`bottom`, `end`, `left`, `right`, `top`):
-  * Pro každý *konec* (`bottom`, `end`, `left`, `right`, `top`, `dead`, `tongue`):
-    * Budeme načítat obrázek „<var>začátek</var>-<var>konec</var>“; tento
-      <var>klíč</var> si dej do proměnné
-    * Načti obrázek <var>klíč</var>.png
-    * Ulož obrázek do slovníku pod <var>klíč</var>.
+*Start with an empty dictionary.
+*For each *beginning* (`bottom`, `end`, `left`, `right`, `top`):
+  *For each *end* (`bottom`, `end`, `left`, `right`, `top`, `dead`, `tongue`):
+    *We will load the image "<var>beginning</var>-<var>end</var>"; put this
+      <var>key</var> into a variable
+    *Load the image <var>key</var>.png
+    *Save the image into the dictionary under <var>key</var>.
 
-Neboli, přeloženo do Pythonu:
+Or, translated into Python:
 
-```python
-snake_tiles = {}
-for start in ['bottom', 'end', 'left', 'right', 'top']:
-    for end in ['bottom', 'end', 'left', 'right', 'top', 'dead', 'tongue']:
-        key = start + '-' + end
-        image = pyglet.image.load('snake-tiles/' + key + '.png')
-        snake_tiles[key] = image
+```
+snake_tiles = {} # create an empty dictionary named snake_tiles
+for start in ['bottom', 'end', 'left', 'right', 'top']: # iterate through the list of starting positions
+    for end in ['bottom', 'end', 'left', 'right', 'top', 'dead', 'tongue']: # iterate through the list of ending positions
+        key = start + '-' + end # concatenate the start and end positions with a hyphen
+        image = pyglet.image.load('snake-tiles/' + key + '.png') # load the image file for the current position combination
+        snake_tiles[key] = image # add the image to the dictionary with the key as the position combination
 ```
 
-Tenhle kód dej poblíž místu, kde načítáš ostatní obrázky (`pyglet.image.load`).
-Pak celý slovník pro kontrolu vypiš: `print(snake_tiles)`.
-Výpis bude vypadat dost nepřehledně, ale třeba v něm poznáš slovník –
-*{klíč: hodnota, klíč: hodnota, ...}*:
-
+Put this code near the place where you load other images (`pyglet.image.load`). Then print the entire dictionary for checking: `print(snake_tiles)`. The output will look quite messy, but maybe you will recognize the dictionary in it - *{key: value, key: value, ...}*.
 ```
 {'right-tongue': <ImageData 64x64>, 'top-tongue': <ImageData 64x64>,
  'right-top': <ImageData 64x64>, 'left-bottom': <ImageData 64x64>,
@@ -518,20 +370,15 @@ Výpis bude vypadat dost nepřehledně, ale třeba v něm poznáš slovník –
  ...
 ```
 
+## Caterpillar
 
-## Housenka
+And now try to incorporate image loading into the snake program!
 
-A teď zkus načtení obrázků začlenit do programu s hadem!
+In the rendering function, use one of the images instead of `green_image`, for example `snake_tiles['end-end']`.
 
-Ve vykreslovací funkci použij místo `green_image` jeden z obrázků,
-třeba `snake_tiles['end-end']`.
+Instead of squares, there will now be balls - instead of a snake, you will have a "caterpillar".
 
-Místo čtverečků se teď objeví kuličky – místo hada budeš mít „housenku“.
-
-{{ figure(
-    img=static('caterpillar.png'),
-    alt="Housenka",
-) }}
+{{ figure( img=static('caterpillar.png'), alt="Housenka", ) }}
 
 {% filter solution %}
 ```python
@@ -580,59 +427,43 @@ pyglet.app.run()
 {% endfilter %}
 
 
-## Jak vybrat čtverečky?
-Místo toho, aby byl všude stejný kousek hada,
-budeme chtít vybrat vždycky ten správný.
+## How to choose squares? 
 
-Jak na to?
-Podle čeho ho vybrat?
+Instead of having the same piece of fabric everywhere,
+we will always want to choose the right one.
 
-Obrázky s kousky hada jsou pojmenovány
-<code><var>odkud</var>-<var>kam</var></code>.
-To není náhoda – ukazuje to, co potřebuješ vědět, abys mohl{{a}} ten správný
-kousek vybrat.
+How to do it? By what criteria to choose it?
 
-Když máš hada podle následujícího obrázku, na políčko (3, 2) patří
-kousek, na kterém se had plazí zleva nahoru – tedy `snake_tiles['left-top']`
+Images with pieces of a snake are named <code><var>from</var>-<var>to</var></code>. This is not a coincidence - it shows what you need to know to be able to choose the right piece.
 
-{{ figure(
-    img=static('tile-selection.svg'),
-    alt="Had na „šachovnici“ se souřadnicemi. Políčko (3, 2) je zvýrazněné a vedou z něj šipky doleva a nahoru, kudy had pokračuje.",
-) }}
+When you have a snake according to the following picture, the piece that the snake is crawling on from the left up - that is `snake_tiles['left-top']` - belongs to the square (3, 2).
 
-Pro každé z políček hada budeš potřebovat vědět:
-* <var>x</var>-ovou a <var>y</var>-ovou souřadnici políčka a
-* odkud a kam se had plazí – směr k *předchozímu* a *následujícímu* políčku.
+{{ figure( img=static('tile-selection.svg'), alt="Had na „šachovnici“ se souřadnicemi. Políčko (3, 2) je zvýrazněné a vedou z něj šipky doleva a nahoru, kudy had pokračuje.", ) }}
 
-Do programu se pak dají hodnoty zadat nějak takto:
+For each field of the snake, you will need to know:
+* The <var>x</var> and <var>y</var> coordinates of the field
+* The direction in which the snake moves - towards the *previous* and *next* field.
+
+The values can then be entered into the program something like this:
 
 ```python
-    for ... in ...:   # čím bude cyklus procházet? Samotným self.snake?
-        x = ...
-        y = ...
-        before = ...  # Směr k předchozímu políčku ('left' nebo 'top' nebo ...)
-        after = ...   # Směr k následujícímu políčku 
+for ... in ...:   # What will the loop iterate over? The self.snake itself?
+    x = ...
+    y = ...
+    before = ...  # Direction towards the previous field ('left' or 'top' or ...)
+    after = ...   # Direction towards the next field
 
-        key = before + '-' + after  # název obrázku políčka
-        snake_tiles[key].blit(x * TILE_SIZE, y * TILE_SIZE,
-                              width=TILE_SIZE, height=TILE_SIZE)
+key = before + '-' + after  # name of the tile image
+snake_tiles[key].blit(x * TILE_SIZE, y * TILE_SIZE,
+                      width=TILE_SIZE, height=TILE_SIZE) 
 ```
 
-Ty vynechané `...` je ale potřeba doplnit!
+You need to fill in those missing `...`!
 
-Toto je **těžký úkol**.
-I když všechny potřebné informace a nástroje k tomu teď teoreticky znáš,
-je potřeba je správným způsobem poskládat dohromady.
-Tohle skládání dohromady, *návrh algoritmů*, je nejsložitější programátorská 
-disciplína.
+This is a **difficult task**. Even though you now theoretically know all the necessary information and tools for it, it is necessary to put them together in the right way. This putting together, *algorithm design*, is the most complex programming discipline.
 
-Zkus nad tím ale přemýšlet, nech si to rozležet v hlavě třeba přes noc,
-vrať se k materiálům k předchozím lekcím (hlavně k úvodu do Pythonu),
-zkoušej a objevuj… A časem na to přijdeš.
-Odměnou za vyřešení ti bude had místo housenky.
+Try to think about it, let it settle in your head, maybe overnight. Go back to the materials from previous lessons (especially the introduction to Python), try and discover... And in time, you will come up with a solution. Your reward for solving it will be a snake instead of a caterpillar.
 
-Než na to přijdeš, zbytek programu ti neuteče.
-Housenka je úplně stejně hratelná jako had, jen jinak vypadá.
-Klidně přejdi na [psaní logiky hry](../logic) s housenkou.
+Before you figure it out, the rest of the program won't run away from you. The caterpillar is just as playable as the snake, it just looks different. Feel free to switch to [writing game logic](../logic) with the caterpillar.
 
-Nebo se [necháš poddat](../tile-selection)?
+Or do you [want to know the solution](../tile-selection)?

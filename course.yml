@@ -1,61 +1,50 @@
-title: Hadí workshop pro PyLadies
-subtitle: Brno
-place: Red Hat, budova C, Purkyňova 665/115, Brno
-time: 8:00 až 18:00
+title: Snake Workshop for PyLadies
+subtitle: EuroPython
+place: Prague Congress Centre
+time: 9:30 AM to 5:00 PM
 timezone: Europe/Prague
-description: Hravá ochutnávka programování
+description: Playful intro to programming
 long_description: |
 
-    Chceš se naučit programovat, ale nevíš kde začít?
-    Máme tu workshop právě pro tebe!
+    Do you want to learn how to program, but don't know where to start?
+    We have a workshop just for you!
 
-    Pod vedením instruktora vytvoříš variantu klasické videohry Had,
-    kterou můžeš znát třeba ze starších mobilů Nokia.
-    Na vlastní kůži si vyzkoušíš jak se píše kód,
-    jaké jsou základní programovací koncepty, a jaké to je,
-    když počítač přestane trucovat a začne poslouchat tvoje příkazy.
+    Under the guidance of an instructor, you will create a version of the classic video game Snake,
+    which you may know from older Nokia phones.
+    You will experience writing code firsthand,
+    learn basic programming concepts, and see what it's like
+    when the computer stops acting funny and starts following your commands.
 
-    (Přijde-li ti projekt málo praktický, nezoufej! Spíš než o hru jde
-    o základní programovací principy, které dál využiješ např. při tvorbě
-    webových aplikací, analýze dat, strojovém učení,
-    programování robotů nebo návrhu systémových nástrojů.)
+    (If you think the project is not practical enough, don't despair! Rather than being about the game itself,
+    the focus is on basic programming principles that you can use later on,
+    for example, when creating web applications, analyzing data, machine learning,
+    programming robots, or designing system tools.)
 
-    Workshop je pro úplné začátečníky.
-    Není potřeba vědět nic o programování, stačí mít počítač a umět ho používat
-    (např. otevřít/uložit soubor, nainstalovat program).
+    The workshop is for complete beginners.
+    You don't need to know anything about programming, just have a computer and know how to use it
+    (e.g. open/save a file, install a program).
 
-    Workshop je v češtině a zdarma.
-    Kapacita je ale omezená a na workshop je nutná registrace přes stránky
-    [pyladies.cz](https://pyladies.cz/brno).
-
-    Zalíbí-li se ti tahle ochutnávka, je možnost pokračovat jedním
-    z jarních začátečnických kurzů PyLadies, které začnou nedlouho
-    po workshopu.
-
-vars:
-  coach-present: true
-  user-gender: f
+    The workshop is in English and free of charge.
+    However, capacity is limited and registration through the [EuroPython](https://ep2023.europython.eu/pyladies-workshop) website is required.
 
 plan:
-- title: Příprava
+- title: Preparation
   slug: preparation
   serial: 0
   materials:
   - lesson: beginners/cmdline
-    title: Příkazová řádka
+    title: Command Line
   - lesson: beginners/install
   - lesson: beginners/venv-setup
   - lesson: beginners/install-editor
-- title: Úvod do Pythonu
+- title: Introduction to Python
   slug: intro
   date: 2022-08-20
   time:
-    start: '8:00'
-    end: '13:00'
+    start: '9:30'
+    end: '12:45'
   materials:
-  - title: Úvod
-    url: https://docs.google.com/presentation/d/1pM5t3B4Qn-xVsWksDycYvHG5pxJbzmOZwLFPd9lDmGo/edit
-  - title: Tahák na klávesnici (PDF)
+  - title: (Czech) Keyboard layout cheatsheet (PDF)
     url: https://pyvec.github.io/cheatsheets/keyboard/keyboard-cs.pdf
     type: cheatsheet
   - lesson: fast-track/repl
@@ -72,17 +61,17 @@ plan:
   - lesson: fast-track/for
   - lesson: fast-track/tuple
   - lesson: fast-track/class
-- title: Had
+- title: The Snake
   slug: workshop
   date: 2022-08-20
   time:
-    start: '13:30'
-    end: '18:00'
+    start: '13:45'
+    end: '17:00'
   materials:
   - lesson: fast-track/pyglet
   - lesson: snake/drawing
   - lesson: snake/logic
-- title: Rozšíření
+- title: Extensions
   slug: extensions
   materials:
   - lesson: snake/handling

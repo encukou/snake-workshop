@@ -1,143 +1,117 @@
-# Slovníky
+> [warning]
+> This is a machine-generated translation.
+> If you're not at the in-person workshop, try the [DjangoGirls tutorial](https://tutorial.djangogirls.org/en/) for an intro to Python!
 
-Jiný typ hodnot, které v sobě mohou obsahovat další hodnoty, je *slovník*.
-Představ si překladový slovník, třeba tenhle česko-anglický:
+# Dictionaries
+
+Another type of value that can contain additional values within it is a *dictionary*. Imagine a translation dictionary, such as this Czech-English one:
 
 * **Jablko**: Apple
 * **Knoflík**: Button
 * **Myš**: Mouse
 
-Slovník v Pythonu obsahuje *záznamy*, a každý záznam přiřazuje
-nějakému *klíči* nějakou *hodnotu*.
-V našem příkladu je klíči *Jablko* přiřazena hodnota *Apple*,
-klíči *Knoflík* náleží hodnota *Button*
-a klíč *Myš* ukazuje na *Mouse*.
+The dictionary in Python contains *records*, and each record assigns some *value* to a *key*.
+In our example, the value *Apple* is assigned to the key *Jablko*,
+the value *Button* belongs to the key *Knoflík*
+and the key *Myš* points to *Mouse*.
 
-V Pythonu by se takový slovník napsal následovně:
+In Python, such a dictionary would be written as follows:
 
-``` pycon
->>> slovnik = {'Jablko': 'Apple', 'Knoflík': 'Button', 'Myš': 'Mouse'}
+``` python
+dictionary = {'Jablko': 'Apple', 'Knoflík': 'Button', 'Myš': 'Mouse'}
 ```
 
-Tyto klíče a hodnoty jsou slova – krátké texty, tedy řetězce,
-které je potřeba dát do uvozovek.
-Každý klíč je od své hodnoty oddělený dvojtečkou,
-jednotlivé dvojice se od sebe oddělují čárkou,
-a celý slovník je uzavřený ve složených závorkách.
+These keys and values are words - short texts, i.e. strings, that need to be put in quotation marks. Each key is separated from its value by a colon, individual pairs are separated from each other by a comma, and the entire dictionary is enclosed in curly braces.
 
-Když budeš chtít v takovém slovníku něco najít, potřebuješ vědět co hledat.
-Potřebuješ *klíč*.
-Pomocí hranatých závorek můžeš zjistit hodnotu, která danému klíči odpovídá:
+When you want to find something in such a dictionary, you need to know what to look for. You need a *key*. Using square brackets, you can find out the value that corresponds to a given key.
 
-
-``` pycon
->>> slovnik['Jablko']
+``` python
+dictionary['Jablko']
 'Apple'
 ```
+It's similar to lists, only in square brackets there's no index (order of the element) or range with a colon, but rather a key.
 
-Je to podobné jako u seznamů, jen v hranatých závorkách není index
-(pořadí prvku) nebo rozmezí s dvojtečkou, ale právě klíč.
+>[note]
+>The opposite direction is not possible - the dictionary does not allow you to directly determine the key based on the value.
+>For translation from English to Czech, you would need a second dictionary.
 
-> [note]
-> Naopak to nejde – slovník neumožňuje podle hodnoty přímo zjistit klíč.
-> Na překlad z angličtiny do češtiny bys potřeboval{{a}} druhý slovník.
+## Modifying dictionaries
 
-## Měnění slovníků
-
-Co se stane, když klíč ve slovníku není?
-
-``` pycon
+What happens when the key is not in the dictionary?
+```pycon
 >>> slovnik['Pes']
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 KeyError: 'Pes'
 ```
+Python complains about `KeyError` - a key error.
 
-Python si postěžuje na `KeyError` – chybu klíče.
+Similarly to lists, dictionaries can also be modified. You create a new entry like this:
 
-Podobně jako seznamy se ale slovníky dají měnit.
-Nový záznam vytvoříš takhle:
-
-``` pycon
->>> slovnik['Pes'] = 'Dog'
->>> slovnik
+```pycon
+>>> dictionary['Pes'] = 'Dog'
+>>> dictionary
 {'Jablko': 'Apple', 'Knoflík': 'Button', 'Myš': 'Mouse', 'Pes': 'Dog'}
 ```
 
-> [note]
-> Na rozdíl od překladového slovníku nemusí být Pythonní slovník seřazený
-> podle abecedy.
-> Není to potřeba, počítač umí rychle vyhledávat i bez seřazení.
 
-Kdybys potřeboval{{a}} změnit už existující záznam, použij stejný příkaz.
-K jednomu klíči může patřit jen jedna hodnota.
+>[note]
+>Unlike a translation dictionary, a Python dictionary does not have to be sorted alphabetically. It is not necessary because the computer can quickly search even without sorting.
 
-``` pycon
+If you need to change an existing record, use the same command. Only one value can belong to one key.
+
+```pycon
 >>> slovnik['Pes'] = 'Extension cord'
 >>> slovnik
 {'Jablko': 'Apple', 'Knoflík': 'Button', 'Myš': 'Mouse', 'Pes': 'Extension cord'}
 ```
 
-{# XXX: Zmínit se o nehomogenních slovnících? #}
 
-Chceš-li ze zlovníku nějaký záznam smazat, dělá se to podobně jako
-u seznamů příkazem `del`:
+If you want to delete a record from the dictionary, it is done similarly to lists with the command 'del'.
 
-``` pycon
+```pycon
 >>> del slovnik['Pes']
 >>> slovnik
 {'Jablko': 'Apple', 'Knoflík': 'Button', 'Myš': 'Mouse'}
 ```
 
-A když budeš chtít zjistit kolik je ve slovníku záznamů,
-zeptáš se podobně jako na počet znaků řetězce nebo prvků seznamu.
-Použiješ funkci `len()`.
+And if you want to find out how many records are in the dictionary, you will ask similarly as for the number of characters in a string or elements in a list. You will use the `len()` function.
 
 ``` pycon
 >>> len(slovnik)
 3
-```
+``` 
 
-{# XXX
+## To think about 
 
-* Kontakty
-* Když číslo není číslo
-* Více čísel
+To each key can only belong one value. How would you arrange it to have more values?
 
-## K zamyšlení
+Try to save these contacts to a Python variable:
 
-Ke každému klíči může patřit jen jedna hodnota.
-Jak bys zařídil{{a}}, aby hodnot víc?
+Katka:
+* 4925219
 
-Zkus do Pythonní proměnné uložit tyto kontakty:
+Jirka:
+* 7477058
+* 3251156
 
-* Katka:
-    * 4925219
-* Jirka:
-    * 7477058
-    * 3251156
-* Verča:
-    * 1019103
+Verča:
+* 1019103
 
-{% filter solution %}
-Více hodnot se dá uložit do seznamu.
-Hodnoty budou seznamy čísel:
+{% filter solution %} More values can be stored in a list.
+The values will be lists of numbers:
 
 ```pycon
->>> kontakty = {'Katka': ['4925219'], 'Jirka': ['7477058', '3251156'], 'Verča': ['1019103']}
+>>> contacts = {'Katka': ['4925219'], 'Jirka': ['7477058', '3251156'], 'Verča': ['1019103']}
 ```
 {% endfilter %}
 
-Verča se přestěhovala do zahraničí a má nové číslo: `+897 3788509`.
+## Summary
 
-#}
+Great! What do you know about dictionaries?
 
-## Shrnutí
+* A **record** consists of a **key** and a **value**.
+* In a dictionary, you search for an item using a **key**.
+* Records can be overwritten, added, or deleted using `del`.
 
-Skvělé! Co víš o slovnících:
-
-* **Záznam** se skládá z **klíče** a **hodnoty**.
-* Ve slovníku se hledá pomocí **klíče**.
-* Záznamy se dají přepsat, přidat, nebo pomocí `del` smazat.
-
-Jsi připraven{{a}} na další část?
+Are you ready for the next part?

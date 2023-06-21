@@ -1,32 +1,32 @@
-{% set editor_name = 'Visual Studio Code' %} {% set editor_url = 'https://code.visualstudio.com' %} 
+{% set editor_name = 'Visual Studio Code' %}
+{% set editor_url = 'https://code.visualstudio.com' %}
 {% extends lesson.slug + '/_base.md' %}
 
-{% block name_gen %}Instalace Visual Studio Code{% endblock %}
+{% block name_gen %}Visual Studio Code{% endblock %}
 
 {% block install %}
-## Stažení a instalace 
 
-Editor si můžeš stáhnout z jeho [domovské stránky](https://code.visualstudio.com/).
-Vyber na ní zelené tlačítko Download a vyber instalátor pro svůj systém.
-Dále se řiď instrukcemi instalátoru jako u každého jiného programu.
+## Download and installation
 
+You can download the editor from its [homepage](https://code.visualstudio.com/).
+Choose the green Download button and select the installer for your system.
+Then follow the installer instructions as with any other program.
 
-### Odesílání telemetrických dat
+### Sending telemetry data
 
-Tento textový editor ale odesílá data o tvém používání ([nejspíš včetně např.
-obsahu otevřených souborů][privacy]).
-Pokud si nepřeješ aby se data odesílala, můžeš odesílání zrušit:
+Visual Studio Code can send data about your usage ([including the contents of files you have open][privacy]) to Microsoft.
+If you do not wish for the data to be sent, you can cancel the sending.
 
-* Otevři **File** > **Preferences** > **Settings** (macOS: **Code** > **Preferences** > **Settings**).
-* Vyhledej `telemetry.enableTelemetry` a odškrtni tento záznam.
+Open **File** > **Preferences** > **Settings** (macOS: **Code** > **Preferences** > **Settings**).
+Find `telemetry.enableTelemetry` and uncheck this entry.
 
-Viz též [původni postup v angličtině](https://code.visualstudio.com/docs/supporting/faq#_how-to-disable-telemetry-reporting).
+Also see the [official guide](https://code.visualstudio.com/docs/supporting/faq#_how-to-disable-telemetry-reporting) for this.
 
 [privacy]: https://privacy.microsoft.com/en-us/privacystatement
 
 {% endblock %}
 {% block setup %}
 
-Vše ostatní je již nainstalováno. Teď se jen pusť do samotného programování!
+Everything else is already installed. It's time to start programming!
 
 {% endblock %}

@@ -1,36 +1,28 @@
-# Vybírání kousků hada
+> [warning]
+> This is a machine-generated translation, meant to support the in-person workshop.
 
-Místo toho, aby byl všude stejný kousek hada,
-budeme chtít vybrat vždycky ten správný.
+# Picking pieces of a snake
 
-Jak na to?
-Podle čeho ho vybrat?
+Instead of having the same piece of snake everywhere, we will always want to choose the right one.
 
-Obrázky s kousky hada jsou pojmenovány
-<code><var>odkud</var>-<var>kam</var></code>.
-To není náhoda – ukazuje to, co potřebuješ vědět, abys mohl{{a}} ten správný
-kousek vybrat.
+How to do it? According to what should I choose it?
 
-Když máš hada podle následujícího obrázku, na políčko (3, 2) patří
-kousek, na kterém se had plazí zleva nahoru – tedy `snake_tiles['left-top']`
+Pictures with pieces of snake are named <code><var>from</var>-<var>to</var></code>. This is not a coincidence - it shows what you need to know in order to choose the right piece.
 
-{{ figure(
-    img=static('tile-selection.svg'),
-    alt="Had na „šachovnici“ se souřadnicemi. Políčko (3, 2) je zvýrazněné a vedou z něj šipky doleva a nahoru, kudy had pokračuje.",
-) }}
+When you have a snake according to the following picture, the piece belongs on the tile (3,2) on which the snake crawls from left to up - therefore `snake_tiles['left-top']`.
+{{ figure( img=static('tile-selection.svg'), alt="Had na „šachovnici“ se souřadnicemi. Políčko (3, 2) je zvýrazněné a vedou z něj šipky doleva a nahoru, kudy had pokračuje.", ) }}
 
-Na koncích hada je ve jménech obrázků místo směru `end`.
+At the ends of the snake, in the names of the pictures, the direction 'end' is replaced.
 
-Pro každé z políček budeš potřebovat zjistit, odkud a kam na něm had leze –
-tedy směr k *předchozí* a *následující* souřadnici:
+For each square, you will need to determine where the snake is crawling on it - that is, the direction to the *previous* and *next* coordinate.
 
 <table class="table">
     <tr>
-        <th>Souřadnice</th>
-        <th>Předchozí</th>
-        <th>Směr k předchozí</th>
-        <th>Následující</th>
-        <th>Směr k následující</th>
+        <th>Coordinate</th>
+        <th>Previous</th>
+        <th>Direction to previous</th>
+        <th>Next</th>
+        <th>Direction to next</th>
         <th></th>
     </tr>
     {% set data = [
@@ -45,11 +37,11 @@ tedy směr k *předchozí* a *následující* souřadnici:
     {% for x, y, bef, aft in data %}
         <tr>
             <td>({{ x }}, {{ y }})</td>
-            <td>{% if loop.first %}<em>není</em>{% else %}
+            <td>{% if loop.first %}<em>not</em>{% else %}
                 ({{ data[loop.index0-1][0] }}, {{ data[loop.index0-1][1] }})
             {% endif %}</td>
             <td><code>{{ bef }}</code></td>
-            <td>{% if loop.last %}<em>není</em>{% else %}
+            <td>{% if loop.last %}<em>not</em>{% else %}
                 ({{ data[loop.index0+1][0] }}, {{ data[loop.index0+1][1] }})
             {% endif %}</td>
             <td><code>{{ aft }}</code></td>
@@ -64,64 +56,45 @@ tedy směr k *předchozí* a *následující* souřadnici:
     {% endfor %}
 </table>
 
-Toto je **těžký úkol**.
-I když všechny potřebné informace a nástroje k tomu teď teoreticky znáš,
-je potřeba je správným způsobem poskládat dohromady.
-Tohle skládání dohromady, *návrh algoritmů*, je nejsložitější programátorská 
-disciplína.
 
-Zkus nad tím ale přemýšlet, nech si to rozležet v hlavě třeba přes noc,
-vrať se k materiálům k předchozím lekcím (hlavně k úvodu do Pythonu),
-zkoušej a objevuj… A časem na to přijdeš.
+This is a **difficult task**. Even though you theoretically know all the necessary information and tools for it now, it is necessary to put them together in the right way. This putting together, *algorithm design*, is the most complex programming discipline.
 
-Jestli nemáš čas, koukněme se na to, jak se dá zařídit.
+Try to think about it, let it settle in your head maybe overnight, go back to the materials from previous lessons (especially the introduction to Python), experiment and discover... And eventually you will figure it out.
 
+If you don't have time, let's see how we can arrange it.
 
-## Tohle není evangelium
+# This is not the bible.
+I am describing one possible solution here. There are many other correct ways to choose the snake's squares. Perhaps you will even find another solution easier - and maybe it will even be *your* solution!
 
-Popisuju tady jedno možné řešení.
-Existuje spousta jiných správných způsobů, jak vybírat políčka hada.
-Možná ti dokonce jiné řešení přijde jednodušší – a možná to bude dokonce
-*tvoje* řešení!
+### Simpler subproblems
 
+Complicated problems are usually appropriately divided into several simpler problems by programmers. Each one is then solved separately and then put together.
 
-## Jednodušší podproblémy
+What simpler tasks could be found here?
 
-Složité problémy programátoři většinou vhodně rozdělí na více jednodušších
-problémů.
-Každý pak vyřeší zvlášť a pak spojí dohromady.
+1. Go through all the coordinates and for each of them, determine the previous and next coordinate of the square.
+2. When you have two coordinates, determine the direction from one to the other.
 
-Jaké jednodušší úkoly by se daly najít tady?
+The solution to the first one in the table above is to "fill in" the columns with coordinates. The solution to the second one will give you *directions*, parts of the image name, from this information.
 
-1. Projít všechny souřadnice, a pro každou z nich políčko zjistit
-   předchozí i následující souřadnici.
-2. Když mám dvě souřadnice, zjistit směr od jedné ke druhé.
+You will need to solve both problems. However, the second one is easier, so let's focus on it.
 
-Řešením prvního z nich v tabulce výše „vyplníš“ sloupečky se souřadnicemi.
-Řešením druhého pak z těchto informací dostaneš *směry*, části jména obrázku.
+### To find out the direction
 
-Budeš potřebovat vyřešit oba dva problémy.
-Ten druhý je ale jednodušší, tak se pojďme zaměřit na něj.
+You need to tell the computer how to determine the direction from one to the other of two adjacent squares, based on their coordinates.
 
-## Zjistit směr
-
-Potřebuješ počítači říct, jak ze souřadnic dvou políček, které jsou vedle sebe,
-zjistit směr od jednoho ke druhému.
-
-Například směr od (3, 2) k (2, 2) je *doleva*.
-Směr od (3, 2) k (3, 3) je *nahoru*.
-(Viz obrázek, nebo třetí řádek tabulky výše.)
+For example, the direction from (3, 2) to (2, 2) is *left*.
+The direction from (3, 2) to (3, 3) is *up*.
+(See the picture or the third row of the table above.)
 
 {{ figure(
     img=static('tile-selection.svg'),
     alt="Had na „šachovnici“ se souřadnicemi. Políčko (3, 2) je zvýrazněné a vedou z něj šipky doleva a nahoru, kudy had pokračuje.",
 ) }}
 
-V Pythonu to napíšeš jako *funkci*, která bere dva argumenty (souřadnice)
-a vrátí anglické jméno směru – řetězec, který se dá použít ve jméně souboru
-s obrázkem.
+In Python, you write it as a *function* that takes two arguments (coordinates) and returns the English name of the direction - a string that can be used in the file name of the image.
 
-Až bude tahle funkce hotová, měla by se dát použít následovně:
+When this function is completed, it should be used as follows:
 
 ```pycon
 >>> direction((3, 2), (2, 2))
@@ -132,46 +105,36 @@ Až bude tahle funkce hotová, měla by se dát použít následovně:
 'end'
 ```
 
-Na koncích hada bude potřeba jako druhou souřadnici použít místo dvojice čísel
-něco jiného.
-Řetězec `'end'` funguje dobře, ale stejně tak by se dalo použít cokoli jiného,
-co není souřadnice: `False`, `-1`, nebo třeba `[]`.
-(Zkušený Pythonista by použil hodnotu `None`.)
+At the ends of the snake, instead of a pair of numbers, something else will be needed as the second coordinate. The string `'end'` works well, but anything that is not a coordinate could be used, such as `False`, `-1`, or even `[]`. An experienced Pythonista would use the value `None`.
 
-Jak takovou funkci napsat?
-Když si pořádně prohlédneš první tři sloupce tabulky výše, možná přijdeš na to,
-jak se od sebe liší souřadnice, které jsou *nalevo* od sebe. Nebo *nahoru*.
+How to write such a function?
+If you take a closer look at the first three columns of the table above, you may figure out how the coordinates that are to the *left* of each other differ. Or *above* each other.
 
-* Jak zjistit směr mezi dvěma souřadnicemi:
-  * Když ta druhá není souřadnice:
-    * výsledek je `'end'`
-  * Když se <var>x</var> té první rovná <var>x</var>+1 druhé:
-    * výsledek je `'left'`
-  * Když se <var>x</var> té první rovná <var>x</var>-1 druhé:
-    * výsledek je `'right'`
-  * Když se <var>y</var> té první rovná <var>y</var>+1 druhé:
-    * výsledek je `'bottom'`
-  * Když se <var>y</var> té první rovná <var>y</var>-1 druhé:
-    * výsledek je `'top'`
+How to determine the direction between two coordinates:
+  * When the second one is not a coordinate:
+    * the result is `'end'`
+  * When the <var>x</var> of the first one equals the second one's <var>x</var>+1:
+    * the result is `'left'`
+  * When the <var>x</var> of the first one equals the second one's <var>x</var>-1:
+    * the result is `'right'`
+  * When the <var>y</var> of the first one equals the second one's <var>y</var>+1:
+    * the result is `'bottom'`
+  * When the <var>y</var> of the first one equals the second one's <var>y</var>-1:
+    * the result is `'top'`
 
-Zkušený programátor v tento moment zbystří a zeptá se: „ale co když neplatí
-ani jedna z těch podmínek“?
-Taková situace ve hře nemůže nastat (nebo ano?), ale přesto je dobré ji
-podchytit a na konec postupu přidat třeba „Jinak je výsledek `'end'`”.
+An experienced programmer will now pay attention and ask: "But what if neither of those conditions is true?" Such a situation may not occur in the game (or maybe it will?), but it is still good to catch it and add, for example, "Otherwise, the result is `'end'`" at the end of the process.
 
-Vymyslet tenhle postup je složitější část řešení našeho problému.
-Zbytek je jen téměř doslovný překlad z češtiny do Pythonu:
-
+Coming up with this procedure is the more complicated part of solving our problem. The rest is just a nearly literal translation  to Python.
 ```python
 def direction(a, b):
     if b == 'end':
         return 'end'
 
-    # Rozložení souřadnic na čísla (x, y) – to je v češtině "samozřejmé"
+    # split coordinates to values (a, b)
     x_a, y_a = a
     x_b, y_b = b
 
-    # ... a logika pokračuje
+    # ... and logic continues
     if x_a == x_b + 1:
         return 'left'
     elif x_a == x_b - 1:
@@ -183,47 +146,43 @@ def direction(a, b):
     else:
         return 'end'
 
-# Vyzkoušení
-print('tohle by mělo být "left":', direction((3, 2), (2, 2)))
-print('tohle by mělo být "bottom":', direction((3, 3), (3, 2)))
-print('tohle by mělo být "top":', direction((3, 2), (3, 3)))
-print('tohle by mělo být "right":', direction((1, 1), (2, 1)))
-print('tohle by mělo být "end":', direction((3, 3), 'end'))
-print('tohle by mělo být "end":', direction((3, 3), (80, 80)))
+# Try it
+print('this should be "left":', direction((3, 2), (2, 2)))
+print('this should be "bottom":', direction((3, 3), (3, 2)))
+print('this shoudl be "top":', direction((3, 2), (3, 3)))
+print('this should be "right":', direction((1, 1), (2, 1)))
+print('this should be "end":', direction((3, 3), 'end'))
+print('this should be "end":', direction((3, 3), (80, 80)))
 ```
 
+## Go through all coordinates.
 
-## Projít všechny souřadnice
+Now let's go back to the first problem: how to go through all the squares of the snake and find out the previous and next square for each?
 
-Teď se vraťme k prvnímu problému: jak projít všechny políčka hada,
-a u každého zjisti políčko předchozí a následující?
-
-Protože rozdíl mezi souřadnicemi jako (1, 2) a (2, 2) není na první pohled
-moc čitelný, kousky hada si označím písmenky.
-Budu psát A místo (1, 2); B místo (2, 2); atd.:
+Because the difference between coordinates such as (1, 2) and (2, 2) is not very readable at first glance, I will label the pieces of the snake with letters. I will write A instead of (1, 2); B instead of (2, 2); and so on.
 
 {{ figure(
     img=static('lettered.svg'),
     alt="Had na „šachovnici“. Každý kousek hada má písmenko: A, B, C, ..., G",
 ) }}
 
-Takového hada nakreslím následovně:
+I will draw such a snake as follows:
 
-* Nakreslím políčko A (k čemuž potřebuju vědět, že je to začátek a po něm je B)
-* Nakreslím políčko B (k čemuž potřebuju vědět, že před ním je A a po něm B)
-* Nakreslím políčko C (k čemuž potřebuju vědět, že před ním je B a po něm D)
-* … a tak dál:
++ I will draw box A (for which I need to know that it is the beginning and after it is B)
++ I will draw box B (for which I need to know that before it is A and after it is B)
++ I will draw box C (for which I need to know that before it is B and after it is D)
++ ...and so on:
 
 <table class="table">
     {% set alphabet = 'ABCDEFGH' %}
     <tr>
-        <th>K vykreslení</th>
+        <th>To draw</th>
         {% for x, y, bef, aft in data %}
             <td>{{ alphabet[loop.index0] }}</td>
         {% endfor %}
     </tr>
     <tr>
-        <th>Předchozí</th>
+        <th>Previous</th>
         {% for x, y, bef, aft in data %}
             <td>
             {% if loop.first %}×{% else %}
@@ -233,7 +192,7 @@ Takového hada nakreslím následovně:
         {% endfor %}
     </tr>
     <tr>
-        <th>Následující</th>
+        <th>Next</th>
         {% for x, y, bef, aft in data %}
             <td>
             {% if loop.last %}×{% else %}
@@ -244,28 +203,20 @@ Takového hada nakreslím následovně:
     </tr>
 </table>
 
-Jak na to?
-První řádek tabulky, seznam [A, B, C, D, E, F, G] už máš – to jsou souřadnice
-hada, `snake`.
-Kdyz se ti k tomu podaří připravit seznamy s druhým řádkem,
-[×, A, B, C, D, E, F], a třetím, [B, C, D, E, F, G, ×], můžeš je pak spojit
-pomocí funkce `zip`.
-Vzpomínáš na ni?
-Prochází několik „opovídajících si“ seznamů a dá <var>n</var>-tici
-prvních prvků, pak <var>n</var>-tici druhých prvků, pak třetích…
+How to do it? You already have the first row of the table, the list [A, B, C, D, E, F, G] - these are the coordinates of the snake. When you manage to prepare lists with the second row, [×, A, B, C, D, E, F], and the third one, [B, C, D, E, F, G, ×], you can then combine them using the `zip` function. Do you remember it? It goes through several "conversing" lists and gives a tuple of the first elements, then a tuple of the second elements, then the third...
 
-Náš příklad byl:
+Our example was:
 
 ```python
-veci = ['tráva', 'slunce', 'mrkev', 'řeka']
-barvy = ['zelená', 'žluté', 'oranžová', 'modrá']
-mista = ['na zemi', 'nahoře', 'na talíři', 'za zídkou']
+Items = ['grass', 'sun', 'carrot', 'river']
+Colors = ['green', 'yellow', 'orange', 'blue']
+Places = ['on the ground', 'up above', 'on the plate', 'behind the wall']
 
-for vec, barva, misto in zip(veci, barvy, mista):
-    print(barva, vec, 'je', misto)
+for item, color, place in zip(items, colors, places):
+    print(color, item, 'is', place)" in English.
 ```
 
-Ale stejně tak můžeš použít:
+But you can use the same way:
 
 ```python
 snake = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
@@ -273,11 +224,10 @@ prevs = ['x', 'A', 'B', 'C', 'D', 'E', 'F']
 nexts = ['B', 'C', 'D', 'E', 'F', 'G', 'x']
 
 for coords, prev, next in zip(snake, prevs, nexts):
-    print('na políčku', coords, 'had leze z', prev, 'do', next)
+    print('on the field', coords, 'the snake crawls from', prev, 'to', next)
 ```
 
-Ty dva další seznamy je ale potřeba „vyrobit“ z prvního:
-vybrat správný kousek a na správnou stranu doplnit „chybějící“ prvek:
+The two additional lists need to be "created" from the first one: select the correct piece and add the "missing" element to the correct side.
 
 ```python
 snake = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
@@ -285,20 +235,19 @@ prevs = ['end'] + snake[:-1]
 nexts = snake[1:] + ['end']
 
 for coords, prev, next in zip(snake, prevs, nexts):
-    print('na políčku', coords, 'had leze z', prev, 'do', next)
+    print('on field', coords, 'snake crawls from', prev, 'to', next)
 ```
 
-Anebo, s „opravdovými“ souřadnicemi a funkcí `direction`:
+Or, with "real" coordinates and the `direction` function:
 
 ```python
 snake = [(1, 2), (2, 2), (3, 2), (3, 3), (3, 4), (3, 5), (4, 5)]
 
 for coords, prev, next in zip(snake, ['end'] + snake[:-1], snake[1:] + ['end']):
-    before = direction(coords, prev)  # směr z aktuálního políčka na předchozí
-    after = direction(coords, next)   # směr z aktuálního políčka na následující
+    before = direction(coords, prev)  # direction from current field to previous
+    after = direction(coords, next)   # direction from current field to next
     key = before + '-' + after
-    print('na', coords, 'vykreslit:', key)
+    print('draw', key, 'at', coords)
 ```
 
-Jestli jsi {{gnd('došel', 'došla')}} až sem, doufám, že nebudeš mít příliš
-velké problémy s „transplantací“ tohoto kódu do svojí hry.
+If you've made it this far, I hope you won't have too much trouble "transplanting" this code into your game.
