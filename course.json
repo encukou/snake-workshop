@@ -1818,7 +1818,7 @@
                 "source_file": "course.yml",
                 "time": {
                     "end": "12:45",
-                    "start": "9:30"
+                    "start": "8:30"
                 },
                 "title": "Introduction to Python"
             },
@@ -1876,7 +1876,7 @@
         ],
         "source_file": "course.yml",
         "subtitle": "EuroPython",
-        "time_description": "9:30 AM to 5:00 PM",
+        "time_description": "8:30 AM to 6:00 PM",
         "timezone": "Europe/Prague",
         "title": "Snake Workshop for PyLadies"
     }
