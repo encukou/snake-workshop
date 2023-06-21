@@ -1,7 +1,7 @@
 title: Snake Workshop for PyLadies
 subtitle: EuroPython
 place: Prague Congress Centre
-time: 9:30 AM to 5:00 PM
+time: 8:30 AM to 6:00 PM
 timezone: Europe/Prague
 description: Playful intro to programming
 long_description: |
@@ -41,7 +41,7 @@ plan:
   slug: intro
   date: 2023-07-17
   time:
-    start: '9:30'
+    start: '8:30'
     end: '12:45'
   materials:
   - title: (Czech) Keyboard layout cheatsheet (PDF)
