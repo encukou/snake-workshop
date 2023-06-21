@@ -111,7 +111,7 @@
                         "slug": "index",
                         "solutions": [],
                         "source_file": "lessons/beginners/install/index.md",
-                        "title": "Instalace Pythonu",
+                        "title": "Python installation",
                         "vars": {}
                     },
                     "linux": {
@@ -143,7 +143,7 @@
                         "solutions": [],
                         "source_file": "lessons/beginners/install/linux.md",
                         "subtitle": "Linux",
-                        "title": "Instalace Pythonu – Linux",
+                        "title": "Python installation – Linux",
                         "vars": {}
                     },
                     "macos": {
@@ -166,7 +166,7 @@
                         "solutions": [],
                         "source_file": "lessons/beginners/install/macos.md",
                         "subtitle": "macOS",
-                        "title": "Instalace Pythonu – macOS",
+                        "title": "Python installation – macOS",
                         "vars": {}
                     },
                     "windows": {
@@ -193,7 +193,7 @@
                         "solutions": [],
                         "source_file": "lessons/beginners/install/windows.md",
                         "subtitle": "Windows",
-                        "title": "Instalace Pythonu – Windows",
+                        "title": "Python installation – Windows",
                         "vars": {}
                     }
                 },
@@ -206,7 +206,7 @@
                         "path": "install/windows_add_python_to_path.png"
                     }
                 },
-                "title": "Instalace Pythonu"
+                "title": "Python installation"
             },
             "beginners/install-editor": {
                 "pages": {
@@ -423,25 +423,25 @@
                             "path": "venv-setup/index.html"
                         },
                         "ids": [
+                            "a_directory_for_the_workshop",
                             "activation_of_the_virtual_environment",
-                            "directory_for_every_lesson",
                             "environment_setup",
                             "linux",
                             "macos",
                             "preparing_a_directory",
-                            "switching",
+                            "switching_to_the_directory",
                             "virtual_environment",
                             "windows"
                         ],
                         "license": "cc-by-sa-40",
                         "links": [
+                            "#a_directory_for_the_workshop",
                             "#activation_of_the_virtual_environment",
-                            "#directory_for_every_lesson",
                             "#environment_setup",
                             "#linux",
                             "#macos",
                             "#preparing_a_directory",
-                            "#switching",
+                            "#switching_to_the_directory",
                             "#virtual_environment",
                             "#windows",
                             "naucse:static?filename=dirs-00.png"
@@ -449,7 +449,7 @@
                         "slug": "index",
                         "solutions": [],
                         "source_file": "lessons/beginners/venv-setup/index.md",
-                        "title": "Environment setup",
+                        "title": "Virtual environment setup",
                         "vars": {}
                     }
                 },
@@ -462,7 +462,7 @@
                         "path": "venv-setup/dirs.png"
                     }
                 },
-                "title": "Environment setup"
+                "title": "Virtual environment setup"
             },
             "fast-track/bool": {
                 "pages": {
@@ -1715,12 +1715,12 @@
                     },
                     {
                         "lesson_slug": "beginners/install",
-                        "title": "Instalace Pythonu",
+                        "title": "Python installation",
                         "type": "lesson"
                     },
                     {
                         "lesson_slug": "beginners/venv-setup",
-                        "title": "Environment setup",
+                        "title": "Virtual environment setup",
                         "type": "lesson"
                     },
                     {
