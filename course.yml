@@ -39,7 +39,7 @@ plan:
   - lesson: beginners/install-editor
 - title: Introduction to Python
   slug: intro
-  date: 2022-08-20
+  date: 2023-07-17
   time:
     start: '9:30'
     end: '12:45'
@@ -63,10 +63,10 @@ plan:
   - lesson: fast-track/class
 - title: The Snake
   slug: workshop
-  date: 2022-08-20
+  date: 2023-07-17
   time:
     start: '13:45'
-    end: '17:00'
+    end: '18:00'
   materials:
   - lesson: fast-track/pyglet
   - lesson: snake/drawing
