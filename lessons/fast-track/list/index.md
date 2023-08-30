@@ -113,8 +113,8 @@ No, you will receive the second element.
 Programmers count from zero. So if you want the first element, ask Python for element number zero.
 
 ```pycon
->>> loterie[0]
-42
+>>> lottery[0]
+59
 ```
 At first, it's strange, but you can get used to it.
 {% endfilter %}
@@ -144,7 +144,7 @@ IndexError: list index out of range
 Element with index 7 does not exist - it results in error.
 
 ```pycon
->>> loterie[1000]
+>>> lottery[1000]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list index out of range
@@ -152,25 +152,25 @@ IndexError: list index out of range
 Same for index 1000.
 
 ```pycon
->>> loterie[-1]
+>>> lottery[-1]
 199
 ```
 Index -1 means the *last* element.
 
 ```pycon
->>> loterie[-2]
+>>> lottery[-2]
 3
 ```
 Index -2 means the one before the last element.
 
 ```pycon
->>> loterie[-6]
+>>> lottery[-6]
 42
 ```
 Index -6 means the sixth element from the end.
 
 ```pycon
->>> loterie[-100]
+>>> lottery[-100]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: list index out of range
@@ -277,7 +277,7 @@ The beginning and the end can be combined - you can put the number before or aft
 ```pycon
 >>> numbers
 ['First', 'Second', 'Third', 'Fourth']
->>> cisla[1:-1]
+>>> numbers[1:-1]
 ['Second', 'Third']
 ```
 
